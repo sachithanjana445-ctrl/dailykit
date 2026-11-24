@@ -7,7 +7,68 @@
 <meta name="theme-color" content="#080d1b">
 <meta name="description" content="DAILYKIT Knowledge Hub - Search, discover and learn.">
 <title>DAILYKIT | Knowledge Hub</title>
+/* DAILYKIT LIVE MARKETS */
 
+#live-markets {
+  padding: 40px 0;
+  background: linear-gradient(135deg,#0b1428,#111a2e);
+  border-top: 1px solid rgba(22,199,232,.2);
+  border-bottom: 1px solid rgba(22,199,232,.2);
+}
+
+#live-markets h2 {
+  color: #16c7e8;
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+#live-markets h3 {
+  margin-top: 30px;
+}
+
+#live-markets p {
+  color: #9eacc5;
+}
+
+.crypto-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.crypto-card {
+  background: #14213a;
+  border: 1px solid rgba(255,255,255,.09);
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.crypto-card h4 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.crypto-price {
+  font-size: 23px;
+  font-weight: bold;
+  color: white;
+}
+
+.crypto-change {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.positive { color: #20d99a !important; }
+.negative { color: #ff647c !important; }
+
+@media(max-width:480px) {
+  .crypto-grid {
+    grid-template-columns: 1fr;
+  }
+}
 <style>
 :root{
   --bg:#080d1b;
@@ -274,6 +335,19 @@ footer{
 </header>
 
 <main>
+<!-- DAILYKIT LIVE MARKETS -->
+<section id="live-markets">
+  <div class="container">
+    <h2>🌍 DAILYKIT LIVE MARKETS</h2>
+    <p>Global Stocks & Cryptocurrency Market</p>
+
+    <h3>₿ Cryptocurrency Prices</h3>
+    <div id="crypto-market">
+      <p>Loading market data...</p>
+    </div>
+  </div>
+</section>
+<!-- END LIVE MARKETS -->
 <div id="homePage">
 
 <div class="hero">
