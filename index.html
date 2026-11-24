@@ -1,386 +1,212 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="DAILYKIT - One Digital World for Everything.">
+<meta name="theme-color" content="#080d1b">
 <title>DAILYKIT | Your Digital World</title>
 
 <style>
-:root {
+:root{
   --bg:#080d1b;
   --panel:#111a2e;
   --card:#14213a;
   --text:#f4f7ff;
-  --muted:#9baac4;
-  --cyan:#20d9ff;
-  --purple:#9565ff;
-  --border:rgba(255,255,255,.09);
+  --muted:#aab6ce;
+  --cyan:#00d9ff;
+  --purple:#8b5cf6;
+  --border:rgba(255,255,255,.1);
+  --shadow:0 12px 35px rgba(0,0,0,.25);
 }
-
-body.light {
-  --bg:#f1f5ff;
-  --panel:#ffffff;
-  --card:#ffffff;
-  --text:#101a30;
-  --muted:#596780;
-  --border:rgba(0,0,0,.10);
+body.light{
+  --bg:#eef3fb;
+  --panel:#fff;
+  --card:#fff;
+  --text:#17233b;
+  --muted:#59677e;
+  --border:rgba(0,0,0,.1);
+  --shadow:0 10px 25px rgba(0,0,0,.08);
 }
-
-* {
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html { scroll-behavior:smooth; }
-
-body {
-  font-family:Arial,sans-serif;
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
   background:var(--bg);
   color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.6;
   transition:.25s;
 }
-
-header {
-  height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 6%;
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+header{
+  position:sticky;top:0;z-index:20;
   background:var(--panel);
   border-bottom:1px solid var(--border);
-  position:sticky;
-  top:0;
-  z-index:10;
+  padding:13px 5%;
+  display:flex;align-items:center;
+  justify-content:space-between;gap:12px;
 }
-
-.logo {
-  font-size:25px;
-  font-weight:900;
+.logo{
+  font-size:25px;font-weight:900;
   letter-spacing:1px;
-}
-
-.logo span { color:var(--cyan); }
-
-nav {
-  display:flex;
-  gap:25px;
-}
-
-nav a {
-  color:var(--muted);
-  text-decoration:none;
-  font-size:14px;
-}
-
-nav a:hover { color:var(--cyan); }
-
-.header-actions {
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
-
-button,select { font:inherit; }
-
-.header-actions button,
-#languageSelector {
-  background:var(--card);
-  color:var(--text);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:9px 12px;
-  cursor:pointer;
-}
-
-main {
-  width:90%;
-  max-width:1200px;
-  margin:auto;
-}
-
-.hero {
-  text-align:center;
-  padding:75px 15px 45px;
-}
-
-.tag {
-  color:var(--cyan);
-  font-size:12px;
-  letter-spacing:3px;
-  margin-bottom:18px;
-  font-weight:bold;
-}
-
-.hero h1 {
-  font-size:clamp(34px,6vw,65px);
-  line-height:1.15;
-  margin-bottom:18px;
-}
-
-.gradient {
   background:linear-gradient(90deg,var(--cyan),var(--purple));
   -webkit-background-clip:text;
   color:transparent;
 }
-
-.hero p {
-  color:var(--muted);
-  font-size:16px;
-  max-width:650px;
-  margin:0 auto 28px;
-  line-height:1.7;
+.header-actions{display:flex;gap:9px;align-items:center}
+select,.icon-btn{
+  background:var(--card);color:var(--text);
+  border:1px solid var(--border);
+  border-radius:10px;padding:9px;
 }
-
-.search-box {
-  max-width:570px;
-  margin:auto;
-  display:flex;
+.icon-btn{min-width:40px}
+nav{
+  display:flex;justify-content:center;
+  gap:24px;padding:12px;flex-wrap:wrap;
   background:var(--panel);
+  border-bottom:1px solid var(--border);
+}
+nav a{color:var(--muted);font-size:14px}
+nav a:hover{color:var(--cyan)}
+.container{width:min(1150px,92%);margin:auto}
+.hero{
+  text-align:center;padding:75px 15px 65px;
+  background:
+  radial-gradient(ellipse at 20% 20%,rgba(0,217,255,.13),transparent 45%),
+  radial-gradient(ellipse at 80% 40%,rgba(139,92,246,.15),transparent 45%);
+}
+.hero h1{
+  font-size:clamp(34px,7vw,65px);
+  line-height:1.12;margin-bottom:18px;
+}
+.gradient{
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  -webkit-background-clip:text;color:transparent;
+}
+.hero p{color:var(--muted);font-size:17px;margin:0 auto 25px}
+.search-box{
+  width:min(600px,95%);margin:auto;
+  display:flex;background:var(--panel);
   border:1px solid var(--border);
-  border-radius:15px;
-  padding:6px;
+  border-radius:15px;overflow:hidden;
 }
-
-.search-box input {
-  flex:1;
-  min-width:0;
-  background:transparent;
-  border:0;
-  outline:0;
-  color:var(--text);
-  padding:12px;
-  font-size:15px;
+.search-box input{
+  flex:1;min-width:0;padding:15px;
+  background:transparent;border:0;outline:0;color:var(--text);
 }
-
-.search-box button {
-  border:0;
-  background:linear-gradient(90deg,#13c9ef,#765cff);
-  color:white;
-  padding:12px 20px;
-  border-radius:10px;
-  cursor:pointer;
+.search-box button{
+  border:0;background:var(--cyan);color:#00121a;
+  padding:0 20px;font-weight:bold;
 }
-
-section { padding:35px 0; }
-
-.section-heading {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:22px;
-  gap:10px;
+section{padding:55px 0}
+.section-title{text-align:center;font-size:30px;margin-bottom:10px}
+.section-subtitle{
+  color:var(--muted);text-align:center;
+  margin:0 auto 30px;max-width:650px;
 }
-
-.section-heading h2 { font-size:24px; }
-
-.section-heading span {
-  color:var(--cyan);
-  font-size:13px;
+.grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:17px;
 }
-
-.grid {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:17px;padding:23px;
+  box-shadow:var(--shadow);
+  transition:.2s;
 }
-
-.card {
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:22px;
-  min-height:150px;
-  transition:.25s;
+.card:hover{transform:translateY(-4px);border-color:var(--cyan)}
+.card .emoji{font-size:34px;margin-bottom:10px}
+.card h3{font-size:18px;margin-bottom:6px}
+.card p{color:var(--muted);font-size:14px}
+.card-link{display:block}
+.tag{
+  display:inline-block;margin-top:12px;
+  color:var(--cyan);font-size:12px;font-weight:bold;
 }
-
-.card:hover {
-  transform:translateY(-5px);
-  border-color:var(--cyan);
-}
-
-.card .emoji {
-  font-size:30px;
-  margin-bottom:15px;
-}
-
-.card h3 {
-  font-size:17px;
-  margin-bottom:9px;
-}
-
-.card p {
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.6;
-}
-
-.discovery {
-  background:linear-gradient(120deg,#142d4b,#241b49);
-  border:1px solid rgba(32,217,255,.25);
-  border-radius:22px;
-  padding:30px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-}
-
-.discovery h2 {
-  font-size:25px;
-  margin-bottom:12px;
-}
-
-.discovery p {
-  color:#c1cce0;
-  line-height:1.7;
-  max-width:600px;
-}
-
-.discovery .big-emoji {
-  font-size:65px;
-}
-
-.info-button {
-  display:inline-block;
-  margin-top:18px;
-  padding:11px 18px;
-  background:var(--cyan);
-  color:#06101e;
-  border-radius:10px;
-  font-weight:bold;
-  text-decoration:none;
-  font-size:13px;
-}
-
-.coming {
-  color:var(--cyan);
-  font-size:11px;
-  margin-top:12px;
-  display:block;
-}
-
-#noResults {
-  display:none;
-  color:var(--muted);
-  text-align:center;
+.feature{
+  background:linear-gradient(135deg,rgba(0,217,255,.09),rgba(139,92,246,.12));
+  border:1px solid var(--border);border-radius:22px;
   padding:30px;
 }
-
-footer {
-  border-top:1px solid var(--border);
-  margin-top:50px;
-  padding:35px 5%;
-  text-align:center;
-  color:var(--muted);
-  line-height:2;
-  font-size:13px;
+.quiz-wrap{max-width:720px;margin:auto}
+.quiz-panel{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:28px;text-align:center;
 }
-
-.bottom-nav { display:none; }
-
-@media(max-width:850px) {
-  .grid { grid-template-columns:repeat(2,1fr); }
-  nav { display:none; }
+.quiz-panel h3{font-size:23px;margin-bottom:18px}
+.quiz-options{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  margin-top:20px;
 }
-
-@media(max-width:520px) {
-  header { padding:0 4%; height:62px; }
-  .logo { font-size:21px; }
-  #languageSelector { max-width:95px; padding:8px 5px; font-size:12px; }
-  .header-actions { gap:5px; }
-  .header-actions button { padding:8px; }
-  main { width:92%; }
-  .hero { padding:55px 5px 30px; }
-  .hero p { font-size:14px; }
-  .grid { gap:10px; }
-  .card { padding:16px; min-height:145px; }
-  .card h3 { font-size:15px; }
-  .card p { font-size:12px; }
-  .discovery { padding:22px; }
-  .discovery .big-emoji { font-size:40px; }
-  .discovery h2 { font-size:20px; }
-  .bottom-nav {
-    display:flex;
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:var(--panel);
+.quiz-options button{
+  padding:15px;border:1px solid var(--cyan);
+  border-radius:12px;background:rgba(0,217,255,.07);
+  color:var(--text);transition:.2s;
+}
+.quiz-options button:hover{
+  background:rgba(0,217,255,.2);
+  transform:translateY(-2px);
+}
+.primary-btn{
+  border:0;border-radius:12px;padding:13px 20px;
+  background:linear-gradient(90deg,var(--cyan),#7c83ff);
+  color:#07111e;font-weight:bold;
+}
+.secondary-btn{
+  border:1px solid var(--border);
+  border-radius:12px;padding:12px 17px;
+  background:var(--panel);color:var(--text);
+}
+.button-row{
+  display:flex;justify-content:center;
+  flex-wrap:wrap;gap:10px;margin-top:20px;
+}
+.progress{
+  height:7px;background:var(--panel);
+  border-radius:10px;margin:15px 0 25px;overflow:hidden;
+}
+.progress div{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  transition:.3s;
+}
+.result-emoji{font-size:65px;margin:10px}
+#personalityQuiz,#personalityResult{display:none}
+.discovery-card{text-align:center}
+.discovery-card .emoji{font-size:45px}
+footer{
+  padding:35px 15px;text-align:center;
+  background:var(--panel);border-top:1px solid var(--border);
+  color:var(--muted);font-size:14px;
+}
+.mobile-nav{display:none}
+@media(max-width:800px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  nav{gap:13px}
+}
+@media(max-width:520px){
+  header{padding:10px 4%}
+  .logo{font-size:21px}
+  .grid{grid-template-columns:1fr 1fr;gap:10px}
+  .card{padding:15px}
+  .card h3{font-size:15px}
+  .card p{font-size:12px}
+  .hero{padding:55px 10px}
+  .quiz-options{grid-template-columns:1fr}
+  .quiz-panel{padding:20px}
+  nav{display:none}
+  .mobile-nav{
+    display:flex;position:fixed;bottom:0;left:0;right:0;
+    z-index:30;background:var(--panel);
     border-top:1px solid var(--border);
-    justify-content:space-around;
-    padding:12px 5px;
-    z-index:20;
+    justify-content:space-around;padding:12px 5px;
   }
-  .bottom-nav a {
-    text-decoration:none;
-    color:var(--muted);
-    font-size:11px;
-    text-align:center;
-  }
-  footer { padding-bottom:85px; }
-}
-#social-fun .discovery {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-#social-fun .big-emoji {
-  font-size: 75px;
-}
-
-#personalityQuiz .card,
-#personalityResult .card {
-  text-align: center;
-  padding: 25px;
-}
-
-#quizOptions {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-#quizOptions button {
-  padding: 15px;
-  border: 1px solid var(--cyan);
-  border-radius: 12px;
-  background: rgba(0, 200, 255, 0.08);
-  color: inherit;
-  cursor: pointer;
-  font-size: 15px;
-  transition: 0.2s;
-}
-
-#quizOptions button:hover {
-  background: rgba(0, 200, 255, 0.2);
-  transform: translateY(-2px);
-}
-
-#social-fun .info-button {
-  margin: 8px 5px;
-  cursor: pointer;
-  font: inherit;
-}
-
-#resultCard {
-  border: 1px solid var(--cyan);
-  border-radius: 18px;
-}
-
-@media(max-width:600px) {
-  #quizOptions {
-    grid-template-columns: 1fr;
-  }
-
-  #social-fun .big-emoji {
-    font-size: 55px;
-  }
+  .mobile-nav a{font-size:12px;color:var(--muted)}
+  footer{padding-bottom:75px}
 }
 </style>
 </head>
@@ -388,1020 +214,625 @@ footer {
 <body>
 
 <header>
-  <div class="logo">DAILY<span>KIT</span></div>
-
-  <nav>
-    <a href="#world" data-i18n="explore">Explore</a>
-    <a href="#discovery" data-i18n="discovery">Discovery</a>
-    <a href="#tools" data-i18n="tools">Tools</a>
-    <a href="#learn" data-i18n="learn">Learn</a>
-  </nav>
-
+  <a class="logo" href="#">DAILYKIT</a>
   <div class="header-actions">
-    <select id="languageSelector" aria-label="Select language">
-      <option value="en">🇬🇧 EN</option>
-      <option value="es">🇪🇸 ES</option>
-      <option value="fr">🇫🇷 FR</option>
-      <option value="de">🇩🇪 DE</option>
-      <option value="pt">🇧🇷 PT</option>
-      <option value="ja">🇯🇵 JA</option>
-      <option value="zh">🇨🇳 ZH</option>
-      <option value="hi">🇮🇳 HI</option>
+    <select id="languageSelector" aria-label="Language">
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+      <option value="pt">Português</option>
+      <option value="ja">日本語</option>
+      <option value="zh">中文</option>
+      <option value="hi">हिन्दी</option>
     </select>
-    <button onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
+    <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
   </div>
 </header>
 
+<nav>
+  <a href="#explore" data-i18n="navExplore">Explore</a>
+  <a href="#social-fun" data-i18n="navFun">Social Fun</a>
+  <a href="#discovery" data-i18n="navDiscovery">Discovery</a>
+  <a href="#tools" data-i18n="navTools">Tools</a>
+</nav>
+
 <main>
-
 <div class="hero">
-  <div class="tag">YOUR DIGITAL WORLD</div>
-
-  <h1>
-    <span data-i18n="hero1">One Digital World</span><br>
-    <span class="gradient" data-i18n="hero2">For Everything</span>
-  </h1>
-
-  <p data-i18n="heroDesc">
-    Discover knowledge, explore useful tools, create amazing things
-    and make every day more productive.
-  </p>
-
-  <div class="search-box">
-    <input id="search" type="search"
-      data-i18n-placeholder="searchPlaceholder"
-      placeholder="Search anything...">
-    <button onclick="searchCards()" data-i18n="search">Search</button>
+  <div class="container">
+    <h1><span data-i18n="heroOne">One Digital World</span><br>
+      <span class="gradient" data-i18n="heroTwo">For Everything.</span>
+    </h1>
+    <p data-i18n="heroDesc">Explore, learn, create and discover something new every day.</p>
+    <div class="search-box">
+      <input id="search" type="search" placeholder="Search DAILYKIT..." data-i18n-placeholder="searchPlaceholder">
+      <button onclick="searchCards()" data-i18n="searchButton">Search</button>
+    </div>
   </div>
 </div>
 
-<section id="world">
-  <div class="section-heading">
-    <h2 data-i18n="worldTitle">Explore Your World</h2>
-    <span data-i18n="worldSubtitle">DISCOVER MORE</span>
+<section id="explore" class="container">
+  <h2 class="section-title" data-i18n="exploreTitle">Explore Your World</h2>
+  <p class="section-subtitle" data-i18n="exploreDesc">Discover different worlds in one place.</p>
+  <div class="grid" id="exploreGrid">
+    <a class="card card-link" data-search="learn education knowledge science">
+      <div class="emoji">📚</div><h3 data-i18n="learn">Learn World</h3>
+      <p data-i18n="learnDesc">Knowledge and education.</p><span class="tag">EXPLORE →</span>
+    </a>
+    <a class="card card-link" data-search="create design art creativity">
+      <div class="emoji">🎨</div><h3 data-i18n="create">Create World</h3>
+      <p data-i18n="createDesc">Bring your ideas to life.</p><span class="tag">EXPLORE →</span>
+    </a>
+    <a class="card card-link" data-search="ai artificial intelligence">
+      <div class="emoji">🤖</div><h3 data-i18n="ai">AI World</h3>
+      <p data-i18n="aiDesc">Discover AI experiences.</p><span class="tag">EXPLORE →</span>
+    </a>
+    <a class="card card-link" data-search="games play brain puzzles">
+      <div class="emoji">🎮</div><h3 data-i18n="games">Games World</h3>
+      <p data-i18n="gamesDesc">Play and challenge yourself.</p><span class="tag">EXPLORE →</span>
+    </a>
+    <a class="card card-link" data-search="science space nature facts">
+      <div class="emoji">🔬</div><h3 data-i18n="science">Science World</h3>
+      <p data-i18n="scienceDesc">Explore how things work.</p><span class="tag">EXPLORE →</span>
+    </a>
+    <a class="card card-link" data-search="productivity tools calculator">
+      <div class="emoji">⚡</div><h3 data-i18n="productivity">Productivity</h3>
+      <p data-i18n="productivityDesc">Make everyday tasks easier.</p><span class="tag">EXPLORE →</span>
+    </a>
+    <a class="card card-link" data-search="social fun quiz personality">
+      <div class="emoji">🎉</div><h3 data-i18n="social">Social Fun</h3>
+      <p data-i18n="socialDesc">Quizzes and fun challenges.</p><span class="tag">EXPLORE →</span>
+    </a>
+    <a class="card card-link" data-search="daily discovery inspiration ideas">
+      <div class="emoji">🌍</div><h3 data-i18n="discovery">Daily Discovery</h3>
+      <p data-i18n="discoveryDesc">Something new every day.</p><span class="tag">EXPLORE →</span>
+    </a>
   </div>
+  <p id="noResults" style="display:none;text-align:center;color:var(--muted);margin-top:20px" data-i18n="noResults">No matching results found.</p>
+</section>
 
+<section id="social-fun" class="container">
+  <div class="feature">
+    <h2 class="section-title">🎉 <span data-i18n="socialTitle">DAILYKIT Social Fun</span></h2>
+    <p class="section-subtitle" data-i18n="socialSubtitle">Discover your fun personality and share your result.</p>
+    <div class="quiz-wrap">
+      <div id="quizIntro" class="quiz-panel">
+        <div class="result-emoji">🧩</div>
+        <h3 data-i18n="personalityTitle">Discover Your Personality</h3>
+        <p class="section-subtitle" data-i18n="personalityDesc">Answer five fun questions and discover your style.</p>
+        <button class="primary-btn" onclick="startPersonalityTest()" data-i18n="takeTest">Start the Quiz</button>
+      </div>
+
+      <div id="personalityQuiz" class="quiz-panel">
+        <p id="quizProgressText">Question 1 of 5</p>
+        <div class="progress"><div id="quizProgress"></div></div>
+        <h3 id="quizQuestion"></h3>
+        <div id="quizOptions" class="quiz-options"></div>
+      </div>
+
+      <div id="personalityResult" class="quiz-panel">
+        <div id="resultEmoji" class="result-emoji">🌟</div>
+        <h3 id="resultTitle"></h3>
+        <p id="resultDescription" class="section-subtitle"></p>
+        <div class="button-row">
+          <button class="primary-btn" onclick="sharePersonalityResult()" data-i18n="shareResult">Share Result</button>
+          <button class="secondary-btn" onclick="downloadPersonalityResult()" data-i18n="downloadCard">Download Card</button>
+          <button class="secondary-btn" onclick="startPersonalityTest()" data-i18n="tryAgain">Try Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="discovery" class="container">
+  <h2 class="section-title" data-i18n="dailyTitle">Daily Discovery</h2>
+  <p class="section-subtitle" data-i18n="dailyDesc">A little discovery can change your day.</p>
+  <div class="card discovery-card">
+    <div class="emoji">💡</div>
+    <h3 data-i18n="factTitle">Did You Know?</h3>
+    <p data-i18n="factText">Octopuses have three hearts. Two pump blood to the gills, while one pumps it to the rest of the body.</p>
+  </div>
+</section>
+
+<section id="tools" class="container">
+  <h2 class="section-title" data-i18n="toolsTitle">Popular Tools</h2>
+  <p class="section-subtitle" data-i18n="toolsDesc">Useful tools for your everyday digital life.</p>
   <div class="grid">
-
-    <div class="card" data-search="ai artificial intelligence assistant writing">
-      <div class="emoji">🤖</div>
-      <h3 data-i18n="aiTitle">AI World</h3>
-      <p data-i18n="aiDesc">Discover intelligent AI experiences and assistants.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
+    <div class="card" data-search="calculator math numbers">
+      <div class="emoji">🧮</div><h3 data-i18n="calculator">Calculator</h3>
+      <p data-i18n="comingSoon">Coming Soon</p>
     </div>
-
-    <div class="card" data-search="games puzzles brain quiz">
-      <div class="emoji">🧠</div>
-      <h3 data-i18n="brainTitle">Brain Arena</h3>
-      <p data-i18n="brainDesc">Challenge your mind with puzzles and games.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
-    </div>
-
-    <div class="card" data-search="learning education courses skills">
-      <div class="emoji">🎓</div>
-      <h3 data-i18n="learnTitle">Learn Hub</h3>
-      <p data-i18n="learnDesc">Learn new skills and explore new subjects.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
-    </div>
-
-    <div class="card" data-search="design creative poster art">
-      <div class="emoji">🎨</div>
-      <h3 data-i18n="createTitle">Create Studio</h3>
-      <p data-i18n="createDesc">Turn your ideas into creative projects.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
-    </div>
-
-    <div class="card" data-search="science nature space facts">
-      <div class="emoji">🔬</div>
-      <h3 data-i18n="scienceTitle">Science & Nature</h3>
-      <p data-i18n="scienceDesc">Explore science, nature and the universe.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
-    </div>
-
-    <div class="card" data-search="life tasks notes calendar productivity">
-      <div class="emoji">📅</div>
-      <h3 data-i18n="lifeTitle">Life OS</h3>
-      <p data-i18n="lifeDesc">Organize your daily tasks and personal life.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
-    </div>
-
-    <div class="card" data-search="world countries currency time zones">
-      <div class="emoji">🌍</div>
-      <h3 data-i18n="connectTitle">World Connect</h3>
-      <p data-i18n="connectDesc">Explore countries, currencies and world time.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
-    </div>
-
-    <div class="card" data-search="discovery facts ideas inspiration">
-      <div class="emoji">✨</div>
-      <h3 data-i18n="discoveryTitle">Discovery World</h3>
-      <p data-i18n="discoveryDesc">Find interesting facts and new discoveries.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
-    </div>
-
-  </div>
-</section>
-
-<section id="social-fun">
-  <div class="section-heading">
-    <h2 data-i18n="socialTitle">🎉 Social Fun</h2>
-    <span data-i18n="socialSubtitle">PLAY • DISCOVER • SHARE</span>
-  </div>
-
-  <div class="discovery">
-    <div>
-      <h2 data-i18n="personalityTitle">Discover Your Personality!</h2>
-      <p data-i18n="personalityDesc">
-  Answer 5 fun questions and discover your playful personality type.
-</p>
-      <button class="info-button" onclick="startPersonalityTest()">
-  <span data-i18n="takeTest">Take the Test</span> →
-</button>
-     
-    </div>
-    <div class="big-emoji">🎭</div>
-  </div>
-
-  <div id="personalityQuiz" style="display:none; margin-top:20px;">
-    <div class="card">
-      <h3 id="quizProgress">Question 1 of 5</h3>
-      <h2 id="quizQuestion" style="margin:20px 0;"></h2>
-      <div id="quizOptions" class="grid"></div>
-    </div>
-  </div>
-
-  <div id="personalityResult" style="display:none; margin-top:20px;">
-    <div class="card" id="resultCard">
-      <div class="emoji">✨</div>
-      <h2 id="resultTitle"></h2>
-      <p id="resultDescription"></p>
-      <p style="margin-top:15px;color:var(--cyan);">
-        DAILYKIT • DISCOVER YOURSELF
-      </p>
-    </div>
-    <button class="info-button" onclick="sharePersonalityResult()">
-  <span data-i18n="shareResult">Share Result</span>
-</button>
-    <button class="info-button" onclick="downloadPersonalityResult()">
-  <span data-i18n="downloadCard">Download Card</span>
-</button>
-    <button class="info-button" onclick="startPersonalityTest()">
-  <span data-i18n="tryAgain">Try Again</span>
-</button>
-  </div>
-</section>
-
-<section id="discovery">
-  <div class="section-heading">
-    <h2 data-i18n="dailyTitle">Daily Discovery</h2>
-    <span data-i18n="everyday">EVERY DAY</span>
-  </div>
-
-  <div class="discovery">
-    <div>
-      <h2 data-i18n="dailyHeading">Something New Every Day</h2>
-      <p data-i18n="dailyDesc">
-        Discover fascinating facts, useful ideas, creative inspiration
-        and exciting challenges.
-      </p>
-      <a href="#world" class="info-button" data-i18n="exploreNow">Explore Now</a>
-    </div>
-    <div class="big-emoji">🚀</div>
-  </div>
-</section>
-
-<section id="tools">
-  <div class="section-heading">
-    <h2 data-i18n="toolsTitle">Popular Tools</h2>
-    <span data-i18n="useful">USEFUL EVERY DAY</span>
-  </div>
-
-  <div class="grid">
-
-    <div class="card" data-search="calculator mathematics numbers">
-      <div class="emoji">🧮</div>
-      <h3 data-i18n="calculator">Calculator</h3>
-      <p data-i18n="calculatorDesc">A simple tool for everyday calculations.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
-    </div>
-
     <div class="card" data-search="qr code generator">
-      <div class="emoji">📱</div>
-      <h3 data-i18n="qr">QR Code Generator</h3>
-      <p data-i18n="qrDesc">Create QR codes for links and information.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
+      <div class="emoji">📱</div><h3 data-i18n="qr">QR Generator</h3>
+      <p data-i18n="comingSoon">Coming Soon</p>
     </div>
-
     <div class="card" data-search="word counter text writing">
-      <div class="emoji">📝</div>
-      <h3 data-i18n="word">Word Counter</h3>
-      <p data-i18n="wordDesc">Count words and characters in your text.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
+      <div class="emoji">📝</div><h3 data-i18n="word">Word Counter</h3>
+      <p data-i18n="comingSoon">Coming Soon</p>
     </div>
-
-    <div class="card" data-search="image tools resize photo">
-      <div class="emoji">🖼️</div>
-      <h3 data-i18n="image">Image Tools</h3>
-      <p data-i18n="imageDesc">Explore useful image editing tools.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
+    <div class="card" data-search="image resize photo">
+      <div class="emoji">🖼️</div><h3 data-i18n="image">Image Resizer</h3>
+      <p data-i18n="comingSoon">Coming Soon</p>
     </div>
-
-    <div class="card" data-search="pdf documents converter">
-      <div class="emoji">📄</div>
-      <h3 data-i18n="pdf">PDF Tools</h3>
-      <p data-i18n="pdfDesc">Work with PDF documents and files.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
+    <div class="card" data-search="pdf documents">
+      <div class="emoji">📄</div><h3 data-i18n="pdf">PDF Tools</h3>
+      <p data-i18n="comingSoon">Coming Soon</p>
     </div>
-
-    <div class="card" data-search="timer stopwatch time">
-      <div class="emoji">⏱️</div>
-      <h3 data-i18n="timer">Timer</h3>
-      <p data-i18n="timerDesc">Manage your time with simple timers.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
+    <div class="card" data-search="notes writing">
+      <div class="emoji">📒</div><h3 data-i18n="notes">Quick Notes</h3>
+      <p data-i18n="comingSoon">Coming Soon</p>
     </div>
-
-    <div class="card" data-search="translator languages translation">
-      <div class="emoji">🌐</div>
-      <h3 data-i18n="translator">Translator</h3>
-      <p data-i18n="translatorDesc">Explore multilingual communication tools.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
+    <div class="card" data-search="timer clock">
+      <div class="emoji">⏱️</div><h3 data-i18n="timer">Timer</h3>
+      <p data-i18n="comingSoon">Coming Soon</p>
     </div>
-
-    <div class="card" data-search="notes ideas notebook">
-      <div class="emoji">📒</div>
-      <h3 data-i18n="notes">Smart Notes</h3>
-      <p data-i18n="notesDesc">Keep your thoughts and ideas organized.</p>
-      <span class="coming" data-i18n="coming">Coming soon</span>
+    <div class="card" data-search="unit converter measurement">
+      <div class="emoji">📏</div><h3 data-i18n="converter">Unit Converter</h3>
+      <p data-i18n="comingSoon">Coming Soon</p>
     </div>
-
-  </div>
-  <p id="noResults" data-i18n="noResults">No matching results found.</p>
-</section>
-
-<section id="learn">
-  <div class="discovery">
-    <div>
-      <h2 data-i18n="futureTitle">Your Future Starts Here</h2>
-      <p data-i18n="futureDesc">
-        One platform. Endless possibilities. Explore, learn, create
-        and discover more.
-      </p>
-    </div>
-    <div class="big-emoji">🌌</div>
   </div>
 </section>
 
+<section class="container">
+  <div class="feature" style="text-align:center">
+    <h2 class="section-title" data-i18n="futureTitle">Your Digital World Is Growing</h2>
+    <p class="section-subtitle" data-i18n="futureDesc">More useful tools, creative experiences and discoveries are on the way.</p>
+  </div>
+</section>
 </main>
 
 <footer>
-  <div class="logo">DAILY<span>KIT</span></div>
-  <p data-i18n="footerText">One Digital World For Everything.</p>
-  <p>© 2026 DAILYKIT. <span data-i18n="rights">All rights reserved.</span></p>
+  <div class="logo">DAILYKIT</div>
+  <p data-i18n="footerText">One Digital World for Everything.</p>
+  <p>© <span id="year"></span> DAILYKIT. <span data-i18n="rights">All rights reserved.</span></p>
 </footer>
 
-<div class="bottom-nav">
-  <a href="#world">🌍<br><span data-i18n="explore">Explore</span></a>
-  <a href="#discovery">✨<br><span data-i18n="discovery">Discovery</span></a>
-  <a href="#tools">🛠️<br><span data-i18n="tools">Tools</span></a>
-  <a href="#learn">🎓<br><span data-i18n="learn">Learn</span></a>
+<div class="mobile-nav">
+  <a href="#">🏠 <span data-i18n="home">Home</span></a>
+  <a href="#explore">🌍 <span data-i18n="explore">Explore</span></a>
+  <a href="#social-fun">🎉 <span data-i18n="fun">Fun</span></a>
+  <a href="#tools">⚡ <span data-i18n="tools">Tools</span></a>
 </div>
 
 <script>
 const translations = {
-en: {
-explore:"Explore", discovery:"Discovery", tools:"Tools", learn:"Learn",
-hero1:"One Digital World", hero2:"For Everything",
-heroDesc:"Discover knowledge, explore useful tools, create amazing things and make every day more productive.",
-searchPlaceholder:"Search anything...", search:"Search",
-worldTitle:"Explore Your World", worldSubtitle:"DISCOVER MORE",
-aiTitle:"AI World", aiDesc:"Discover intelligent AI experiences and assistants.",
-brainTitle:"Brain Arena", brainDesc:"Challenge your mind with puzzles and games.",
-learnTitle:"Learn Hub", learnDesc:"Learn new skills and explore new subjects.",
-createTitle:"Create Studio", createDesc:"Turn your ideas into creative projects.",
-scienceTitle:"Science & Nature", scienceDesc:"Explore science, nature and the universe.",
-lifeTitle:"Life OS", lifeDesc:"Organize your daily tasks and personal life.",
-connectTitle:"World Connect", connectDesc:"Explore countries, currencies and world time.",
-discoveryTitle:"Discovery World", discoveryDesc:"Find interesting facts and new discoveries.",
-coming:"Coming soon", dailyTitle:"Daily Discovery", everyday:"EVERY DAY",
-dailyHeading:"Something New Every Day",
-dailyDesc:"Discover fascinating facts, useful ideas, creative inspiration and exciting challenges.",
-exploreNow:"Explore Now", toolsTitle:"Popular Tools", useful:"USEFUL EVERY DAY",
-calculator:"Calculator", calculatorDesc:"A simple tool for everyday calculations.",
-qr:"QR Code Generator", qrDesc:"Create QR codes for links and information.",
-word:"Word Counter", wordDesc:"Count words and characters in your text.",
-image:"Image Tools", imageDesc:"Explore useful image editing tools.",
-pdf:"PDF Tools", pdfDesc:"Work with PDF documents and files.",
-timer:"Timer", timerDesc:"Manage your time with simple timers.",
-translator:"Translator", translatorDesc:"Explore multilingual communication tools.",
-notes:"Smart Notes", notesDesc:"Keep your thoughts and ideas organized.",
-noResults:"No matching results found.",
-futureTitle:"Your Future Starts Here",
-futureDesc:"One platform. Endless possibilities. Explore, learn, create and discover more.",
-footerText:"One Digital World For Everything.", rights:"All rights reserved.",socialTitle:"Social Fun",
-socialSubtitle:"PLAY • DISCOVER • SHARE",
-personalityTitle:"Discover Your Personality!",
-personalityDesc:"Answer 5 fun questions and discover your playful personality type.",
-takeTest:"Take the Test",
-shareResult:"Share Result",
-downloadCard:"Download Card",
-tryAgain:"Try Again"
+en:{
+navExplore:"Explore",navFun:"Social Fun",navDiscovery:"Discovery",navTools:"Tools",
+heroOne:"One Digital World",heroTwo:"For Everything.",heroDesc:"Explore, learn, create and discover something new every day.",
+searchPlaceholder:"Search DAILYKIT...",searchButton:"Search",
+exploreTitle:"Explore Your World",exploreDesc:"Discover different worlds in one place.",
+learn:"Learn World",learnDesc:"Knowledge and education.",
+create:"Create World",createDesc:"Bring your ideas to life.",
+ai:"AI World",aiDesc:"Discover AI experiences.",
+games:"Games World",gamesDesc:"Play and challenge yourself.",
+science:"Science World",scienceDesc:"Explore how things work.",
+productivity:"Productivity",productivityDesc:"Make everyday tasks easier.",
+social:"Social Fun",socialDesc:"Quizzes and fun challenges.",
+discovery:"Daily Discovery",discoveryDesc:"Something new every day.",
+socialTitle:"DAILYKIT Social Fun",socialSubtitle:"Discover your fun personality and share your result.",
+personalityTitle:"Discover Your Personality",personalityDesc:"Answer five fun questions and discover your style.",
+takeTest:"Start the Quiz",shareResult:"Share Result",downloadCard:"Download Card",tryAgain:"Try Again",
+dailyTitle:"Daily Discovery",dailyDesc:"A little discovery can change your day.",
+factTitle:"Did You Know?",factText:"Octopuses have three hearts. Two pump blood to the gills, while one pumps it to the rest of the body.",
+toolsTitle:"Popular Tools",toolsDesc:"Useful tools for your everyday digital life.",
+calculator:"Calculator",qr:"QR Generator",word:"Word Counter",image:"Image Resizer",pdf:"PDF Tools",notes:"Quick Notes",timer:"Timer",converter:"Unit Converter",
+comingSoon:"Coming Soon",futureTitle:"Your Digital World Is Growing",futureDesc:"More useful tools, creative experiences and discoveries are on the way.",
+footerText:"One Digital World for Everything.",rights:"All rights reserved.",home:"Home",explore:"Explore",fun:"Fun",tools:"Tools",noResults:"No matching results found."
 },
-es: {
-explore:"Explorar", discovery:"Descubrir", tools:"Herramientas", learn:"Aprender",
-hero1:"Un mundo digital", hero2:"Para todo",
-heroDesc:"Descubre conocimientos, explora herramientas útiles, crea cosas increíbles y haz que cada día sea más productivo.",
-searchPlaceholder:"Buscar cualquier cosa...", search:"Buscar",
-worldTitle:"Explora tu mundo", worldSubtitle:"DESCUBRE MÁS",
-aiTitle:"Mundo IA", aiDesc:"Descubre experiencias y asistentes inteligentes.",
-brainTitle:"Arena Mental", brainDesc:"Desafía tu mente con juegos y rompecabezas.",
-learnTitle:"Centro de Aprendizaje", learnDesc:"Aprende habilidades y explora nuevos temas.",
-createTitle:"Estudio Creativo", createDesc:"Convierte tus ideas en proyectos creativos.",
-scienceTitle:"Ciencia y Naturaleza", scienceDesc:"Explora la ciencia, la naturaleza y el universo.",
-lifeTitle:"Vida OS", lifeDesc:"Organiza tus tareas y tu vida diaria.",
-connectTitle:"Conexión Mundial", connectDesc:"Explora países, monedas y horarios.",
-discoveryTitle:"Mundo de Descubrimientos", discoveryDesc:"Encuentra datos interesantes y nuevos descubrimientos.",
-coming:"Próximamente", dailyTitle:"Descubrimiento Diario", everyday:"CADA DÍA",
-dailyHeading:"Algo nuevo cada día",
-dailyDesc:"Descubre datos fascinantes, ideas útiles, inspiración creativa y desafíos emocionantes.",
-exploreNow:"Explorar ahora", toolsTitle:"Herramientas Populares", useful:"ÚTILES CADA DÍA",
-calculator:"Calculadora", calculatorDesc:"Una herramienta sencilla para cálculos diarios.",
-qr:"Generador de códigos QR", qrDesc:"Crea códigos QR para enlaces e información.",
-word:"Contador de palabras", wordDesc:"Cuenta palabras y caracteres de tu texto.",
-image:"Herramientas de imagen", imageDesc:"Explora herramientas útiles de edición de imágenes.",
-pdf:"Herramientas PDF", pdfDesc:"Trabaja con documentos y archivos PDF.",
-timer:"Temporizador", timerDesc:"Administra tu tiempo con temporizadores.",
-translator:"Traductor", translatorDesc:"Explora herramientas de comunicación multilingüe.",
-notes:"Notas inteligentes", notesDesc:"Organiza tus pensamientos e ideas.",
-noResults:"No se encontraron resultados.",
-futureTitle:"Tu futuro comienza aquí",
-futureDesc:"Una plataforma. Infinitas posibilidades. Explora, aprende, crea y descubre más.",
-footerText:"Un mundo digital para todo.", rights:"Todos los derechos reservados."rights:"Todos los derechos reservados.",
-socialTitle:"Diversión Social",
-socialSubtitle:"JUEGA • DESCUBRE • COMPARTE",
-personalityTitle:"¡Descubre tu personalidad!",
-personalityDesc:"Responde 5 preguntas divertidas y descubre tu tipo de personalidad.",
-takeTest:"Hacer el test",
-shareResult:"Compartir resultado",
-downloadCard:"Descargar tarjeta",
-tryAgain:"Intentar de nuevo"
+es:{
+navExplore:"Explorar",navFun:"Diversión",navDiscovery:"Descubrimiento",navTools:"Herramientas",
+heroOne:"Un Mundo Digital",heroTwo:"Para Todo.",heroDesc:"Explora, aprende, crea y descubre algo nuevo cada día.",
+searchPlaceholder:"Buscar en DAILYKIT...",searchButton:"Buscar",
+exploreTitle:"Explora Tu Mundo",exploreDesc:"Descubre diferentes mundos en un solo lugar.",
+learn:"Aprender",learnDesc:"Conocimiento y educación.",create:"Crear",createDesc:"Da vida a tus ideas.",ai:"Mundo IA",aiDesc:"Descubre experiencias de IA.",games:"Juegos",gamesDesc:"Juega y acepta desafíos.",science:"Ciencia",scienceDesc:"Descubre cómo funcionan las cosas.",productivity:"Productividad",productivityDesc:"Facilita tus tareas diarias.",social:"Diversión Social",socialDesc:"Cuestionarios y retos divertidos.",
+socialTitle:"Diversión DAILYKIT",socialSubtitle:"Descubre tu personalidad divertida y comparte tu resultado.",personalityTitle:"Descubre Tu Personalidad",personalityDesc:"Responde cinco preguntas divertidas.",takeTest:"Empezar",shareResult:"Compartir",downloadCard:"Descargar Tarjeta",tryAgain:"Intentar de Nuevo",
+dailyTitle:"Descubrimiento Diario",dailyDesc:"Un pequeño descubrimiento puede cambiar tu día.",factTitle:"¿Sabías Que?",factText:"Los pulpos tienen tres corazones.",
+toolsTitle:"Herramientas Populares",toolsDesc:"Herramientas útiles para tu vida digital.",calculator:"Calculadora",qr:"Generador QR",word:"Contador de Palabras",image:"Redimensionar Imagen",pdf:"Herramientas PDF",notes:"Notas Rápidas",timer:"Temporizador",converter:"Conversor de Unidades",
+comingSoon:"Próximamente",futureTitle:"Tu Mundo Digital Está Creciendo",futureDesc:"Más herramientas y experiencias están en camino.",footerText:"Un Mundo Digital Para Todo.",rights:"Todos los derechos reservados.",home:"Inicio",explore:"Explorar",fun:"Diversión",tools:"Herramientas",noResults:"No se encontraron resultados."
 },
-fr: {
-explore:"Explorer", discovery:"Découverte", tools:"Outils", learn:"Apprendre",
-hero1:"Un monde numérique", hero2:"Pour tout",
-heroDesc:"Découvrez des connaissances, explorez des outils utiles, créez des choses incroyables et rendez chaque jour plus productif.",
-searchPlaceholder:"Rechercher...", search:"Rechercher",
-worldTitle:"Explorez votre monde", worldSubtitle:"DÉCOUVREZ PLUS",
-aiTitle:"Univers IA", aiDesc:"Découvrez des expériences et assistants intelligents.",
-brainTitle:"Arène cérébrale", brainDesc:"Défiez votre esprit avec des jeux et des énigmes.",
-learnTitle:"Espace apprentissage", learnDesc:"Apprenez de nouvelles compétences et explorez des sujets.",
-createTitle:"Studio créatif", createDesc:"Transformez vos idées en projets créatifs.",
-scienceTitle:"Science et nature", scienceDesc:"Explorez la science, la nature et l'univers.",
-lifeTitle:"Vie OS", lifeDesc:"Organisez vos tâches et votre vie quotidienne.",
-connectTitle:"Connexion mondiale", connectDesc:"Explorez les pays, les devises et les fuseaux horaires.",
-discoveryTitle:"Monde de découverte", discoveryDesc:"Trouvez des faits intéressants et de nouvelles découvertes.",
-coming:"Bientôt disponible", dailyTitle:"Découverte quotidienne", everyday:"CHAQUE JOUR",
-dailyHeading:"Quelque chose de nouveau chaque jour",
-dailyDesc:"Découvrez des faits fascinants, des idées utiles, de l'inspiration créative et des défis passionnants.",
-exploreNow:"Explorer", toolsTitle:"Outils populaires", useful:"UTILES CHAQUE JOUR",
-calculator:"Calculatrice", calculatorDesc:"Un outil simple pour les calculs quotidiens.",
-qr:"Générateur de QR codes", qrDesc:"Créez des QR codes pour les liens et informations.",
-word:"Compteur de mots", wordDesc:"Comptez les mots et caractères de votre texte.",
-image:"Outils image", imageDesc:"Découvrez des outils de retouche d'image.",
-pdf:"Outils PDF", pdfDesc:"Travaillez avec des documents et fichiers PDF.",
-timer:"Minuteur", timerDesc:"Gérez votre temps avec des minuteurs.",
-translator:"Traducteur", translatorDesc:"Découvrez des outils de communication multilingue.",
-notes:"Notes intelligentes", notesDesc:"Organisez vos pensées et vos idées.",
-noResults:"Aucun résultat correspondant.",
-futureTitle:"Votre avenir commence ici",
-futureDesc:"Une plateforme. Des possibilités infinies. Explorez, apprenez, créez et découvrez.",
-footerText:"Un monde numérique pour tout.", rights:"Tous droits réservés.",socialTitle:"Divertissement social",
-socialSubtitle:"JOUE • DÉCOUVRE • PARTAGE",
-personalityTitle:"Découvre ta personnalité !",
-personalityDesc:"Réponds à 5 questions amusantes et découvre ton type de personnalité.",
-takeTest:"Faire le test",
-shareResult:"Partager le résultat",
-downloadCard:"Télécharger la carte",
-tryAgain:"Réessayer"
+fr:{
+navExplore:"Explorer",navFun:"Amusement",navDiscovery:"Découverte",navTools:"Outils",
+heroOne:"Un Monde Numérique",heroTwo:"Pour Tout.",heroDesc:"Explorez, apprenez, créez et découvrez chaque jour.",
+searchPlaceholder:"Rechercher...",searchButton:"Rechercher",
+exploreTitle:"Explorez Votre Monde",exploreDesc:"Découvrez différents univers au même endroit.",
+learn:"Apprendre",learnDesc:"Connaissances et éducation.",create:"Créer",createDesc:"Donnez vie à vos idées.",ai:"Monde IA",aiDesc:"Découvrez l'intelligence artificielle.",games:"Jeux",gamesDesc:"Jouez et relevez des défis.",science:"Science",scienceDesc:"Découvrez comment les choses fonctionnent.",productivity:"Productivité",productivityDesc:"Simplifiez vos tâches quotidiennes.",social:"Amusement",socialDesc:"Quiz et défis amusants.",
+socialTitle:"DAILYKIT Amusement",socialSubtitle:"Découvrez votre personnalité et partagez votre résultat.",personalityTitle:"Découvrez Votre Personnalité",personalityDesc:"Répondez à cinq questions amusantes.",takeTest:"Commencer",shareResult:"Partager",downloadCard:"Télécharger",tryAgain:"Réessayer",
+dailyTitle:"Découverte Quotidienne",dailyDesc:"Une petite découverte peut changer votre journée.",factTitle:"Le Saviez-vous ?",factText:"Les pieuvres ont trois cœurs.",
+toolsTitle:"Outils Populaires",toolsDesc:"Des outils utiles pour votre vie numérique.",calculator:"Calculatrice",qr:"Générateur QR",word:"Compteur de Mots",image:"Redimensionner Image",pdf:"Outils PDF",notes:"Notes Rapides",timer:"Minuteur",converter:"Convertisseur",
+comingSoon:"Bientôt",futureTitle:"Votre Monde Numérique Grandit",futureDesc:"De nouveaux outils et expériences arrivent.",footerText:"Un Monde Numérique Pour Tout.",rights:"Tous droits réservés.",home:"Accueil",explore:"Explorer",fun:"Fun",tools:"Outils",noResults:"Aucun résultat trouvé."
 },
-de: {
-explore:"Entdecken", discovery:"Entdeckungen", tools:"Werkzeuge", learn:"Lernen",
-hero1:"Eine digitale Welt", hero2:"Für alles",
-heroDesc:"Entdecke Wissen, nützliche Werkzeuge und kreative Möglichkeiten für einen produktiveren Alltag.",
-searchPlaceholder:"Alles durchsuchen...", search:"Suchen",
-worldTitle:"Entdecke deine Welt", worldSubtitle:"MEHR ENTDECKEN",
-aiTitle:"KI-Welt", aiDesc:"Entdecke intelligente KI-Erlebnisse und Assistenten.",
-brainTitle:"Denk-Arena", brainDesc:"Fordere deinen Geist mit Rätseln und Spielen heraus.",
-learnTitle:"Lernzentrum", learnDesc:"Lerne neue Fähigkeiten und entdecke neue Themen.",
-createTitle:"Kreativstudio", createDesc:"Verwandle deine Ideen in kreative Projekte.",
-scienceTitle:"Wissenschaft und Natur", scienceDesc:"Entdecke Wissenschaft, Natur und das Universum.",
-lifeTitle:"Life OS", lifeDesc:"Organisiere deine täglichen Aufgaben und dein Leben.",
-connectTitle:"Weltverbindung", connectDesc:"Entdecke Länder, Währungen und Weltzeiten.",
-discoveryTitle:"Entdeckungswelt", discoveryDesc:"Finde interessante Fakten und neue Entdeckungen.",
-coming:"Demnächst", dailyTitle:"Tägliche Entdeckung", everyday:"JEDEN TAG",
-dailyHeading:"Jeden Tag etwas Neues",
-dailyDesc:"Entdecke faszinierende Fakten, nützliche Ideen, kreative Inspiration und spannende Herausforderungen.",
-exploreNow:"Jetzt entdecken", toolsTitle:"Beliebte Werkzeuge", useful:"JEDEN TAG NÜTZLICH",
-calculator:"Taschenrechner", calculatorDesc:"Ein einfaches Werkzeug für tägliche Berechnungen.",
-qr:"QR-Code-Generator", qrDesc:"Erstelle QR-Codes für Links und Informationen.",
-word:"Wortzähler", wordDesc:"Zähle Wörter und Zeichen in deinem Text.",
-image:"Bildwerkzeuge", imageDesc:"Entdecke nützliche Bildbearbeitungswerkzeuge.",
-pdf:"PDF-Werkzeuge", pdfDesc:"Arbeite mit PDF-Dokumenten und Dateien.",
-timer:"Timer", timerDesc:"Verwalte deine Zeit mit einfachen Timern.",
-translator:"Übersetzer", translatorDesc:"Entdecke mehrsprachige Kommunikationstools.",
-notes:"Intelligente Notizen", notesDesc:"Organisiere deine Gedanken und Ideen.",
-noResults:"Keine passenden Ergebnisse gefunden.",
-futureTitle:"Deine Zukunft beginnt hier",
-futureDesc:"Eine Plattform. Unendliche Möglichkeiten. Entdecke, lerne und erschaffe.",
-footerText:"Eine digitale Welt für alles.", rights:"Alle Rechte vorbehalten.",socialTitle:"Socialer Spaß",
-socialSubtitle:"SPIELEN • ENTDECKEN • TEILEN",
-personalityTitle:"Entdecke deine Persönlichkeit!",
-personalityDesc:"Beantworte 5 unterhaltsame Fragen und entdecke deinen Persönlichkeitstyp.",
-takeTest:"Test starten",
-shareResult:"Ergebnis teilen",
-downloadCard:"Karte herunterladen",
-tryAgain:"Erneut versuchen"
+de:{
+navExplore:"Entdecken",navFun:"Spaß",navDiscovery:"Entdeckung",navTools:"Werkzeuge",
+heroOne:"Eine Digitale Welt",heroTwo:"Für Alles.",heroDesc:"Entdecke, lerne, erschaffe und entdecke jeden Tag Neues.",
+searchPlaceholder:"DAILYKIT durchsuchen...",searchButton:"Suchen",
+exploreTitle:"Entdecke Deine Welt",exploreDesc:"Entdecke verschiedene Welten an einem Ort.",
+learn:"Lernen",learnDesc:"Wissen und Bildung.",create:"Kreativität",createDesc:"Verwirkliche deine Ideen.",ai:"KI-Welt",aiDesc:"Entdecke KI-Erlebnisse.",games:"Spiele",gamesDesc:"Spiele und fordere dich heraus.",science:"Wissenschaft",scienceDesc:"Entdecke, wie Dinge funktionieren.",productivity:"Produktivität",productivityDesc:"Erleichtere deine täglichen Aufgaben.",social:"Social Fun",socialDesc:"Quizze und lustige Herausforderungen.",
+socialTitle:"DAILYKIT Social Fun",socialSubtitle:"Entdecke deine Persönlichkeit und teile dein Ergebnis.",personalityTitle:"Entdecke Deine Persönlichkeit",personalityDesc:"Beantworte fünf lustige Fragen.",takeTest:"Quiz starten",shareResult:"Teilen",downloadCard:"Karte herunterladen",tryAgain:"Erneut versuchen",
+dailyTitle:"Tägliche Entdeckung",dailyDesc:"Eine kleine Entdeckung kann deinen Tag verändern.",factTitle:"Schon Gewusst?",factText:"Kraken haben drei Herzen.",
+toolsTitle:"Beliebte Werkzeuge",toolsDesc:"Nützliche Werkzeuge für deinen digitalen Alltag.",calculator:"Taschenrechner",qr:"QR-Generator",word:"Wortzähler",image:"Bildgröße ändern",pdf:"PDF-Werkzeuge",notes:"Notizen",timer:"Timer",converter:"Einheitenrechner",
+comingSoon:"Demnächst",futureTitle:"Deine Digitale Welt Wächst",futureDesc:"Weitere Werkzeuge und Erlebnisse kommen bald.",footerText:"Eine Digitale Welt Für Alles.",rights:"Alle Rechte vorbehalten.",home:"Start",explore:"Entdecken",fun:"Spaß",tools:"Tools",noResults:"Keine Ergebnisse gefunden."
 },
-pt: {
-explore:"Explorar", discovery:"Descobrir", tools:"Ferramentas", learn:"Aprender",
-hero1:"Um mundo digital", hero2:"Para tudo",
-heroDesc:"Descubra conhecimento, explore ferramentas úteis, crie coisas incríveis e torne cada dia mais produtivo.",
-searchPlaceholder:"Pesquisar qualquer coisa...", search:"Pesquisar",
-worldTitle:"Explore seu mundo", worldSubtitle:"DESCUBRA MAIS",
-aiTitle:"Mundo IA", aiDesc:"Descubra experiências e assistentes inteligentes.",
-brainTitle:"Arena Mental", brainDesc:"Desafie sua mente com jogos e quebra-cabeças.",
-learnTitle:"Centro de Aprendizagem", learnDesc:"Aprenda novas habilidades e explore novos assuntos.",
-createTitle:"Estúdio Criativo", createDesc:"Transforme suas ideias em projetos criativos.",
-scienceTitle:"Ciência e Natureza", scienceDesc:"Explore a ciência, a natureza e o universo.",
-lifeTitle:"Life OS", lifeDesc:"Organize suas tarefas e sua vida diária.",
-connectTitle:"Conexão Mundial", connectDesc:"Explore países, moedas e horários mundiais.",
-discoveryTitle:"Mundo de Descobertas", discoveryDesc:"Encontre fatos interessantes e novas descobertas.",
-coming:"Em breve", dailyTitle:"Descoberta Diária", everyday:"TODOS OS DIAS",
-dailyHeading:"Algo novo todos os dias",
-dailyDesc:"Descubra fatos fascinantes, ideias úteis, inspiração criativa e desafios emocionantes.",
-exploreNow:"Explorar agora", toolsTitle:"Ferramentas Populares", useful:"ÚTEIS TODOS OS DIAS",
-calculator:"Calculadora", calculatorDesc:"Uma ferramenta simples para cálculos diários.",
-qr:"Gerador de QR Code", qrDesc:"Crie códigos QR para links e informações.",
-word:"Contador de palavras", wordDesc:"Conte palavras e caracteres do seu texto.",
-image:"Ferramentas de imagem", imageDesc:"Explore ferramentas úteis de edição de imagens.",
-pdf:"Ferramentas PDF", pdfDesc:"Trabalhe com documentos e arquivos PDF.",
-timer:"Temporizador", timerDesc:"Gerencie seu tempo com temporizadores.",
-translator:"Tradutor", translatorDesc:"Explore ferramentas de comunicação multilíngue.",
-notes:"Notas inteligentes", notesDesc:"Organize seus pensamentos e ideias.",
-noResults:"Nenhum resultado encontrado.",
-futureTitle:"Seu futuro começa aqui",
-futureDesc:"Uma plataforma. Possibilidades infinitas. Explore, aprenda, crie e descubra.",
-footerText:"Um mundo digital para tudo.", rights:"Todos os direitos reservados.",socialTitle:"Diversão Social",
-socialSubtitle:"JOGUE • DESCUBRA • COMPARTILHE",
-personalityTitle:"Descubra sua personalidade!",
-personalityDesc:"Responda a 5 perguntas divertidas e descubra seu tipo de personalidade.",
-takeTest:"Fazer o teste",
-shareResult:"Compartilhar resultado",
-downloadCard:"Baixar cartão",
-tryAgain:"Tentar novamente"
+pt:{
+navExplore:"Explorar",navFun:"Diversão",navDiscovery:"Descoberta",navTools:"Ferramentas",
+heroOne:"Um Mundo Digital",heroTwo:"Para Tudo.",heroDesc:"Explore, aprenda, crie e descubra algo novo todos os dias.",
+searchPlaceholder:"Pesquisar...",searchButton:"Pesquisar",
+exploreTitle:"Explore Seu Mundo",exploreDesc:"Descubra diferentes mundos em um só lugar.",
+learn:"Aprender",learnDesc:"Conhecimento e educação.",create:"Criar",createDesc:"Dê vida às suas ideias.",ai:"Mundo IA",aiDesc:"Descubra experiências de IA.",games:"Jogos",gamesDesc:"Jogue e desafie-se.",science:"Ciência",scienceDesc:"Descubra como as coisas funcionam.",productivity:"Produtividade",productivityDesc:"Facilite suas tarefas diárias.",social:"Diversão Social",socialDesc:"Questionários e desafios divertidos.",
+socialTitle:"DAILYKIT Diversão",socialSubtitle:"Descubra sua personalidade e compartilhe o resultado.",personalityTitle:"Descubra Sua Personalidade",personalityDesc:"Responda cinco perguntas divertidas.",takeTest:"Começar",shareResult:"Compartilhar",downloadCard:"Baixar Cartão",tryAgain:"Tentar Novamente",
+dailyTitle:"Descoberta Diária",dailyDesc:"Uma pequena descoberta pode mudar seu dia.",factTitle:"Você Sabia?",factText:"Os polvos têm três corações.",
+toolsTitle:"Ferramentas Populares",toolsDesc:"Ferramentas úteis para sua vida digital.",calculator:"Calculadora",qr:"Gerador QR",word:"Contador de Palavras",image:"Redimensionar Imagem",pdf:"Ferramentas PDF",notes:"Notas Rápidas",timer:"Temporizador",converter:"Conversor de Unidades",
+comingSoon:"Em Breve",futureTitle:"Seu Mundo Digital Está Crescendo",futureDesc:"Mais ferramentas e experiências estão chegando.",footerText:"Um Mundo Digital Para Tudo.",rights:"Todos os direitos reservados.",home:"Início",explore:"Explorar",fun:"Diversão",tools:"Ferramentas",noResults:"Nenhum resultado encontrado."
 },
-ja: {
-explore:"探索", discovery:"発見", tools:"ツール", learn:"学習",
-hero1:"ひとつのデジタル世界", hero2:"すべてのために",
-heroDesc:"知識を発見し、便利なツールを使い、創造的なことに挑戦して毎日をもっと充実させましょう。",
-searchPlaceholder:"何でも検索...", search:"検索",
-worldTitle:"あなたの世界を探索", worldSubtitle:"もっと発見しよう",
-aiTitle:"AIワールド", aiDesc:"スマートなAI体験とアシスタントを発見。",
-brainTitle:"ブレインアリーナ", brainDesc:"パズルやゲームで頭脳に挑戦。",
-learnTitle:"学習ハブ", learnDesc:"新しいスキルやテーマを学ぼう。",
-createTitle:"クリエイティブスタジオ", createDesc:"アイデアを創造的な作品に変えよう。",
-scienceTitle:"科学と自然", scienceDesc:"科学、自然、宇宙を探検しよう。",
-lifeTitle:"ライフOS", lifeDesc:"毎日のタスクや生活を整理しよう。",
-connectTitle:"ワールドコネクト", connectDesc:"国、通貨、世界の時間を調べよう。",
-discoveryTitle:"発見の世界", discoveryDesc:"興味深い事実や新しい発見を見つけよう。",
-coming:"近日公開", dailyTitle:"毎日の発見", everyday:"毎日",
-dailyHeading:"毎日、新しい発見を",
-dailyDesc:"興味深い事実、便利なアイデア、創造的なひらめきや楽しい課題を発見しよう。",
-exploreNow:"今すぐ探索", toolsTitle:"人気のツール", useful:"毎日便利",
-calculator:"電卓", calculatorDesc:"日常の計算に便利なシンプルなツール。",
-qr:"QRコード作成", qrDesc:"リンクや情報のQRコードを作成。",
-word:"文字数カウンター", wordDesc:"文章の単語数と文字数を数えよう。",
-image:"画像ツール", imageDesc:"便利な画像編集ツールを見つけよう。",
-pdf:"PDFツール", pdfDesc:"PDF文書やファイルを扱おう。",
-timer:"タイマー", timerDesc:"タイマーで時間を管理しよう。",
-translator:"翻訳ツール", translatorDesc:"多言語コミュニケーションツールを探索。",
-notes:"スマートノート", notesDesc:"考えやアイデアを整理しよう。",
-noResults:"一致する結果がありません。",
-futureTitle:"ここから未来が始まる",
-futureDesc:"ひとつのプラットフォーム。無限の可能性。探索し、学び、創造しよう。",
-footerText:"すべてのためのデジタル世界。", rights:"全著作権所有。"
+ja:{
+navExplore:"探索",navFun:"ソーシャル",navDiscovery:"発見",navTools:"ツール",
+heroOne:"ひとつのデジタル世界",heroTwo:"すべてのために。",heroDesc:"毎日、新しいことを探し、学び、創造しましょう。",
+searchPlaceholder:"検索...",searchButton:"検索",
+exploreTitle:"世界を探検",exploreDesc:"さまざまな世界をひとつの場所で。",
+learn:"学習",learnDesc:"知識と教育。",create:"創造",createDesc:"アイデアを形に。",ai:"AIの世界",aiDesc:"AI体験を発見。",games:"ゲーム",gamesDesc:"遊んで挑戦。",science:"科学",scienceDesc:"世界の仕組みを探る。",productivity:"生産性",productivityDesc:"毎日の作業を簡単に。",social:"ソーシャルファン",socialDesc:"クイズと楽しい挑戦。",
+socialTitle:"DAILYKIT ソーシャルファン",socialSubtitle:"あなたの個性を発見して結果を共有しましょう。",personalityTitle:"あなたの個性を発見",personalityDesc:"5つの楽しい質問に答えてください。",takeTest:"テスト開始",shareResult:"共有",downloadCard:"カードを保存",tryAgain:"もう一度",
+dailyTitle:"今日の発見",dailyDesc:"小さな発見が一日を変えることもあります。",factTitle:"知っていますか？",factText:"タコには3つの心臓があります。",
+toolsTitle:"人気のツール",toolsDesc:"毎日のデジタル生活に便利なツール。",calculator:"電卓",qr:"QRコード",word:"文字数カウンター",image:"画像サイズ変更",pdf:"PDFツール",notes:"メモ",timer:"タイマー",converter:"単位変換",
+comingSoon:"近日公開",futureTitle:"デジタル世界は成長中",futureDesc:"便利なツールや体験がこれから増えます。",footerText:"すべてのためのデジタル世界。",rights:"全著作権所有。",home:"ホーム",explore:"探索",fun:"遊び",tools:"ツール",noResults:"結果がありません。"
 },
-zh: {
-explore:"探索", discovery:"发现", tools:"工具", learn:"学习",
-hero1:"一个数字世界", hero2:"满足一切需求",
-heroDesc:"探索知识、使用实用工具、创造精彩作品，让每一天更高效。",
-searchPlaceholder:"搜索任何内容...", search:"搜索",
-worldTitle:"探索你的世界", worldSubtitle:"发现更多",
-aiTitle:"AI世界", aiDesc:"体验智能人工智能工具和助手。",
-brainTitle:"脑力竞技场", brainDesc:"通过谜题和游戏挑战你的思维。",
-learnTitle:"学习中心", learnDesc:"学习新技能，探索新主题。",
-createTitle:"创意工作室", createDesc:"将你的想法变成创意作品。",
-scienceTitle:"科学与自然", scienceDesc:"探索科学、自然和宇宙。",
-lifeTitle:"生活系统", lifeDesc:"整理你的日常任务和生活。",
-connectTitle:"世界连接", connectDesc:"探索国家、货币和世界时间。",
-discoveryTitle:"探索世界", discoveryDesc:"发现有趣的知识和新发现。",
-coming:"即将推出", dailyTitle:"每日发现", everyday:"每一天",
-dailyHeading:"每天都有新发现",
-dailyDesc:"发现有趣的事实、实用的想法、创意灵感和精彩挑战。",
-exploreNow:"立即探索", toolsTitle:"热门工具", useful:"每天都实用",
-calculator:"计算器", calculatorDesc:"适合日常计算的简单工具。",
-qr:"二维码生成器", qrDesc:"为链接和信息创建二维码。",
-word:"字数统计", wordDesc:"统计文本中的单词和字符。",
-image:"图片工具", imageDesc:"探索实用的图片编辑工具。",
-pdf:"PDF工具", pdfDesc:"处理PDF文档和文件。",
-timer:"计时器", timerDesc:"使用简单计时器管理时间。",
-translator:"翻译工具", translatorDesc:"探索多语言交流工具。",
-notes:"智能笔记", notesDesc:"整理你的想法和创意。",
-noResults:"没有找到匹配结果。",
-futureTitle:"你的未来从这里开始",
-futureDesc:"一个平台，无限可能。探索、学习、创造和发现更多。",
-footerText:"满足一切需求的数字世界。", rights:"保留所有权利。",socialTitle:"ソーシャルファン",
-socialSubtitle:"遊ぶ • 発見する • 共有する",
-personalityTitle:"あなたの性格を発見しよう！",
-personalityDesc:"5つの楽しい質問に答えて、あなたの性格タイプを発見しましょう。",
-takeTest:"テストを始める",
-shareResult:"結果を共有",
-downloadCard:"カードをダウンロード",
-tryAgain:"もう一度試す"
+zh:{
+navExplore:"探索",navFun:"趣味",navDiscovery:"发现",navTools:"工具",
+heroOne:"一个数字世界",heroTwo:"满足所有需求。",heroDesc:"每天探索、学习、创造和发现新事物。",
+searchPlaceholder:"搜索 DAILYKIT...",searchButton:"搜索",
+exploreTitle:"探索你的世界",exploreDesc:"在一个地方发现不同的世界。",
+learn:"学习世界",learnDesc:"知识与教育。",create:"创意世界",createDesc:"让你的想法成为现实。",ai:"人工智能",aiDesc:"探索人工智能体验。",games:"游戏世界",gamesDesc:"玩游戏并挑战自己。",science:"科学世界",scienceDesc:"探索事物的运作方式。",productivity:"效率工具",productivityDesc:"让日常任务更轻松。",social:"社交趣味",socialDesc:"测验和趣味挑战。",
+socialTitle:"DAILYKIT 趣味空间",socialSubtitle:"发现你的个性并分享结果。",personalityTitle:"发现你的个性",personalityDesc:"回答五个有趣的问题。",takeTest:"开始测验",shareResult:"分享结果",downloadCard:"下载卡片",tryAgain:"再试一次",
+dailyTitle:"每日发现",dailyDesc:"一个小发现也能改变你的一天。",factTitle:"你知道吗？",factText:"章鱼有三颗心脏。",
+toolsTitle:"热门工具",toolsDesc:"日常数字生活的实用工具。",calculator:"计算器",qr:"二维码生成器",word:"字数统计",image:"图片调整",pdf:"PDF 工具",notes:"快速笔记",timer:"计时器",converter:"单位转换",
+comingSoon:"即将推出",futureTitle:"你的数字世界正在成长",futureDesc:"更多实用工具和体验即将到来。",footerText:"满足所有需求的数字世界。",rights:"版权所有。",home:"首页",explore:"探索",fun:"趣味",tools:"工具",noResults:"没有找到匹配结果。"
 },
-hi: {
-explore:"खोजें", discovery:"खोज", tools:"टूल्स", learn:"सीखें",
-hero1:"एक डिजिटल दुनिया", hero2:"हर ज़रूरत के लिए",
-heroDesc:"ज्ञान खोजें, उपयोगी टूल्स इस्तेमाल करें, नई चीज़ें बनाएं और हर दिन को अधिक उपयोगी बनाएं।",
-searchPlaceholder:"कुछ भी खोजें...", search:"खोजें",
-worldTitle:"अपनी दुनिया खोजें", worldSubtitle:"और जानें",
-aiTitle:"AI दुनिया", aiDesc:"स्मार्ट AI अनुभव और सहायक खोजें।",
-brainTitle:"ब्रेन एरीना", brainDesc:"पहेलियों और खेलों से अपने दिमाग को चुनौती दें।",
-learnTitle:"लर्निंग हब", learnDesc:"नए कौशल सीखें और नए विषयों को जानें।",
-createTitle:"क्रिएट स्टूडियो", createDesc:"अपने विचारों को रचनात्मक परियोजनाओं में बदलें।",
-scienceTitle:"विज्ञान और प्रकृति", scienceDesc:"विज्ञान, प्रकृति और ब्रह्मांड को जानें।",
-lifeTitle:"लाइफ OS", lifeDesc:"अपने दैनिक कार्यों और जीवन को व्यवस्थित करें।",
-connectTitle:"वर्ल्ड कनेक्ट", connectDesc:"देशों, मुद्राओं और विश्व समय को जानें।",
-discoveryTitle:"खोज की दुनिया", discoveryDesc:"रोचक तथ्य और नई खोजें जानें।",
-coming:"जल्द आ रहा है", dailyTitle:"दैनिक खोज", everyday:"हर दिन",
-dailyHeading:"हर दिन कुछ नया",
-dailyDesc:"रोचक तथ्य, उपयोगी विचार, रचनात्मक प्रेरणा और रोमांचक चुनौतियां खोजें।",
-exploreNow:"अभी खोजें", toolsTitle:"लोकप्रिय टूल्स", useful:"हर दिन उपयोगी",
-calculator:"कैलकुलेटर", calculatorDesc:"रोज़मर्रा की गणना के लिए सरल टूल।",
-qr:"QR कोड जनरेटर", qrDesc:"लिंक और जानकारी के लिए QR कोड बनाएं।",
-word:"वर्ड काउंटर", wordDesc:"अपने टेक्स्ट के शब्द और अक्षर गिनें।",
-image:"इमेज टूल्स", imageDesc:"उपयोगी इमेज एडिटिंग टूल्स खोजें।",
-pdf:"PDF टूल्स", pdfDesc:"PDF दस्तावेज़ों और फाइलों के साथ काम करें।",
-timer:"टाइमर", timerDesc:"सरल टाइमर से अपना समय व्यवस्थित करें।",
-translator:"अनुवादक", translatorDesc:"बहुभाषी संचार टूल्स खोजें।",
-notes:"स्मार्ट नोट्स", notesDesc:"अपने विचारों और आइडिया को व्यवस्थित रखें।",
-noResults:"कोई मेल खाता परिणाम नहीं मिला।",
-futureTitle:"आपका भविष्य यहाँ से शुरू होता है",
-futureDesc:"एक प्लेटफ़ॉर्म। अनंत संभावनाएं। खोजें, सीखें, बनाएं और आगे बढ़ें।",
-footerText:"हर ज़रूरत के लिए एक डिजिटल दुनिया।", rights:"सर्वाधिकार सुरक्षित।",socialTitle:"सोशल फन",
-socialSubtitle:"खेलें • खोजें • साझा करें",
-personalityTitle:"अपना व्यक्तित्व जानें!",
-personalityDesc:"5 मज़ेदार सवालों के जवाब दें और अपने व्यक्तित्व का प्रकार जानें।",
-takeTest:"टेस्ट शुरू करें",
-shareResult:"परिणाम साझा करें",
-downloadCard:"कार्ड डाउनलोड करें",
-tryAgain:"फिर से कोशिश करें"
+hi:{
+navExplore:"खोजें",navFun:"मनोरंजन",navDiscovery:"खोज",navTools:"टूल्स",
+heroOne:"एक डिजिटल दुनिया",heroTwo:"हर चीज़ के लिए।",heroDesc:"हर दिन कुछ नया खोजें, सीखें और बनाएँ।",
+searchPlaceholder:"DAILYKIT खोजें...",searchButton:"खोजें",
+exploreTitle:"अपनी दुनिया खोजें",exploreDesc:"एक ही जगह पर अलग-अलग दुनिया खोजें।",
+learn:"सीखने की दुनिया",learnDesc:"ज्ञान और शिक्षा।",create:"रचनात्मक दुनिया",createDesc:"अपने विचारों को साकार करें।",ai:"AI दुनिया",aiDesc:"AI अनुभव खोजें।",games:"गेम दुनिया",gamesDesc:"खेलें और चुनौती लें।",science:"विज्ञान",scienceDesc:"जानें चीज़ें कैसे काम करती हैं।",productivity:"उत्पादकता",productivityDesc:"दैनिक काम आसान बनाएँ।",social:"मनोरंजन",socialDesc:"क्विज़ और मज़ेदार चुनौतियाँ।",
+socialTitle:"DAILYKIT मनोरंजन",socialSubtitle:"अपना व्यक्तित्व खोजें और परिणाम साझा करें।",personalityTitle:"अपना व्यक्तित्व जानें",personalityDesc:"पाँच मज़ेदार सवालों के जवाब दें।",takeTest:"शुरू करें",shareResult:"साझा करें",downloadCard:"कार्ड डाउनलोड करें",tryAgain:"फिर से प्रयास करें",
+dailyTitle:"दैनिक खोज",dailyDesc:"एक छोटी खोज आपका दिन बदल सकती है।",factTitle:"क्या आप जानते हैं?",factText:"ऑक्टोपस के तीन दिल होते हैं।",
+toolsTitle:"लोकप्रिय टूल्स",toolsDesc:"आपके डिजिटल जीवन के लिए उपयोगी टूल्स।",calculator:"कैलकुलेटर",qr:"QR जनरेटर",word:"शब्द गणना",image:"इमेज रिसाइज़र",pdf:"PDF टूल्स",notes:"त्वरित नोट्स",timer:"टाइमर",converter:"यूनिट कनवर्टर",
+comingSoon:"जल्द आ रहा है",futureTitle:"आपकी डिजिटल दुनिया बढ़ रही है",futureDesc:"और उपयोगी टूल्स और अनुभव जल्द आ रहे हैं।",footerText:"हर चीज़ के लिए एक डिजिटल दुनिया।",rights:"सर्वाधिकार सुरक्षित।",home:"होम",explore:"खोजें",fun:"मज़ा",tools:"टूल्स",noResults:"कोई परिणाम नहीं मिला।"
 }
 };
 
-function changeLanguage(lang) {
-  const dictionary = translations[lang] || translations.en;
+const personalityQuestions = {
+en:[
+["You have a free day. What do you choose?",["Explore a new place","Read and learn","Make something creative","Organize an exciting plan"]],
+["Which sounds most interesting?",["An adventure","A difficult puzzle","A creative project","Leading a team"]],
+["Your friends need help. You...",["Find a new solution","Think carefully","Suggest an original idea","Take charge"]],
+["Choose a weekend activity.",["Travel somewhere","Learn a new skill","Draw or design","Plan an event"]],
+["What motivates you most?",["Discovery","Knowledge","Creativity","Achievement"]]
+],
+es:[
+["Tienes un día libre. ¿Qué eliges?",["Explorar un lugar nuevo","Leer y aprender","Crear algo","Organizar un plan"]],
+["¿Qué te interesa más?",["Una aventura","Un rompecabezas","Un proyecto creativo","Liderar un equipo"]],
+["Tus amigos necesitan ayuda. Tú...",["Buscas una solución","Piensas con cuidado","Propones una idea","Tomas el control"]],
+["Elige una actividad.",["Viajar","Aprender algo","Dibujar o diseñar","Organizar un evento"]],
+["¿Qué te motiva?",["Descubrir","Aprender","Crear","Lograr objetivos"]]
+],
+fr:[
+["Tu as une journée libre. Que choisis-tu ?",["Explorer un lieu","Lire et apprendre","Créer quelque chose","Organiser un projet"]],
+["Qu'est-ce qui t'intéresse ?",["Une aventure","Une énigme","Un projet créatif","Diriger une équipe"]],
+["Tes amis ont besoin d'aide. Tu...",["Trouves une solution","Réfléchis attentivement","Proposes une idée","Prends les commandes"]],
+["Choisis une activité.",["Voyager","Apprendre","Dessiner","Organiser un événement"]],
+["Qu'est-ce qui te motive ?",["La découverte","Le savoir","La créativité","La réussite"]]
+],
+de:[
+["Du hast einen freien Tag. Was wählst du?",["Einen neuen Ort erkunden","Lesen und lernen","Etwas erschaffen","Einen Plan organisieren"]],
+["Was klingt interessant?",["Ein Abenteuer","Ein Rätsel","Ein kreatives Projekt","Ein Team leiten"]],
+["Deine Freunde brauchen Hilfe. Du...",["Findest eine Lösung","Denkst gründlich nach","Schlägst eine Idee vor","Übernimmst die Führung"]],
+["Wähle eine Aktivität.",["Reisen","Etwas lernen","Zeichnen","Ein Ereignis planen"]],
+["Was motiviert dich?",["Entdeckung","Wissen","Kreativität","Erfolg"]]
+],
+pt:[
+["Você tem um dia livre. O que escolhe?",["Explorar um lugar","Ler e aprender","Criar algo","Organizar um plano"]],
+["O que parece interessante?",["Uma aventura","Um quebra-cabeça","Um projeto criativo","Liderar uma equipe"]],
+["Seus amigos precisam de ajuda. Você...",["Encontra uma solução","Pensa com cuidado","Sugere uma ideia","Assume a liderança"]],
+["Escolha uma atividade.",["Viajar","Aprender algo","Desenhar","Organizar um evento"]],
+["O que mais motiva você?",["Descoberta","Conhecimento","Criatividade","Conquista"]]
+],
+ja:[
+["自由な日があります。何をしますか？",["新しい場所を探検","読書や学習","何かを創作","計画を立てる"]],
+["何に興味がありますか？",["冒険","難しいパズル","創造的な活動","チームを率いる"]],
+["友達が助けを求めています。あなたは？",["新しい解決策を探す","よく考える","独創的な案を出す","リーダーになる"]],
+["週末の活動を選んでください。",["旅行","新しいスキルを学ぶ","絵やデザイン","イベントを企画"]],
+["何があなたを動かしますか？",["発見","知識","創造性","達成"]]
+],
+zh:[
+["你有一天空闲时间。你会选择？",["探索新地方","阅读和学习","创造一些东西","组织一个计划"]],
+["什么最吸引你？",["冒险","解谜","创意项目","领导团队"]],
+["朋友需要帮助。你会？",["寻找新方案","认真思考","提出创意","主动负责"]],
+["选择周末活动。",["旅行","学习新技能","绘画或设计","组织活动"]],
+["什么最能激励你？",["探索","知识","创造力","成就"]]
+],
+hi:[
+["आपके पास खाली दिन है। आप क्या चुनेंगे?",["नई जगह देखना","पढ़ना और सीखना","कुछ नया बनाना","योजना बनाना"]],
+["आपको क्या पसंद है?",["रोमांच","पहेली","रचनात्मक परियोजना","टीम का नेतृत्व"]],
+["दोस्तों को मदद चाहिए। आप...",["नया समाधान खोजेंगे","ध्यान से सोचेंगे","नया विचार देंगे","जिम्मेदारी लेंगे"]],
+["सप्ताहांत की गतिविधि चुनें।",["यात्रा","नई चीज़ सीखना","चित्र बनाना","कार्यक्रम आयोजित करना"]],
+["आपको क्या प्रेरित करता है?",["खोज","ज्ञान","रचनात्मकता","सफलता"]]
+]
+};
 
-  document.documentElement.lang = lang;
+const personalityTypes = {
+en:{
+explorer:["🌍","The Explorer","You love discovery, adventure and new experiences."],
+thinker:["🧠","The Thinker","You enjoy knowledge, logic and solving problems."],
+creator:["🎨","The Creator","You express yourself through imagination and original ideas."],
+leader:["🚀","The Leader","You enjoy taking initiative and making things happen."]
+},
+es:{
+explorer:["🌍","El Explorador","Te encantan los descubrimientos y las aventuras."],
+thinker:["🧠","El Pensador","Disfrutas el conocimiento y resolver problemas."],
+creator:["🎨","El Creador","Expresas tus ideas con imaginación."],
+leader:["🚀","El Líder","Te gusta tomar la iniciativa."]
+},
+fr:{
+explorer:["🌍","L'Explorateur","Tu aimes découvrir et vivre de nouvelles aventures."],
+thinker:["🧠","Le Penseur","Tu aimes apprendre et résoudre des problèmes."],
+creator:["🎨","Le Créateur","Tu exprimes tes idées avec imagination."],
+leader:["🚀","Le Leader","Tu aimes prendre des initiatives."]
+},
+de:{
+explorer:["🌍","Der Entdecker","Du liebst Entdeckungen und Abenteuer."],
+thinker:["🧠","Der Denker","Du liebst Wissen und Problemlösungen."],
+creator:["🎨","Der Kreative","Du drückst dich durch Ideen und Fantasie aus."],
+leader:["🚀","Der Anführer","Du übernimmst gerne Initiative."]
+},
+pt:{
+explorer:["🌍","O Explorador","Você adora descobertas e aventuras."],
+thinker:["🧠","O Pensador","Você gosta de conhecimento e soluções."],
+creator:["🎨","O Criador","Você expressa ideias com imaginação."],
+leader:["🚀","O Líder","Você gosta de tomar iniciativa."]
+},
+ja:{
+explorer:["🌍","探検家","新しい発見や冒険が大好きです。"],
+thinker:["🧠","思考家","知識や問題解決を楽しみます。"],
+creator:["🎨","クリエイター","想像力でアイデアを表現します。"],
+leader:["🚀","リーダー","自分から行動することが好きです。"]
+},
+zh:{
+explorer:["🌍","探索者","你热爱发现新事物和冒险。"],
+thinker:["🧠","思考者","你喜欢知识、逻辑和解决问题。"],
+creator:["🎨","创造者","你通过想象力表达自己的想法。"],
+leader:["🚀","领导者","你喜欢主动行动并实现目标。"]
+},
+hi:{
+explorer:["🌍","खोजकर्ता","आपको नई जगहें और रोमांच पसंद हैं।"],
+thinker:["🧠","विचारक","आपको ज्ञान और समस्याएँ हल करना पसंद है।"],
+creator:["🎨","रचनाकार","आप कल्पना से नए विचार बनाते हैं।"],
+leader:["🚀","नेता","आप पहल करना और काम पूरा करना पसंद करते हैं।"]
+}
+};
 
-  document.querySelectorAll("[data-i18n]").forEach(element => {
-    const key = element.getAttribute("data-i18n");
-    if (dictionary[key]) {
-      element.textContent = dictionary[key];
+let currentLanguage="en";
+let personalityIndex=0;
+let personalityScores={explorer:0,thinker:0,creator:0,leader:0};
+let currentPersonalityResult=null;
+
+function changeLanguage(lang){
+  if(!translations[lang]) lang="en";
+  currentLanguage=lang;
+  document.documentElement.lang=lang;
+  document.getElementById("languageSelector").value=lang;
+  localStorage.setItem("dailykit-language",lang);
+
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key=el.dataset.i18n;
+    if(translations[lang][key]!==undefined){
+      el.textContent=translations[lang][key];
     }
   });
 
-  document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
-    const key = element.getAttribute("data-i18n-placeholder");
-    if (dictionary[key]) {
-      element.placeholder = dictionary[key];
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
+    const key=el.dataset.i18nPlaceholder;
+    if(translations[lang][key]!==undefined){
+      el.placeholder=translations[lang][key];
     }
   });
 
-  document.getElementById("languageSelector").value = lang;
-
-  try {
-    localStorage.setItem("dailykit-language", lang);
-  } catch (error) {}const quiz = document.getElementById("personalityQuiz");
-const result = document.getElementById("personalityResult");
-
-if (quiz && quiz.style.display !== "none") {
-  showPersonalityQuestion();
-}
-
-if (result && result.style.display !== "none") {
-  showPersonalityResult();
-}
-  const quiz = document.getElementById("personalityQuiz");
-  const result = document.getElementById("personalityResult");
-
-  if (quiz && quiz.style.display !== "none") {
+  if(personalityIndex>0 && personalityIndex<6 &&
+     document.getElementById("personalityQuiz").style.display==="block"){
     showPersonalityQuestion();
   }
 
-  if (result && result.style.display !== "none") {
+  if(currentPersonalityResult){
     showPersonalityResult();
   }
+}
 
-document.getElementById("languageSelector").addEventListener("change", function() {
-  changeLanguage(this.value);
+document.getElementById("languageSelector").addEventListener("change",e=>{
+  changeLanguage(e.target.value);
 });
 
-function searchCards() {
-  const query = document.getElementById("search").value
-    .trim().toLowerCase();
+function searchCards(){
+  const query=document.getElementById("search").value.toLowerCase().trim();
+  const cards=document.querySelectorAll("[data-search]");
+  let visible=0;
 
-  const cards = document.querySelectorAll("[data-search]");
-  let visible = 0;
-
-  cards.forEach(card => {
-    const content = (
-      card.innerText + " " + card.dataset.search
-    ).toLowerCase();
-
-    const match = content.includes(query);
-    card.style.display = match ? "" : "none";
-
-    if (match) visible++;
+  cards.forEach(card=>{
+    const text=(card.innerText+" "+card.dataset.search).toLowerCase();
+    const match=text.includes(query);
+    card.style.display=match?"":"none";
+    if(match) visible++;
   });
 
-  document.getElementById("noResults").style.display =
-    visible === 0 ? "block" : "none";
+  document.getElementById("noResults").style.display=visible===0?"block":"none";
 }
 
-document.getElementById("search").addEventListener("input", searchCards);
+document.getElementById("search").addEventListener("input",searchCards);
 
-function toggleTheme() {
+function toggleTheme(){
   document.body.classList.toggle("light");
-
-  try {
-    localStorage.setItem(
-      "dailykit-theme",
-      document.body.classList.contains("light") ? "light" : "dark"
-    );
-  } catch (error) {}
+  localStorage.setItem("dailykit-theme",
+    document.body.classList.contains("light")?"light":"dark");
 }
 
-try {
-  const savedLanguage = localStorage.getItem("dailykit-language");
-  const savedTheme = localStorage.getItem("dailykit-theme");
+function startPersonalityTest(){
+  personalityIndex=0;
+  personalityScores={explorer:0,thinker:0,creator:0,leader:0};
+  currentPersonalityResult=null;
 
-  if (savedLanguage && translations[savedLanguage]) {
-    changeLanguage(savedLanguage);
-  }
+  document.getElementById("quizIntro").style.display="none";
+  document.getElementById("personalityResult").style.display="none";
+  document.getElementById("personalityQuiz").style.display="block";
 
-  if (savedTheme === "light") {
-    document.body.classList.add("light");
-  }
-} catch (error) {}
+  showPersonalityQuestion();
+  document.getElementById("social-fun").scrollIntoView({behavior:"smooth"});
+}
 
-const personalityQuizTranslations = {
-  en: {
-    progress: "Question {n} of {total}",
-    questions: [
-      ["What do you enjoy doing most?", ["Exploring new places", "Solving difficult problems", "Creating something new", "Helping other people"]],
-      ["Choose your ideal weekend.", ["An exciting adventure", "Reading or learning", "Making art or music", "Spending time with friends"]],
-      ["What describes you best?", ["Curious and adventurous", "Logical and thoughtful", "Imaginative and original", "Friendly and supportive"]],
-      ["When facing a challenge, you...", ["Try a new approach", "Analyze every detail", "Think creatively", "Bring people together"]],
-      ["Choose one superpower.", ["Explore any world", "Know everything", "Create anything", "Inspire everyone"]]
-    ]
-  },
-  es: {
-    progress: "Pregunta {n} de {total}",
-    questions: [
-      ["¿Qué disfrutas hacer más?", ["Explorar lugares nuevos", "Resolver problemas difíciles", "Crear algo nuevo", "Ayudar a otras personas"]],
-      ["Elige tu fin de semana ideal.", ["Una aventura emocionante", "Leer o aprender", "Hacer arte o música", "Pasar tiempo con amigos"]],
-      ["¿Qué te describe mejor?", ["Curioso y aventurero", "Lógico y reflexivo", "Imaginativo y original", "Amable y solidario"]],
-      ["Cuando enfrentas un desafío...", ["Pruebas un nuevo enfoque", "Analizas cada detalle", "Piensas creativamente", "Unes a las personas"]],
-      ["Elige un superpoder.", ["Explorar cualquier mundo", "Saberlo todo", "Crear cualquier cosa", "Inspirar a todos"]]
-    ]
-  },
-  fr: {
-    progress: "Question {n} sur {total}",
-    questions: [
-      ["Qu'aimes-tu faire le plus ?", ["Explorer de nouveaux endroits", "Résoudre des problèmes difficiles", "Créer quelque chose de nouveau", "Aider les autres"]],
-      ["Choisis ton week-end idéal.", ["Une aventure passionnante", "Lire ou apprendre", "Créer de l'art ou de la musique", "Passer du temps avec des amis"]],
-      ["Qu'est-ce qui te décrit le mieux ?", ["Curieux et aventureux", "Logique et réfléchi", "Imaginatif et original", "Amical et attentionné"]],
-      ["Face à un défi, tu...", ["Essaies une nouvelle approche", "Analyses chaque détail", "Penses de façon créative", "Rassembles les gens"]],
-      ["Choisis un super-pouvoir.", ["Explorer tous les mondes", "Tout savoir", "Tout créer", "Inspirer tout le monde"]]
-    ]
-  },
-  de: {
-    progress: "Frage {n} von {total}",
-    questions: [
-      ["Was machst du am liebsten?", ["Neue Orte entdecken", "Schwierige Probleme lösen", "Etwas Neues erschaffen", "Anderen Menschen helfen"]],
-      ["Wähle dein ideales Wochenende.", ["Ein aufregendes Abenteuer", "Lesen oder Lernen", "Kunst oder Musik machen", "Zeit mit Freunden verbringen"]],
-      ["Was beschreibt dich am besten?", ["Neugierig und abenteuerlustig", "Logisch und nachdenklich", "Fantasievoll und originell", "Freundlich und hilfsbereit"]],
-      ["Wenn du vor einer Herausforderung stehst...", ["Probierst du etwas Neues", "Analysierst du jedes Detail", "Denkst du kreativ", "Bringst du Menschen zusammen"]],
-      ["Wähle eine Superkraft.", ["Jede Welt erkunden", "Alles wissen", "Alles erschaffen", "Alle inspirieren"]]
-    ]
-  },
-  pt: {
-    progress: "Pergunta {n} de {total}",
-    questions: [
-      ["O que você mais gosta de fazer?", ["Explorar novos lugares", "Resolver problemas difíceis", "Criar algo novo", "Ajudar outras pessoas"]],
-      ["Escolha seu fim de semana ideal.", ["Uma aventura emocionante", "Ler ou aprender", "Criar arte ou música", "Passar tempo com amigos"]],
-      ["O que melhor descreve você?", ["Curioso e aventureiro", "Lógico e reflexivo", "Imaginativo e original", "Amigável e prestativo"]],
-      ["Ao enfrentar um desafio, você...", ["Tenta uma nova abordagem", "Analisa cada detalhe", "Pensa de forma criativa", "Une as pessoas"]],
-      ["Escolha um superpoder.", ["Explorar qualquer mundo", "Saber tudo", "Criar qualquer coisa", "Inspirar todos"]]
-    ]
-  },
-  ja: {
-    progress: "質問 {n}/{total}",
-    questions: [
-      ["一番好きなことは何ですか？", ["新しい場所を探検する", "難しい問題を解決する", "新しいものを作る", "人を助ける"]],
-      ["理想の週末を選んでください。", ["ワクワクする冒険", "読書や学習", "芸術や音楽を作る", "友達と過ごす"]],
-      ["あなたに最も当てはまるのは？", ["好奇心旺盛で冒険好き", "論理的で思慮深い", "想像力豊かで独創的", "親しみやすく協力的"]],
-      ["困難に直面したとき...", ["新しい方法を試す", "細部まで分析する", "創造的に考える", "人々をまとめる"]],
-      ["超能力を一つ選んでください。", ["どんな世界も探検する", "すべてを知る", "何でも創造する", "みんなを元気づける"]]
-    ]
-  },
-  zh: {
-    progress: "第 {n} 题，共 {total} 题",
-    questions: [
-      ["你最喜欢做什么？", ["探索新的地方", "解决困难的问题", "创造新事物", "帮助他人"]],
-      ["选择你理想的周末。", ["刺激的冒险", "阅读或学习", "创作艺术或音乐", "与朋友共度时光"]],
-      ["哪一项最能描述你？", ["好奇且喜欢冒险", "理性且善于思考", "富有想象力且有创意", "友善且乐于助人"]],
-      ["面对挑战时，你会……", ["尝试新的方法", "分析每个细节", "创造性地思考", "团结大家"]],
-      ["选择一种超能力。", ["探索任何世界", "无所不知", "创造任何事物", "激励所有人"]]
-    ]
-  },
-  hi: {
-    progress: "प्रश्न {n} / {total}",
-    questions: [
-      ["आपको सबसे ज्यादा क्या करना पसंद है?", ["नई जगहों की खोज करना", "कठिन समस्याएँ हल करना", "कुछ नया बनाना", "दूसरों की मदद करना"]],
-      ["अपना आदर्श सप्ताहांत चुनें।", ["रोमांचक साहसिक यात्रा", "पढ़ना या सीखना", "कला या संगीत बनाना", "दोस्तों के साथ समय बिताना"]],
-      ["आपका सबसे अच्छा वर्णन क्या है?", ["जिज्ञासु और साहसी", "तार्किक और विचारशील", "कल्पनाशील और रचनात्मक", "मिलनसार और सहयोगी"]],
-      ["किसी चुनौती का सामना करते समय आप...", ["नया तरीका आज़माते हैं", "हर विवरण का विश्लेषण करते हैं", "रचनात्मक सोचते हैं", "लोगों को साथ लाते हैं"]],
-      ["एक सुपरपावर चुनें।", ["किसी भी दुनिया की खोज करना", "सब कुछ जानना", "कुछ भी बनाना", "सबको प्रेरित करना"]]
-    ]
-  }
-};
-const personalityQuestions = [
-  {
-    question: "What do you enjoy doing most?",
-    options: [
-      ["Exploring new places", "explorer"],
-      ["Solving difficult problems", "thinker"],
-      ["Creating something new", "creator"],
-      ["Helping other people", "leader"]
-    ]
-  },
-  {
-    question: "Choose your ideal weekend.",
-    options: [
-      ["An exciting adventure", "explorer"],
-      ["Reading or learning", "thinker"],
-      ["Making art or music", "creator"],
-      ["Spending time with friends", "leader"]
-    ]
-  },
-  {
-    question: "What describes you best?",
-    options: [
-      ["Curious and adventurous", "explorer"],
-      ["Logical and thoughtful", "thinker"],
-      ["Imaginative and original", "creator"],
-      ["Friendly and supportive", "leader"]
-    ]
-  },
-  {
-    question: "When facing a challenge, you...",
-    options: [
-      ["Try a new approach", "explorer"],
-      ["Analyze every detail", "thinker"],
-      ["Think creatively", "creator"],
-      ["Bring people together", "leader"]
-    ]
-  },
-  {
-    question: "Choose one superpower.",
-    options: [
-      ["Explore any world", "explorer"],
-      ["Know everything", "thinker"],
-      ["Create anything", "creator"],
-      ["Inspire everyone", "leader"]
-    ]
-  }
-];
+function showPersonalityQuestion(){
+  const questions=personalityQuestions[currentLanguage]||personalityQuestions.en;
+  const question=questions[personalityIndex];
 
-const personalityTypesTranslations = {
-  en: {
-    explorer: {
-      title: "The Explorer 🌍",
-      description: "You love discovering new things, exploring possibilities and experiencing the world."
-    },
-    thinker: {
-      title: "The Thinker 🧠",
-      description: "You enjoy ideas, knowledge and solving interesting challenges."
-    },
-    creator: {
-      title: "The Creator 🎨",
-      description: "You bring imagination to life and enjoy making original things."
-    },
-    leader: {
-      title: "The Connector ⭐",
-      description: "You enjoy bringing people together and making a positive difference."
-    }
-  },
-  es: {
-    explorer: { title: "El Explorador 🌍", description: "Te encanta descubrir cosas nuevas, explorar posibilidades y experimentar el mundo." },
-    thinker: { title: "El Pensador 🧠", description: "Disfrutas las ideas, el conocimiento y resolver desafíos interesantes." },
-    creator: { title: "El Creador 🎨", description: "Das vida a tu imaginación y disfrutas creando cosas originales." },
-    leader: { title: "El Conector ⭐", description: "Disfrutas unir a las personas y generar un impacto positivo." }
-  },
-  fr: {
-    explorer: { title: "L'Explorateur 🌍", description: "Tu aimes découvrir de nouvelles choses, explorer les possibilités et vivre le monde." },
-    thinker: { title: "Le Penseur 🧠", description: "Tu apprécies les idées, le savoir et la résolution de défis intéressants." },
-    creator: { title: "Le Créateur 🎨", description: "Tu donnes vie à ton imagination et aimes créer des choses originales." },
-    leader: { title: "Le Connecteur ⭐", description: "Tu aimes rassembler les gens et apporter une contribution positive." }
-  },
-  de: {
-    explorer: { title: "Der Entdecker 🌍", description: "Du liebst es, Neues zu entdecken, Möglichkeiten zu erkunden und die Welt zu erleben." },
-    thinker: { title: "Der Denker 🧠", description: "Du magst Ideen, Wissen und das Lösen interessanter Herausforderungen." },
-    creator: { title: "Der Kreative 🎨", description: "Du erweckst deine Fantasie zum Leben und erschaffst gerne originelle Dinge." },
-    leader: { title: "Der Verbinder ⭐", description: "Du bringst gerne Menschen zusammen und bewirkst positive Veränderungen." }
-  },
-  pt: {
-    explorer: { title: "O Explorador 🌍", description: "Você adora descobrir coisas novas, explorar possibilidades e conhecer o mundo." },
-    thinker: { title: "O Pensador 🧠", description: "Você gosta de ideias, conhecimento e resolver desafios interessantes." },
-    creator: { title: "O Criador 🎨", description: "Você transforma imaginação em realidade e gosta de criar coisas originais." },
-    leader: { title: "O Conector ⭐", description: "Você gosta de unir pessoas e fazer uma diferença positiva." }
-  },
-  ja: {
-    explorer: { title: "探検家 🌍", description: "新しいことを発見し、可能性を探り、世界を体験するのが好きです。" },
-    thinker: { title: "思考家 🧠", description: "アイデアや知識、興味深い課題を解決することを楽しみます。" },
-    creator: { title: "クリエイター 🎨", description: "想像力を形にし、独創的なものを作ることを楽しみます。" },
-    leader: { title: "つなぐ人 ⭐", description: "人々をつなぎ、前向きな変化を生み出すことを楽しみます。" }
-  },
-  zh: {
-    explorer: { title: "探索者 🌍", description: "你喜欢发现新事物、探索各种可能性并体验世界。" },
-    thinker: { title: "思考者 🧠", description: "你喜欢创意、知识以及解决有趣的挑战。" },
-    creator: { title: "创造者 🎨", description: "你善于发挥想象力，喜欢创造独特的事物。" },
-    leader: { title: "连接者 ⭐", description: "你喜欢团结大家，并带来积极的改变。" }
-  },
-  hi: {
-    explorer: { title: "खोजकर्ता 🌍", description: "आपको नई चीज़ें खोजना, नई संभावनाएँ तलाशना और दुनिया का अनुभव करना पसंद है।" },
-    thinker: { title: "विचारक 🧠", description: "आपको विचार, ज्ञान और दिलचस्प चुनौतियों को हल करना पसंद है।" },
-    creator: { title: "रचनाकार 🎨", description: "आप अपनी कल्पना को साकार करना और अनोखी चीज़ें बनाना पसंद करते हैं।" },
-    leader: { title: "जोड़ने वाला ⭐", description: "आप लोगों को साथ लाना और सकारात्मक बदलाव करना पसंद करते हैं।" }
-  }
-};
+  document.getElementById("quizQuestion").textContent=question[0];
+  document.getElementById("quizProgressText").textContent=
+    `${personalityIndex+1} / ${questions.length}`;
+  document.getElementById("quizProgress").style.width=
+    `${(personalityIndex/questions.length)*100}%`;
 
-function showPersonalityQuestion() function showPersonalityQuestion() {
-  const lang = document.getElementById("languageSelector").value || "en";
-  const quiz = personalityQuizTranslations[lang] || personalityQuizTranslations.en;
+  const options=document.getElementById("quizOptions");
+  options.innerHTML="";
 
-  const question = personalityQuestions[personalityIndex];
-  const translated = quiz.questions[personalityIndex];
-
-  document.getElementById("quizProgress").textContent =
-    quiz.progress
-      .replace("{n}", personalityIndex + 1)
-      .replace("{total}", personalityQuestions.length);
-
-  document.getElementById("quizQuestion").textContent = translated[0];
-
-  const optionsContainer = document.getElementById("quizOptions");
-  optionsContainer.innerHTML = "";
-
-  question.options.forEach((option, index) => {
-    const button = document.createElement("button");
-
-    button.type = "button";
-    button.className = "card";
-    button.style.cursor = "pointer";
-    button.style.color = "var(--text)";
-    button.textContent = translated[1][index];
-
-    button.addEventListener("click", () => {
-      personalityScores[option[1]]++;
-      personalityIndex++;
-
-      if (personalityIndex < personalityQuestions.length) {
-        showPersonalityQuestion();
-      } else {
-        showPersonalityResult();
-      }
-    });
-
-    optionsContainer.appendChild(button);
+  question[1].forEach((option,index)=>{
+    const button=document.createElement("button");
+    button.textContent=option;
+    button.addEventListener("click",()=>answerPersonality(index));
+    options.appendChild(button);
   });
 }
 
-function showPersonalityResult() {
-  const winner = Object.keys(personalityScores).reduce((a, b) =>
-    personalityScores[a] >= personalityScores[b] ? a : b
-  );
+function answerPersonality(index){
+  const types=["explorer","thinker","creator","leader"];
+  personalityScores[types[index]]++;
 
-  const lang = document.getElementById("languageSelector").value || "en";
-  const dictionary = personalityTypesTranslations[lang] || personalityTypesTranslations.en;
+  personalityIndex++;
 
-  currentPersonalityResult = dictionary[winner];
-
-  document.getElementById("personalityQuiz").style.display = "none";
-  document.getElementById("personalityResult").style.display = "block";
-
-  document.getElementById("resultTitle").textContent =
-    currentPersonalityResult.title;
-
-  document.getElementById("resultDescription").textContent =
-    currentPersonalityResult.description;
-
-  document.getElementById("personalityResult").scrollIntoView({
-    behavior: "smooth"
-  });
-}
-function sharePersonalityResult() {
-  if (!currentPersonalityResult) return;
-
-  const message =
-    "My DAILYKIT personality result is: " +
-    currentPersonalityResult.title +
-    "\n" +
-    currentPersonalityResult.description +
-    "\nDiscover yours at: " +
-    window.location.href;
-
-  const whatsappURL =
-    "https://wa.me/?text=" + encodeURIComponent(message);
-
-  window.open(whatsappURL, "_blank");
+  if(personalityIndex>=5){
+    finishPersonalityTest();
+  }else{
+    showPersonalityQuestion();
+  }
 }
 
-function downloadPersonalityResult() {
-  if (!currentPersonalityResult) return;
+function finishPersonalityTest(){
+  let winner="explorer";
+  let highest=-1;
 
-  const canvas = document.createElement("canvas");
-  canvas.width = 1080;
-  canvas.height = 1350;
-
-  const ctx = canvas.getContext("2d");
-
-  const gradient = ctx.createLinearGradient(0, 0, 1080, 1350);
-  gradient.addColorStop(0, "#08152d");
-  gradient.addColorStop(1, "#39236b");
-
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, 1080, 1350);
-
-  ctx.textAlign = "center";
-
-  ctx.fillStyle = "#20d9ff";
-  ctx.font = "bold 48px Arial";
-  ctx.fillText("DAILYKIT", 540, 180);
-
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 58px Arial";
-  ctx.fillText("MY PERSONALITY", 540, 420);
-
-  ctx.fillStyle = "#a98cff";
-  ctx.font = "bold 76px Arial";
-  ctx.fillText(currentPersonalityResult.title, 540, 620);
-
-  ctx.fillStyle = "#e4eaff";
-  ctx.font = "38px Arial";
-
-  const words = currentPersonalityResult.description.split(" ");
-  let line = "";
-  let y = 790;
-
-  words.forEach(word => {
-    const testLine = line + word + " ";
-    if (ctx.measureText(testLine).width > 820) {
-      ctx.fillText(line, 540, y);
-      line = word + " ";
-      y += 65;
-    } else {
-      line = testLine;
+  Object.keys(personalityScores).forEach(type=>{
+    if(personalityScores[type]>highest){
+      highest=personalityScores[type];
+      winner=type;
     }
   });
 
-  if (line) ctx.fillText(line, 540, y);
+  currentPersonalityResult=winner;
+  showPersonalityResult();
+}
 
-  ctx.fillStyle = "#20d9ff";
-  ctx.font = "bold 34px Arial";
-  ctx.fillText("DISCOVER YOURSELF", 540, 1160);
+function showPersonalityResult(){
+  const resultSet=personalityTypes[currentLanguage]||personalityTypes.en;
+  const result=resultSet[currentPersonalityResult];
+  if(!result) return;
 
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "30px Arial";
-  ctx.fillText("dailykit", 540, 1240);
+  document.getElementById("personalityQuiz").style.display="none";
+  document.getElementById("quizIntro").style.display="none";
+  document.getElementById("personalityResult").style.display="block";
 
-  const link = document.createElement("a");
-  link.download = "dailykit-personality-result.png";
-  link.href = canvas.toDataURL("image/png");
+  document.getElementById("resultEmoji").textContent=result[0];
+  document.getElementById("resultTitle").textContent=result[1];
+  document.getElementById("resultDescription").textContent=result[2];
+}
+
+function sharePersonalityResult(){
+  if(!currentPersonalityResult) return;
+
+  const result=personalityTypes[currentLanguage][currentPersonalityResult];
+  const message=`My DAILYKIT personality is ${result[1]}! ${result[2]} Discover yours at ${window.location.href}`;
+  const url="https://wa.me/?text="+encodeURIComponent(message);
+
+  window.open(url,"_blank","noopener,noreferrer");
+}
+
+function downloadPersonalityResult(){
+  if(!currentPersonalityResult) return;
+
+  const result=personalityTypes[currentLanguage][currentPersonalityResult];
+  const canvas=document.createElement("canvas");
+  canvas.width=1080;
+  canvas.height=1350;
+
+  const ctx=canvas.getContext("2d");
+  const gradient=ctx.createLinearGradient(0,0,1080,1350);
+  gradient.addColorStop(0,"#081426");
+  gradient.addColorStop(1,"#28205b");
+
+  ctx.fillStyle=gradient;
+  ctx.fillRect(0,0,1080,1350);
+
+  ctx.strokeStyle="#00d9ff";
+  ctx.lineWidth=8;
+  ctx.strokeRect(35,35,1010,1280);
+
+  ctx.textAlign="center";
+  ctx.fillStyle="#00d9ff";
+  ctx.font="bold 65px Arial";
+  ctx.fillText("DAILYKIT",540,190);
+
+  ctx.fillStyle="#ffffff";
+  ctx.font="120px Arial";
+  ctx.fillText(result[0],540,440);
+
+  ctx.font="bold 65px Arial";
+  ctx.fillText(result[1],540,600,900);
+
+  ctx.font="38px Arial";
+  wrapCanvasText(ctx,result[2],540,730,820,58);
+
+  ctx.fillStyle="#00d9ff";
+  ctx.font="32px Arial";
+  ctx.fillText("Discover your digital world",540,1150);
+
+  ctx.fillStyle="#ffffff";
+  ctx.font="25px Arial";
+  ctx.fillText("dailykit",540,1220);
+
+  const link=document.createElement("a");
+  link.download="DAILYKIT-Personality-Result.png";
+  link.href=canvas.toDataURL("image/png");
   link.click();
 }
 
+function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
+  const words=text.split(" ");
+  let line="";
+  let currentY=y;
+
+  for(let i=0;i<words.length;i++){
+    const test=line+words[i]+" ";
+    if(ctx.measureText(test).width>maxWidth && i>0){
+      ctx.fillText(line,x,currentY);
+      line=words[i]+" ";
+      currentY+=lineHeight;
+    }else{
+      line=test;
+    }
+  }
+  ctx.fillText(line,x,currentY);
+}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+
+const savedTheme=localStorage.getItem("dailykit-theme");
+if(savedTheme==="light"){
+  document.body.classList.add("light");
+}
+
+const savedLanguage=localStorage.getItem("dailykit-language")||"en";
+changeLanguage(savedLanguage);
 </script>
 
 </body>
