@@ -36,11 +36,11 @@ header{
   background:rgba(8,13,27,.95);
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:20;
   backdrop-filter:blur(15px);
 }
 .nav{
-  min-height:70px;
+  min-height:66px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -60,9 +60,100 @@ header{
   font-size:14px;
 }
 .nav a:hover{color:var(--cyan)}
+
+/* DAILYKIT LIVE TOP TICKER */
+#live-ticker-bar{
+  display:flex;
+  align-items:center;
+  background:linear-gradient(90deg,#0b1529,#101d36);
+  border-bottom:1px solid rgba(22,199,232,0.22);
+  overflow:hidden;
+  height:42px;
+  position:relative;
+  z-index:15;
+}
+.live-badge{
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:0 14px;
+  height:100%;
+  background:#0d192f;
+  border-right:1px solid rgba(22,199,232,0.25);
+  color:#16c7e8;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  z-index:2;
+}
+.live-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#20d99a;
+  box-shadow:0 0 8px #20d99a;
+  animation:pulseDot 1.6s infinite;
+}
+@keyframes pulseDot{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.35);opacity:.65}
+}
+.ticker-viewport{
+  flex:1;
+  overflow:hidden;
+  position:relative;
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+.ticker-track{
+  display:flex;
+  align-items:center;
+  width:max-content;
+  animation:scrollTicker 36s linear infinite;
+}
+.ticker-viewport:hover .ticker-track{
+  animation-play-state:paused;
+}
+@keyframes scrollTicker{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.ticker-group{
+  display:flex;
+  align-items:center;
+}
+.ticker-item{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:0 18px;
+  font-size:12.5px;
+  white-space:nowrap;
+  border-right:1px solid rgba(255,255,255,0.07);
+}
+.ticker-symbol{
+  font-weight:800;
+  color:#f4f7ff;
+}
+.ticker-price{
+  color:#cbd5e6;
+  font-weight:600;
+}
+.ticker-status{
+  color:#9eacc5;
+  font-size:12px;
+  padding:0 16px;
+  white-space:nowrap;
+}
+.positive{color:#20d99a !important}
+.negative{color:#ff647c !important}
+
 .hero{
   text-align:center;
-  padding:85px 15px 55px;
+  padding:68px 15px 50px;
   background:
   radial-gradient(ellipse at 50% 0%,rgba(22,199,232,.16),transparent 60%);
 }
@@ -242,64 +333,18 @@ footer{
   margin-bottom:20px;
 }
 
-/* DAILYKIT LIVE MARKETS */
-#live-markets{
-  padding:40px 0;
-  background:linear-gradient(135deg,#0b1428,#111a2e);
-  border-top:1px solid rgba(22,199,232,0.2);
-  border-bottom:1px solid rgba(22,199,232,0.2);
-}
-#live-markets h2{
-  color:#16c7e8;
-  font-size:26px;
-  margin:0 0 8px;
-}
-#live-markets h3{
-  margin:25px 0 0;
-}
-#live-markets p{
-  color:#9eacc5;
-  line-height:1.6;
-}
-.crypto-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-  margin-top:20px;
-}
-.crypto-card{
-  background:#14213a;
-  border:1px solid rgba(255,255,255,0.09);
-  padding:20px;
-  border-radius:14px;
-}
-.crypto-card h4{
-  margin:0 0 12px;
-  font-size:16px;
-}
-.crypto-price{
-  font-size:23px;
-  font-weight:bold;
-  color:white;
-}
-.crypto-change{
-  margin-top:8px;
-  font-size:13px;
-  font-weight:bold;
-}
-.positive{color:#20d99a !important}
-.negative{color:#ff647c !important}
-
 @media(max-width:750px){
   .categories,.articles{grid-template-columns:repeat(2,1fr)}
   .nav a{margin-left:8px;font-size:12px}
-  .hero{padding-top:65px}
+  .hero{padding-top:52px}
 }
 @media(max-width:480px){
-  .categories,.articles,.crypto-grid{grid-template-columns:1fr}
-  .nav{min-height:60px}
+  .categories,.articles{grid-template-columns:1fr}
+  .nav{min-height:58px}
   .nav a{margin-left:7px}
   .logo{font-size:19px}
+  .live-badge{padding:0 10px;font-size:10px}
+  .ticker-item{padding:0 13px;font-size:11.5px}
   .search-box{padding:5px}
   .search-box input{padding:11px;font-size:13px}
   .primary-btn{padding:11px 13px}
@@ -321,21 +366,21 @@ footer{
   </div>
 </header>
 
-<main>
-<!-- DAILYKIT LIVE MARKETS -->
-<section id="live-markets">
-  <div class="container">
-    <h2>🌍 DAILYKIT LIVE MARKETS</h2>
-    <p>Global Stocks &amp; Cryptocurrency Market</p>
-
-    <h3>₿ Cryptocurrency Prices</h3>
-    <div id="crypto-market">
-      <p>Loading market data...</p>
+<!-- DAILYKIT LIVE TOP TICKER -->
+<div id="live-ticker-bar" aria-label="Live Cryptocurrency Prices">
+  <div class="live-badge">
+    <span class="live-dot"></span>
+    <span>LIVE</span>
+  </div>
+  <div class="ticker-viewport">
+    <div id="crypto-ticker-track" class="ticker-track">
+      <span class="ticker-status">Loading live crypto market...</span>
     </div>
   </div>
-</section>
-<!-- END LIVE MARKETS -->
+</div>
+<!-- END LIVE TOP TICKER -->
 
+<main>
 <div id="homePage">
 
   <div class="hero">
@@ -621,9 +666,9 @@ function closeArticle(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-// DAILYKIT LIVE CRYPTO DATA
+// DAILYKIT LIVE CRYPTO TICKER
 async function loadCryptoPrices() {
-  const container = document.getElementById("crypto-market");
+  const track = document.getElementById("crypto-ticker-track");
 
   try {
     const url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,ripple,binancecoin,cardano,dogecoin,tether&order=market_cap_desc&per_page=8&page=1&sparkline=false&price_change_percentage=24h";
@@ -634,39 +679,40 @@ async function loadCryptoPrices() {
     }
 
     const coins = await response.json();
+    const itemsHtml = coins.map(coin => {
+      const change = Number(coin.price_change_percentage_24h || 0);
+      const isUp = change >= 0;
+      const price = Number(coin.current_price).toLocaleString("en-US", {
+        minimumFractionDigits: coin.current_price < 1 ? 3 : 2,
+        maximumFractionDigits: coin.current_price < 1 ? 4 : 2
+      });
 
-    container.innerHTML = `
-      <div class="crypto-grid">
-        ${coins.map(coin => `
-          <div class="crypto-card">
-            <h4>${coin.name} (${coin.symbol.toUpperCase()})</h4>
-            <div class="crypto-price">
-              $${Number(coin.current_price).toLocaleString("en-US")}
-            </div>
-            <div class="crypto-change ${
-              coin.price_change_percentage_24h >= 0
-                ? "positive" : "negative"
-            }">
-              ${Number(coin.price_change_percentage_24h || 0).toFixed(2)}%
-              (24h)
-            </div>
-          </div>
-        `).join("")}
-      </div>
-      <p>Data: CoinGecko | Educational information</p>
-      <p>Updated: ${new Date().toLocaleTimeString()}</p>
+      return `
+        <span class="ticker-item">
+          <span class="ticker-symbol">${coin.symbol.toUpperCase()}</span>
+          <span class="ticker-price">$${price}</span>
+          <span class="${isUp ? "positive" : "negative"}">
+            ${isUp ? "+" : ""}${change.toFixed(2)}%
+          </span>
+        </span>
+      `;
+    }).join("");
+
+    // Seamless loop සඳහා group දෙකක් දානවා
+    track.innerHTML = `
+      <div class="ticker-group">${itemsHtml}</div>
+      <div class="ticker-group" aria-hidden="true">${itemsHtml}</div>
     `;
   } catch (error) {
-    if (!container.querySelector(".crypto-grid")) {
-      container.innerHTML =
-        "<p>Market data temporarily unavailable. Please try again later.</p>";
+    if (!track.querySelector(".ticker-item")) {
+      track.innerHTML = `<span class="ticker-status">Market feed temporarily paused • CoinGecko</span>`;
     }
   }
 }
 
 loadCryptoPrices();
 setInterval(loadCryptoPrices, 300000);
-// END LIVE CRYPTO DATA
+// END LIVE CRYPTO TICKER
 </script>
 
 </body>
