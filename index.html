@@ -630,6 +630,56 @@ function closeArticle(){
   document.getElementById("homePage").style.display = "block";
   window.scrollTo({top:0,behavior:"smooth"});
 }
+
+// DAILYKIT LIVE CRYPTO DATA
+
+async function loadCryptoPrices() {
+  const container = document.getElementById("crypto-market");
+
+  try {
+    const url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,ripple,binancecoin,cardano,dogecoin,tether&order=market_cap_desc&per_page=8&page=1&sparkline=false&price_change_percentage=24h";
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Market data unavailable");
+    }
+
+    const coins = await response.json();
+
+    container.innerHTML = `
+      <div class="crypto-grid">
+        ${coins.map(coin => `
+          <div class="crypto-card">
+            <h4>${coin.name} (${coin.symbol.toUpperCase()})</h4>
+            <div class="crypto-price">
+              $${Number(coin.current_price).toLocaleString("en-US")}
+            </div>
+            <div class="crypto-change ${
+              coin.price_change_percentage_24h >= 0
+                ? "positive" : "negative"
+            }">
+              ${Number(coin.price_change_percentage_24h || 0).toFixed(2)}%
+              (24h)
+            </div>
+          </div>
+        `).join("")}
+      </div>
+      <p>Data: CoinGecko | Educational information</p>
+      <p>Updated: ${new Date().toLocaleTimeString()}</p>
+    `;
+
+  } catch (error) {
+    container.innerHTML =
+      "<p>Market data temporarily unavailable. Please try again later.</p>";
+  }
+}
+
+loadCryptoPrices();
+setInterval(loadCryptoPrices, 300000);
+
+// END LIVE CRYPTO DATA
+
 </script>
 
 </body>
