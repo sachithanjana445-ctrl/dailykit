@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080d1b">
-<meta name="description" content="DAILYKIT - Interactive Language Trainer, Quiz Arena, Brain Challenges and Knowledge Hub.">
+<meta name="description" content="DAILYKIT - Scenario-based Language Trainer, Quiz Arena, Brain Challenges and Knowledge Hub.">
 <title>DAILYKIT | Language Trainer, Quiz Arena & Knowledge Hub</title>
 <style>
 :root{
@@ -180,7 +180,7 @@ section{padding:38px 0}
 .section-title{font-size:26px;margin:0 0 8px}
 .section-subtitle{color:var(--muted);margin:0 0 22px;line-height:1.6}
 
-/* LANGUAGE TRAINER */
+/* LANGUAGE TRAINER (LEARNA-INSPIRED SCENARIO HUB) */
 .lang-box{
   background:var(--panel);
   border:1px solid rgba(134,103,255,.35);
@@ -189,16 +189,11 @@ section{padding:38px 0}
 }
 .lang-controls{
   display:flex;
-  gap:10px;
+  gap:12px;
   flex-wrap:wrap;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:18px;
-}
-.lang-select-group{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
+  margin-bottom:14px;
 }
 .lang-select{
   padding:10px 14px;
@@ -206,6 +201,31 @@ section{padding:38px 0}
   border:1px solid var(--border);
   background:var(--card);
   color:var(--text);
+}
+.scenario-grid{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+.scenario-chip{
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+  transition:.15s;
+}
+.scenario-chip:hover{
+  border-color:var(--cyan);
+  color:var(--text);
+}
+.scenario-chip.active{
+  background:rgba(22,199,232,.16);
+  border-color:var(--cyan);
+  color:var(--cyan);
 }
 .lang-card{
   background:var(--card);
@@ -244,6 +264,21 @@ section{padding:38px 0}
   color:var(--green);
   font-size:16px;
   font-weight:700;
+}
+.lang-example{
+  margin-top:12px;
+  padding:12px 14px;
+  border-radius:11px;
+  background:rgba(8,13,27,.45);
+  border-left:3px solid var(--purple);
+  font-size:13.5px;
+  line-height:1.55;
+  color:#dce4f5;
+}
+.lang-example small{
+  display:block;
+  color:var(--muted);
+  margin-top:4px;
 }
 .lang-actions{
   display:flex;
@@ -610,7 +645,7 @@ footer{
   <div class="container nav">
     <div class="logo">DAILY<span>KIT</span></div>
     <nav>
-      <a href="#language-lab">Languages</a>
+      <a href="#language-lab">Scenarios</a>
       <a href="#quiz-arena">Quiz</a>
       <a href="#brain-lab">Challenges</a>
       <a href="#articles">Guides</a>
@@ -626,7 +661,7 @@ footer{
       <div class="stat-pill">⭐ Total Points: <span id="quizPoints">0</span></div>
       <div class="stat-pill">⚡ Best Reaction: <span id="bestReaction">--</span></div>
     </div>
-    <div class="arena-tagline">Learn Languages • Play • Beat Your Record</div>
+    <div class="arena-tagline">Real-Life Scenarios • Audio Practice • Beat Your Record</div>
   </div>
 </div>
 
@@ -634,9 +669,9 @@ footer{
 <div id="homePage">
 
   <div class="hero">
-    <div class="eyebrow">LANGUAGE TRAINER • INTERACTIVE QUIZ • BRAIN CHALLENGES</div>
-    <h1>Learn Languages.<br><span class="gradient">Train Your Mind Daily.</span></h1>
-    <p>Practice everyday phrases with audio pronunciation, test your knowledge in interactive quizzes, challenge your reflexes, and stay focused.</p>
+    <div class="eyebrow">REAL-LIFE SCENARIOS • AUDIO PRONUNCIATION • BRAIN CHALLENGES</div>
+    <h1>Practice Real-Life Phrases.<br><span class="gradient">Train Your Mind Daily.</span></h1>
+    <p>Pick real-life situations like small talk, jobs, daily routine, travel, and food—listen, read examples, test your recall, and challenge your brain.</p>
 
     <div class="search-box">
       <input id="mainSearch" type="search"
@@ -644,7 +679,7 @@ footer{
         onkeydown="if(event.key==='Enter')searchKnowledge()">
       <button class="primary-btn" onclick="searchKnowledge()">Search</button>
     </div>
-    <div class="search-hint">Italian • Spanish • French • Japanese • Quizzes &amp; Brain Games</div>
+    <div class="search-hint">Italian • Spanish • French • Japanese • Real-Life Scenarios</div>
   </div>
 
   <div class="container">
@@ -652,53 +687,61 @@ footer{
     <!-- TOP AD SLOT -->
     <div class="ad-slot" aria-label="Advertisement">Advertisement Space • Top Banner</div>
 
-    <!-- 0. INTERACTIVE LANGUAGE TRAINER -->
+    <!-- 0. LEARNA-INSPIRED REAL-LIFE SCENARIO TRAINER -->
     <section id="language-lab">
-      <h2 class="section-title">World Language Phrase &amp; Recall Trainer</h2>
-      <p class="section-subtitle">Pick a language and topic, listen to pronunciation, step through flashcards, and test your recall.</p>
+      <h2 class="section-title">Real-Life Scenario &amp; Phrase Trainer</h2>
+      <p class="section-subtitle">Choose a scenario, hear the pronunciation, read a real-life example, and test your memory.</p>
 
       <div class="lang-box">
         <div class="lang-controls">
-          <div class="lang-select-group">
-            <select id="langSelect" class="lang-select" onchange="changeLanguage()">
-              <option value="it">🇮🇹 Italian (Italiano)</option>
-              <option value="es">🇪🇸 Spanish (Español)</option>
-              <option value="fr">🇫🇷 French (Français)</option>
-              <option value="ja">🇯🇵 Japanese (日本語)</option>
-            </select>
-            <select id="langCategory" class="lang-select" onchange="changeLanguage()">
-              <option value="all">All Topics</option>
-              <option value="greetings">Greetings &amp; Basics</option>
-              <option value="travel">Travel &amp; Directions</option>
-              <option value="food">Food &amp; Café</option>
-            </select>
-          </div>
+          <select id="langSelect" class="lang-select" onchange="changeLanguage()">
+            <option value="it">🇮🇹 Italian (Italiano)</option>
+            <option value="es">🇪🇸 Spanish (Español)</option>
+            <option value="fr">🇫🇷 French (Français)</option>
+            <option value="ja">🇯🇵 Japanese (日本語)</option>
+          </select>
           <div class="quiz-meta">
-            <span id="langCardCounter">Phrase 1 / 6</span>
+            <span id="langCardCounter">Card 1 / 1</span>
           </div>
+        </div>
+
+        <!-- SCENARIO TOPIC CHIPS -->
+        <div class="scenario-grid" id="scenarioChips">
+          <button class="scenario-chip active" data-cat="smalltalk" onclick="selectScenario('smalltalk', this)">💬 Small Talk</button>
+          <button class="scenario-chip" data-cat="jobs" onclick="selectScenario('jobs', this)">💼 Jobs &amp; Work</button>
+          <button class="scenario-chip" data-cat="routine" onclick="selectScenario('routine', this)">⏰ Daily Routine</button>
+          <button class="scenario-chip" data-cat="travel" onclick="selectScenario('travel', this)">✈️ Travel</button>
+          <button class="scenario-chip" data-cat="food" onclick="selectScenario('food', this)">🍽️ Food &amp; Café</button>
+          <button class="scenario-chip" data-cat="family" onclick="selectScenario('family', this)">👨‍👩‍👧 Family</button>
         </div>
 
         <div class="lang-card">
           <div class="lang-top-row">
-            <span class="lang-badge" id="langTopicBadge">GREETINGS</span>
+            <span class="lang-badge" id="langTopicBadge">SMALL TALK</span>
             <span class="lang-badge" id="langNameBadge" style="color:#a68aff">ITALIAN</span>
           </div>
-          <div class="lang-phrase" id="langPhraseText">Buongiorno</div>
-          <div class="lang-phonetic" id="langPhoneticText">Pronunciation: bwohn-JOR-noh</div>
-          <div class="lang-meaning" id="langMeaningText">Good morning / Hello</div>
+          <div class="lang-phrase" id="langPhraseText">Come stai?</div>
+          <div class="lang-phonetic" id="langPhoneticText">Pronunciation: KOH-meh STAH-ee</div>
+          <div class="lang-meaning" id="langMeaningText">How are you? (informal)</div>
+
+          <div class="lang-example" id="langExampleBox">
+            <div id="langExampleTarget">"Ciao Marco, come stai oggi?"</div>
+            <small id="langExampleTrans">"Hi Marco, how are you today?"</small>
+          </div>
 
           <div class="lang-actions">
-            <button class="primary-btn" onclick="speakCurrentPhrase()">🔊 Listen</button>
-            <button class="secondary-btn" onclick="prevPhrase()">← Previous</button>
-            <button class="secondary-btn" onclick="nextPhrase()">Next Phrase →</button>
+            <button class="primary-btn" onclick="speakCurrentPhrase()">🔊 Listen Phrase</button>
+            <button class="secondary-btn" onclick="speakExampleSentence()">🔊 Listen Example</button>
+            <button class="secondary-btn" onclick="prevPhrase()">← Prev</button>
+            <button class="secondary-btn" onclick="nextPhrase()">Next →</button>
           </div>
         </div>
 
         <div class="lang-quiz-box">
-          <div class="lang-quiz-title">QUICK RECALL CHECK (+15 PTS)</div>
+          <div class="lang-quiz-title">SCENARIO RECALL CHECK (+15 PTS)</div>
           <div class="lang-quiz-q" id="langQuizPrompt">Loading recall question...</div>
           <div class="quiz-options" id="langQuizOptions"></div>
-          <div class="status-box" id="langQuizFeedback">Choose the matching English meaning to earn points.</div>
+          <div class="status-box" id="langQuizFeedback">Tap the matching meaning to earn points.</div>
         </div>
       </div>
     </section>
@@ -788,7 +831,7 @@ footer{
               <div class="game-icon">⏱️</div>
               <h3>Study &amp; Work Focus Timer</h3>
             </div>
-            <p class="game-desc">Keep this open while studying languages or working to stay locked in without distractions.</p>
+            <p class="game-desc">Keep this open while studying phrases or working to stay locked in without distractions.</p>
             <div class="timer-display" id="timerDisplay">25:00</div>
           </div>
           <div>
@@ -884,7 +927,7 @@ footer{
     <!-- 4. KNOWLEDGE LIBRARY -->
     <section id="articles">
       <h2 class="section-title">Knowledge Library</h2>
-      <p class="section-subtitle">Short, clear reads to pair with your language &amp; brain sessions.</p>
+      <p class="section-subtitle">Short, clear reads to pair with your scenario &amp; brain sessions.</p>
 
       <div class="results-info" id="resultCount">Featured articles</div>
 
@@ -917,11 +960,11 @@ footer{
         </article>
 
         <article class="article" data-category="education"
-          data-title="How to Build a Daily Language Habit"
-          data-description="Learning a new language works best with short, consistent daily practice rather than occasional marathon sessions. Speaking out loud, reviewing phrases, and testing your recall every day builds confidence steadily.">
+          data-title="Practicing Phrases in Real-Life Scenarios"
+          data-description="Learning vocabulary inside real situations—like small talk, work, travel, or food—makes words easier to remember and use naturally in conversation.">
           <div class="article-tag">EDUCATION</div>
-          <h3>How to Build a Daily Language Habit</h3>
-          <p>Short daily practice beats occasional cramming.</p>
+          <h3>Practicing Phrases in Real-Life Scenarios</h3>
+          <p>Why real situations stick better than random word lists.</p>
           <div class="read-more">Read Article →</div>
         </article>
 
@@ -981,7 +1024,7 @@ footer{
 <footer>
   <div class="container">
     <div class="logo">DAILY<span>KIT</span></div>
-    <p>Language Practice, Interactive Quizzes &amp; Everyday Knowledge.</p>
+    <p>Real-Life Scenarios, Interactive Quizzes &amp; Everyday Knowledge.</p>
     <div class="footer-links">
       <a href="#about" onclick="openPolicy('about');return false;">About Us</a>
       <a href="#privacy" onclick="openPolicy('privacy');return false;">Privacy Policy</a>
@@ -1012,119 +1055,222 @@ function updateTopStats() {
   localStorage.setItem("dk_streak", String(stats.streak));
 }
 
-// 0. WORLD LANGUAGE PHRASE & RECALL TRAINER
+// 0. LEARNA-INSPIRED SCENARIO & PHRASE TRAINER
 const languageData = {
   it: {
     name: "ITALIAN",
     speechLang: "it-IT",
-    phrases: [
-      { cat: "greetings", badge: "GREETINGS", phrase: "Buongiorno", phonetic: "bwohn-JOR-noh", meaning: "Good morning / Hello" },
-      { cat: "greetings", badge: "GREETINGS", phrase: "Grazie mille", phonetic: "GRAH-tsyeh MEEL-leh", meaning: "Thank you very much" },
-      { cat: "travel", badge: "TRAVEL", phrase: "Dov'è la stazione?", phonetic: "doh-VEH lah stah-tsyoh-NEH", meaning: "Where is the station?" },
-      { cat: "travel", badge: "TRAVEL", phrase: "Quanto costa?", phonetic: "KWAHN-toh KOS-tah", meaning: "How much does it cost?" },
-      { cat: "food", badge: "FOOD & CAFÉ", phrase: "Un caffè, per favore", phonetic: "oon kahf-FEH pehr fah-VOH-reh", meaning: "One coffee, please" },
-      { cat: "food", badge: "FOOD & CAFÉ", phrase: "Il conto, per piacere", phonetic: "eel KON-toh pehr pyah-CHEH-reh", meaning: "The bill, please" }
-    ]
+    phrases: {
+      smalltalk: [
+        { badge: "SMALL TALK", phrase: "Come stai?", phonetic: "KOH-meh STAH-ee", meaning: "How are you?", exTarget: "Ciao Marco, come stai oggi?", exTrans: "Hi Marco, how are you today?" },
+        { badge: "SMALL TALK", phrase: "Piacere di conoscerti", phonetic: "pyah-CHEH-reh dee koh-noh-SHER-tee", meaning: "Nice to meet you", exTarget: "Ciao, piacere di conoscerti!", exTrans: "Hi, nice to meet you!" }
+      ],
+      jobs: [
+        { badge: "JOBS & WORK", phrase: "Di cosa ti occupi?", phonetic: "dee KOH-zah tee OHK-koo-pee", meaning: "What do you do for work?", exTarget: "Di cosa ti occupi? Lavori qui?", exTrans: "What do you do? Do you work here?" },
+        { badge: "JOBS & WORK", phrase: "Ho una riunione alle dieci", phonetic: "oh OO-nah ree-oo-nyoh-NEH AHL-leh DY EH-chee", meaning: "I have a meeting at ten", exTarget: "Scusa, ho una riunione alle dieci.", exTrans: "Sorry, I have a meeting at ten." }
+      ],
+      routine: [
+        { badge: "DAILY ROUTINE", phrase: "Mi sveglio presto", phonetic: "mee ZVEH-lyoh PREHS-toh", meaning: "I wake up early", exTarget: "Ogni giorno mi sveglio presto.", exTrans: "Every day I wake up early." },
+        { badge: "DAILY ROUTINE", phrase: "Torno a casa alle sei", phonetic: "TOHR-noh ah KAH-zah AHL-leh SEH-ee", meaning: "I come home at six", exTarget: "Torno a casa alle sei di sera.", exTrans: "I come home at six in the evening." }
+      ],
+      travel: [
+        { badge: "TRAVEL", phrase: "Dov'è la stazione?", phonetic: "doh-VEH lah stah-tsyoh-NEH", meaning: "Where is the station?", exTarget: "Scusi, dov'è la stazione del treno?", exTrans: "Excuse me, where is the train station?" },
+        { badge: "TRAVEL", phrase: "Quanto costa il biglietto?", phonetic: "KWAHN-toh KOS-tah eel beel-YEHT-toh", meaning: "How much is the ticket?", exTarget: "Quanto costa il biglietto per Roma?", exTrans: "How much is the ticket to Rome?" }
+      ],
+      food: [
+        { badge: "FOOD & CAFÉ", phrase: "Un caffè, per favore", phonetic: "oon kahf-FEH pehr fah-VOH-reh", meaning: "One coffee, please", exTarget: "Buongiorno, un caffè, per favore.", exTrans: "Good morning, one coffee, please." },
+        { badge: "FOOD & CAFÉ", phrase: "È molto buono", phonetic: "eh MOHL-toh BWOH-noh", meaning: "It is very good / tasty", exTarget: "Questa pasta è molto buona!", exTrans: "This pasta is very good!" }
+      ],
+      family: [
+        { badge: "FAMILY", phrase: "La mia famiglia", phonetic: "lah MEE-ah fah-MEEL-yah", meaning: "My family", exTarget: "La mia famiglia vive qui.", exTrans: "My family lives here." },
+        { badge: "FAMILY", phrase: "Hai fratelli o sorelle?", phonetic: "AH-ee frah-TEHL-lee oh soh-REHL-leh", meaning: "Do you have brothers or sisters?", exTarget: "Hai fratelli o sorelle?", exTrans: "Do you have brothers or sisters?" }
+      ]
+    }
   },
   es: {
     name: "SPANISH",
     speechLang: "es-ES",
-    phrases: [
-      { cat: "greetings", badge: "GREETINGS", phrase: "¡Hola! ¿Cómo estás?", phonetic: "OH-lah KOH-moh ehs-TAHS", meaning: "Hello! How are you?" },
-      { cat: "greetings", badge: "GREETINGS", phrase: "Muchas gracias", phonetic: "MOO-chahs GRAH-syahs", meaning: "Thank you very much" },
-      { cat: "travel", badge: "TRAVEL", phrase: "¿Dónde está el hotel?", phonetic: "DOHN-deh ehs-TAH ehl oh-TEHL", meaning: "Where is the hotel?" },
-      { cat: "travel", badge: "TRAVEL", phrase: "No entiendo", phonetic: "noh ehn-TYEHN-doh", meaning: "I don't understand" },
-      { cat: "food", badge: "FOOD & CAFÉ", phrase: "La cuenta, por favor", phonetic: "lah KWEHN-tah pohr fah-VOHR", meaning: "The check, please" },
-      { cat: "food", badge: "FOOD & CAFÉ", phrase: "Agua fría, por favor", phonetic: "AH-gwah FREE-ah pohr fah-VOHR", meaning: "Cold water, please" }
-    ]
+    phrases: {
+      smalltalk: [
+        { badge: "SMALL TALK", phrase: "¿Cómo estás?", phonetic: "KOH-moh ehs-TAHS", meaning: "How are you?", exTarget: "¡Hola! ¿Cómo estás hoy?", exTrans: "Hi! How are you today?" },
+        { badge: "SMALL TALK", phrase: "Mucho gusto", phonetic: "MOO-choh GOOS-toh", meaning: "Nice to meet you", exTarget: "Hola Ana, mucho gusto.", exTrans: "Hi Ana, nice to meet you." }
+      ],
+      jobs: [
+        { badge: "JOBS & WORK", phrase: "¿A qué te dedicas?", phonetic: "ah KEH teh deh-DEE-kahs", meaning: "What do you do for a living?", exTarget: "¿A qué te dedicas? ¿Trabajas cerca?", exTrans: "What do you do? Do you work nearby?" },
+        { badge: "JOBS & WORK", phrase: "Tengo una cita hoy", phonetic: "TEHN-goh OO-nah SEE-tah oh-ee", meaning: "I have an appointment today", exTarget: "Tengo una cita hoy por la tarde.", exTrans: "I have an appointment today in the afternoon." }
+      ],
+      routine: [
+        { badge: "DAILY ROUTINE", phrase: "Me levanto temprano", phonetic: "meh leh-BAHN-toh tehm-PRAH-noh", meaning: "I get up early", exTarget: "Me levanto temprano de lunes a viernes.", exTrans: "I get up early Monday to Friday." },
+        { badge: "DAILY ROUTINE", phrase: "Vuelvo a casa tarde", phonetic: "BWEHL-boh ah KAH-sah TAHR-deh", meaning: "I return home late", exTarget: "Hoy vuelvo a casa tarde.", exTrans: "Today I return home late." }
+      ],
+      travel: [
+        { badge: "TRAVEL", phrase: "¿Dónde está la estación?", phonetic: "DOHN-deh ehs-TAH lah ehs-tah-SYOHN", meaning: "Where is the station?", exTarget: "Perdone, ¿dónde está la estación?", exTrans: "Excuse me, where is the station?" },
+        { badge: "TRAVEL", phrase: "¿Cuánto cuesta?", phonetic: "KWAHN-toh KWEHS-tah", meaning: "How much does it cost?", exTarget: "¿Cuánto cuesta este boleto?", exTrans: "How much does this ticket cost?" }
+      ],
+      food: [
+        { badge: "FOOD & CAFÉ", phrase: "Un café, por favor", phonetic: "oon kah-FEH pohr fah-VOHR", meaning: "A coffee, please", exTarget: "Un café con leche, por favor.", exTrans: "A coffee with milk, please." },
+        { badge: "FOOD & CAFÉ", phrase: "Está delicioso", phonetic: "ehs-TAH deh-lee-SYOH-soh", meaning: "It is delicious", exTarget: "Este plato está delicioso.", exTrans: "This dish is delicious." }
+      ],
+      family: [
+        { badge: "FAMILY", phrase: "Mi familia", phonetic: "mee fah-MEE-lyah", meaning: "My family", exTarget: "Paso el domingo con mi familia.", exTrans: "I spend Sunday with my family." },
+        { badge: "FAMILY", phrase: "¿Tienes hermanos?", phonetic: "TYEH-nehs ehr-MAH-nohs", meaning: "Do you have siblings?", exTarget: "¿Tienes hermanos o hermanas?", exTrans: "Do you have brothers or sisters?" }
+      ]
+    }
   },
   fr: {
     name: "FRENCH",
     speechLang: "fr-FR",
-    phrases: [
-      { cat: "greetings", badge: "GREETINGS", phrase: "Bonjour, comment ça va ?", phonetic: "bohn-ZHOOR koh-MAHNG sah vah", meaning: "Hello, how is it going?" },
-      { cat: "greetings", badge: "GREETINGS", phrase: "Merci beaucoup", phonetic: "mehr-SEE boh-KOO", meaning: "Thank you very much" },
-      { cat: "travel", badge: "TRAVEL", phrase: "Où est la sortie ?", phonetic: "oo eh lah sohr-TEE", meaning: "Where is the exit?" },
-      { cat: "travel", badge: "TRAVEL", phrase: "À gauche / À droite", phonetic: "ah GOHSH / ah DRWAHT", meaning: "To the left / To the right" },
-      { cat: "food", badge: "FOOD & CAFÉ", phrase: "Un café, s'il vous plaît", phonetic: "uhn kah-FEH seel voo PLEH", meaning: "A coffee, please" },
-      { cat: "food", badge: "FOOD & CAFÉ", phrase: "C'est délicieux", phonetic: "seh day-lee-SYUH", meaning: "It is delicious" }
-    ]
+    phrases: {
+      smalltalk: [
+        { badge: "SMALL TALK", phrase: "Comment ça va ?", phonetic: "koh-MAHNG sah vah", meaning: "How is it going?", exTarget: "Salut ! Comment ça va aujourd'hui ?", exTrans: "Hi! How is it going today?" },
+        { badge: "SMALL TALK", phrase: "Enchanté", phonetic: "ahng-shahn-TEH", meaning: "Pleased to meet you", exTarget: "Bonjour, enchanté de faire votre connaissance.", exTrans: "Hello, pleased to meet you." }
+      ],
+      jobs: [
+        { badge: "JOBS & WORK", phrase: "Que faites-vous dans la vie ?", phonetic: "kuh feht voo dahng lah vee", meaning: "What do you do for work?", exTarget: "Que faites-vous dans la vie ?", exTrans: "What do you do for a living?" },
+        { badge: "JOBS & WORK", phrase: "J'ai une réunion à midi", phonetic: "zhay oon ray-oo-NYOHN ah mee-DEE", meaning: "I have a meeting at noon", exTarget: "Désolé, j'ai une réunion à midi.", exTrans: "Sorry, I have a meeting at noon." }
+      ],
+      routine: [
+        { badge: "DAILY ROUTINE", phrase: "Je me lève tôt", phonetic: "zhuh muh lehv toh", meaning: "I wake up early", exTarget: "Je me lève tôt tous les matins.", exTrans: "I wake up early every morning." },
+        { badge: "DAILY ROUTINE", phrase: "Je rentre chez moi", phonetic: "zhuh RAHN-truh sheh mwah", meaning: "I go back home", exTarget: "Je rentre chez moi vers sept heures.", exTrans: "I go back home around seven." }
+      ],
+      travel: [
+        { badge: "TRAVEL", phrase: "Où est la gare ?", phonetic: "oo eh lah gahr", meaning: "Where is the train station?", exTarget: "Pardon, où est la gare ?", exTrans: "Excuse me, where is the train station?" },
+        { badge: "TRAVEL", phrase: "Combien ça coûte ?", phonetic: "kohm-BYEHN sah koot", meaning: "How much does it cost?", exTarget: "Combien ça coûte, s'il vous plaît ?", exTrans: "How much does it cost, please?" }
+      ],
+      food: [
+        { badge: "FOOD & CAFÉ", phrase: "Un café, s'il vous plaît", phonetic: "uhn kah-FEH seel voo pleh", meaning: "A coffee, please", exTarget: "Bonjour, un café, s'il vous plaît.", exTrans: "Hello, a coffee, please." },
+        { badge: "FOOD & CAFÉ", phrase: "C'est très bon", phonetic: "seh treh bohn", meaning: "It is very good", exTarget: "Ce pain est très bon.", exTrans: "This bread is very good." }
+      ],
+      family: [
+        { badge: "FAMILY", phrase: "Ma famille", phonetic: "mah fah-MEEL", meaning: "My family", exTarget: "Ma famille habite ici.", exTrans: "My family lives here." },
+        { badge: "FAMILY", phrase: "Avez-vous des frères et sœurs ?", phonetic: "ah-veh voo day frehr ay suhr", meaning: "Do you have brothers and sisters?", exTarget: "Avez-vous des frères et sœurs ?", exTrans: "Do you have brothers and sisters?" }
+      ]
+    }
   },
   ja: {
     name: "JAPANESE",
     speechLang: "ja-JP",
-    phrases: [
-      { cat: "greetings", badge: "GREETINGS", phrase: "おはようございます", phonetic: "Ohayō gozaimasu", meaning: "Good morning (polite)" },
-      { cat: "greetings", badge: "GREETINGS", phrase: "ありがとうございます", phonetic: "Arigatō gozaimasu", meaning: "Thank you very much" },
-      { cat: "travel", badge: "TRAVEL", phrase: "駅はどこですか？", phonetic: "Eki wa doko desu ka?", meaning: "Where is the station?" },
-      { cat: "travel", badge: "TRAVEL", phrase: "すみません", phonetic: "Sumimasen", meaning: "Excuse me / Sorry" },
-      { cat: "food", badge: "FOOD & CAFÉ", phrase: "お水をください", phonetic: "Omizu o kudasai", meaning: "Water, please" },
-      { cat: "food", badge: "FOOD & CAFÉ", phrase: "おいしいです", phonetic: "Oishii desu", meaning: "It is delicious" }
-    ]
+    phrases: {
+      smalltalk: [
+        { badge: "SMALL TALK", phrase: "お元気ですか？", phonetic: "O-genki desu ka?", meaning: "How are you?", exTarget: "こんにちは、お元気ですか？", exTrans: "Hello, how are you?" },
+        { badge: "SMALL TALK", phrase: "はじめまして", phonetic: "Hajimemashite", meaning: "Nice to meet you", exTarget: "はじめまして、よろしくお願いします。", exTrans: "Nice to meet you, please treat me well." }
+      ],
+      jobs: [
+        { badge: "JOBS & WORK", phrase: "お仕事は何ですか？", phonetic: "O-shigoto wa nan desu ka?", meaning: "What is your job?", exTarget: "お仕事は何ですか？", exTrans: "What do you do for work?" },
+        { badge: "JOBS & WORK", phrase: "今、忙しいです", phonetic: "Ima, isogashii desu", meaning: "I am busy right now", exTarget: "すみません、今、忙しいです。", exTrans: "Sorry, I am busy right now." }
+      ],
+      routine: [
+        { badge: "DAILY ROUTINE", phrase: "毎朝早く起きます", phonetic: "Maiasa hayaku okimasu", meaning: "I wake up early every morning", exTarget: "毎朝六時に起きます。", exTrans: "I wake up at six every morning." },
+        { badge: "DAILY ROUTINE", phrase: "ただいま", phonetic: "Tadaima", meaning: "I'm home", exTarget: "ただいま、帰りました。", exTrans: "I'm home, I've returned." }
+      ],
+      travel: [
+        { badge: "TRAVEL", phrase: "駅はどこですか？", phonetic: "Eki wa doko desu ka?", meaning: "Where is the station?", exTarget: "すみません、駅はどこですか？", exTrans: "Excuse me, where is the station?" },
+        { badge: "TRAVEL", phrase: "いくらですか？", phonetic: "Ikura desu ka?", meaning: "How much is it?", exTarget: "これはいくらですか？", exTrans: "How much is this?" }
+      ],
+      food: [
+        { badge: "FOOD & CAFÉ", phrase: "お水をください", phonetic: "Omizu o kudasai", meaning: "Water, please", exTarget: "すみません、お水をください。", exTrans: "Excuse me, water please." },
+        { badge: "FOOD & CAFÉ", phrase: "おいしいです", phonetic: "Oishii desu", meaning: "It is delicious", exTarget: "この料理はおいしいです。", exTrans: "This food is delicious." }
+      ],
+      family: [
+        { badge: "FAMILY", phrase: "私の家族", phonetic: "Watashi no kazoku", meaning: "My family", exTarget: "私の家族は四人です。", exTrans: "There are four people in my family." },
+        { badge: "FAMILY", phrase: "ご兄弟はいますか？", phonetic: "Go-kyōdai wa imasu ka?", meaning: "Do you have siblings?", exTarget: "ご兄弟はいますか？", exTrans: "Do you have brothers or sisters?" }
+      ]
+    }
   }
 };
 
 let activeLangCode = "it";
-let filteredPhrases = [];
+let activeScenario = "smalltalk";
 let phraseIdx = 0;
 let langQuizAnswered = false;
 
+function selectScenario(cat, btnEl) {
+  activeScenario = cat;
+  phraseIdx = 0;
+  document.querySelectorAll(".scenario-chip").forEach(c => c.classList.remove("active"));
+  if (btnEl) btnEl.classList.add("active");
+  renderPhraseCard();
+}
+
 function changeLanguage() {
   activeLangCode = document.getElementById("langSelect").value;
-  const catFilter = document.getElementById("langCategory").value;
-  const langObj = languageData[activeLangCode];
-
-  filteredPhrases = langObj.phrases.filter(p => catFilter === "all" || p.cat === catFilter);
-  if (!filteredPhrases.length) filteredPhrases = langObj.phrases.slice();
   phraseIdx = 0;
   renderPhraseCard();
 }
 
+function getScenarioList() {
+  const langObj = languageData[activeLangCode];
+  return langObj.phrases[activeScenario] || langObj.phrases.smalltalk;
+}
+
 function renderPhraseCard() {
   const langObj = languageData[activeLangCode];
-  const item = filteredPhrases[phraseIdx];
+  const list = getScenarioList();
+  const item = list[phraseIdx % list.length];
 
   document.getElementById("langNameBadge").textContent = langObj.name;
   document.getElementById("langTopicBadge").textContent = item.badge;
-  document.getElementById("langCardCounter").textContent = `Phrase ${phraseIdx + 1} / ${filteredPhrases.length}`;
+  document.getElementById("langCardCounter").textContent = `Card ${(phraseIdx % list.length) + 1} / ${list.length}`;
   document.getElementById("langPhraseText").textContent = item.phrase;
   document.getElementById("langPhoneticText").textContent = `Pronunciation: ${item.phonetic}`;
   document.getElementById("langMeaningText").textContent = item.meaning;
+  document.getElementById("langExampleTarget").textContent = `"${item.exTarget}"`;
+  document.getElementById("langExampleTrans").textContent = `"${item.exTrans}"`;
 
   renderLangRecallQuiz(langObj, item);
 }
 
 function nextPhrase() {
-  phraseIdx = (phraseIdx + 1) % filteredPhrases.length;
+  const list = getScenarioList();
+  phraseIdx = (phraseIdx + 1) % list.length;
   renderPhraseCard();
 }
 
 function prevPhrase() {
-  phraseIdx = (phraseIdx - 1 + filteredPhrases.length) % filteredPhrases.length;
+  const list = getScenarioList();
+  phraseIdx = (phraseIdx - 1 + list.length) % list.length;
   renderPhraseCard();
+}
+
+function speakText(text, langCode) {
+  if (!("speechSynthesis" in window)) {
+    alert(text);
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = langCode;
+  utter.rate = 0.9;
+  window.speechSynthesis.speak(utter);
 }
 
 function speakCurrentPhrase() {
   const langObj = languageData[activeLangCode];
-  const item = filteredPhrases[phraseIdx];
-  if (!("speechSynthesis" in window)) {
-    alert(`${item.phrase} (${item.phonetic})`);
-    return;
-  }
-  window.speechSynthesis.cancel();
-  const utter = new SpeechSynthesisUtterance(item.phrase);
-  utter.lang = langObj.speechLang;
-  utter.rate = 0.9;
-  window.speechSynthesis.speak(utter);
+  const item = getScenarioList()[phraseIdx % getScenarioList().length];
+  speakText(item.phrase, langObj.speechLang);
+}
+
+function speakExampleSentence() {
+  const langObj = languageData[activeLangCode];
+  const item = getScenarioList()[phraseIdx % getScenarioList().length];
+  speakText(item.exTarget, langObj.speechLang);
 }
 
 function renderLangRecallQuiz(langObj, targetItem) {
   langQuizAnswered = false;
   document.getElementById("langQuizPrompt").innerHTML =
-    `What does <strong>"${targetItem.phrase}"</strong> (${langObj.name}) mean in English?`;
+    `What does <strong>"${targetItem.phrase}"</strong> mean?`;
 
-  const pool = langObj.phrases.map(p => p.meaning).filter(m => m !== targetItem.meaning);
-  const distractors = pool.sort(() => Math.random() - 0.5).slice(0, 3);
+  const allMeanings = [];
+  Object.values(langObj.phrases).forEach(arr => {
+    arr.forEach(p => {
+      if (p.meaning !== targetItem.meaning && !allMeanings.includes(p.meaning)) {
+        allMeanings.push(p.meaning);
+      }
+    });
+  });
+
+  const distractors = allMeanings.sort(() => Math.random() - 0.5).slice(0, 3);
   const options = [targetItem.meaning, ...distractors].sort(() => Math.random() - 0.5);
 
   const box = document.getElementById("langQuizOptions");
@@ -1142,19 +1288,19 @@ function renderLangRecallQuiz(langObj, targetItem) {
         btn.classList.add("correct");
         stats.points += 15;
         updateTopStats();
-        fb.innerHTML = `<strong class="positive">Nice! +15 points</strong> — "${targetItem.phrase}" means "${targetItem.meaning}".`;
+        fb.innerHTML = `<strong class="positive">Spot on! +15 points</strong> — "${targetItem.phrase}" = "${targetItem.meaning}".`;
       } else {
         btn.classList.add("wrong");
         box.querySelectorAll("button").forEach(b => {
           if (b.textContent === targetItem.meaning) b.classList.add("correct");
         });
-        fb.innerHTML = `<strong class="negative">Good try!</strong> Correct meaning: <strong>${targetItem.meaning}</strong>.`;
+        fb.innerHTML = `<strong class="negative">Almost!</strong> Meaning: <strong>${targetItem.meaning}</strong>.`;
       }
     };
     box.appendChild(btn);
   });
 
-  document.getElementById("langQuizFeedback").textContent = "Choose the matching English meaning to earn points.";
+  document.getElementById("langQuizFeedback").textContent = "Tap the matching meaning to earn points.";
 }
 
 // 1. QUIZ ARENA
@@ -1472,7 +1618,7 @@ function showDailyFact(){
   const facts = [
     "Light from the Sun takes about 8 minutes and 20 seconds to reach Earth.",
     "The Pacific Ocean is the largest ocean on Earth.",
-    "Speaking new phrases out loud helps your brain lock in pronunciation faster.",
+    "Practicing phrases in real-life situations helps you remember them faster.",
     "Honeybees communicate information about food sources through movement.",
     "Testing your recall helps your brain keep information much longer than re-reading."
   ];
@@ -1507,7 +1653,7 @@ function openPolicy(type) {
   const pages = {
     about: {
       title: "About DAILYKIT",
-      body: "DAILYKIT is an interactive language-practice, quiz, brain-challenge, and study platform designed to make daily learning engaging."
+      body: "DAILYKIT is an interactive scenario-based language, quiz, brain-challenge, and study platform designed to make daily learning engaging."
     },
     privacy: {
       title: "Privacy Policy",
@@ -1515,7 +1661,7 @@ function openPolicy(type) {
     },
     disclaimer: {
       title: "Terms & Disclaimer",
-      body: "All language guides, quizzes, brain tests, timers, and articles on DAILYKIT are provided for educational and entertainment purposes."
+      body: "All scenario phrases, quizzes, brain tests, timers, and articles on DAILYKIT are provided for educational and entertainment purposes."
     },
     contact: {
       title: "Contact Us",
