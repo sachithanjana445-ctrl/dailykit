@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080d1b">
-<meta name="description" content="DAILYKIT - Free Online Calculators, Live Crypto Market & Knowledge Hub.">
-<title>DAILYKIT | Smart Tools, Live Markets & Knowledge Hub</title>
+<meta name="description" content="DAILYKIT - Interactive Quiz Arena, Memory & Reaction Challenges, Focus Timer and Knowledge Hub.">
+<title>DAILYKIT | Quiz Arena, Brain Challenges & Knowledge Hub</title>
 <style>
 :root{
   --bg:#080d1b;
@@ -17,6 +17,7 @@
   --purple:#8667ff;
   --green:#20d99a;
   --red:#ff647c;
+  --amber:#ffbe3b;
   --border:rgba(255,255,255,.09);
 }
 *{box-sizing:border-box}
@@ -63,84 +64,37 @@ header{
 }
 .nav a:hover{color:var(--cyan)}
 
-/* LIVE TOP TICKER */
-#live-ticker-bar{
+/* TOP STREAK & ARENA BAR */
+#arena-top-bar{
   display:flex;
   align-items:center;
-  background:linear-gradient(90deg,#0b1529,#101d36);
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  background:linear-gradient(90deg,#0b1529,#121f3a);
   border-bottom:1px solid rgba(22,199,232,0.22);
-  overflow:hidden;
-  height:42px;
-  position:relative;
-  z-index:15;
+  padding:9px 0;
+  font-size:12.5px;
 }
-.live-badge{
-  flex-shrink:0;
+.arena-stats{
   display:flex;
   align-items:center;
-  gap:7px;
-  padding:0 14px;
-  height:100%;
-  background:#0d192f;
-  border-right:1px solid rgba(22,199,232,0.25);
-  color:var(--cyan);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:1.2px;
-  text-transform:uppercase;
-  z-index:2;
+  gap:14px;
+  flex-wrap:wrap;
 }
-.live-dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 8px var(--green);
-  animation:pulseDot 1.6s infinite;
-}
-@keyframes pulseDot{
-  0%,100%{transform:scale(1);opacity:1}
-  50%{transform:scale(1.35);opacity:.65}
-}
-.ticker-viewport{
-  flex:1;
-  overflow:hidden;
-  position:relative;
-  height:100%;
-  display:flex;
-  align-items:center;
-}
-.ticker-track{
-  display:flex;
-  align-items:center;
-  width:max-content;
-  animation:scrollTicker 36s linear infinite;
-}
-.ticker-viewport:hover .ticker-track{
-  animation-play-state:paused;
-}
-@keyframes scrollTicker{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-50%)}
-}
-.ticker-group{
-  display:flex;
-  align-items:center;
-}
-.ticker-item{
+.stat-pill{
   display:inline-flex;
   align-items:center;
-  gap:8px;
-  padding:0 18px;
-  font-size:12.5px;
-  white-space:nowrap;
-  border-right:1px solid rgba(255,255,255,0.07);
+  gap:6px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(20,33,58,0.9);
+  border:1px solid rgba(255,255,255,0.08);
+  color:var(--text);
+  font-weight:700;
 }
-.ticker-symbol{font-weight:800;color:#f4f7ff}
-.ticker-price{color:#cbd5e6;font-weight:600}
-.ticker-status{color:var(--muted);font-size:12px;padding:0 16px;white-space:nowrap}
-.positive{color:var(--green) !important}
-.negative{color:var(--red) !important}
+.stat-pill span{color:var(--cyan)}
+.arena-tagline{color:var(--muted);font-size:12px}
 
 /* AD PLACEHOLDER (ADSENSE READY) */
 .ad-slot{
@@ -160,7 +114,7 @@ header{
 
 .hero{
   text-align:center;
-  padding:58px 15px 42px;
+  padding:56px 15px 40px;
   background:radial-gradient(ellipse at 50% 0%,rgba(22,199,232,.16),transparent 60%);
 }
 .eyebrow{
@@ -170,7 +124,7 @@ header{
   letter-spacing:3px;
 }
 .hero h1{
-  font-size:clamp(34px,6.5vw,62px);
+  font-size:clamp(34px,6.5vw,60px);
   line-height:1.1;
   margin:16px 0;
 }
@@ -184,13 +138,13 @@ header{
   color:var(--muted);
   font-size:16px;
   line-height:1.7;
-  max-width:650px;
+  max-width:660px;
   margin:auto;
 }
 .search-box{
   display:flex;
   max-width:680px;
-  margin:28px auto 12px;
+  margin:26px auto 12px;
   padding:7px;
   background:var(--panel);
   border:1px solid rgba(22,199,232,.35);
@@ -227,17 +181,96 @@ header{
 .secondary-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 .search-hint{color:var(--muted);font-size:12px}
 
-section{padding:40px 0}
+section{padding:38px 0}
 .section-title{font-size:26px;margin:0 0 8px}
-.section-subtitle{color:var(--muted);margin:0 0 24px;line-height:1.6}
+.section-subtitle{color:var(--muted);margin:0 0 22px;line-height:1.6}
 
-/* TOOLS & CALCULATORS HUB */
-.tools-grid{
+/* QUIZ ARENA */
+.quiz-box{
+  background:var(--panel);
+  border:1px solid rgba(22,199,232,.28);
+  border-radius:18px;
+  padding:24px;
+}
+.quiz-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.quiz-topic-select{
+  padding:9px 14px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+}
+.quiz-meta{
+  display:flex;
+  gap:14px;
+  font-size:13px;
+  color:var(--muted);
+  font-weight:700;
+}
+.quiz-question{
+  font-size:20px;
+  line-height:1.45;
+  margin:14px 0 18px;
+  color:var(--text);
+}
+.quiz-options{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.quiz-opt{
+  text-align:left;
+  padding:14px 16px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  font-size:14px;
+  transition:.15s;
+}
+.quiz-opt:hover:not(:disabled){
+  border-color:var(--cyan);
+  transform:translateY(-2px);
+}
+.quiz-opt.correct{
+  border-color:var(--green);
+  background:rgba(32,217,154,.16);
+  color:var(--green);
+}
+.quiz-opt.wrong{
+  border-color:var(--red);
+  background:rgba(255,100,124,.16);
+  color:var(--red);
+}
+.quiz-feedback{
+  margin-top:16px;
+  padding:13px 15px;
+  border-radius:11px;
+  background:var(--card);
+  border:1px solid var(--border);
+  font-size:14px;
+  line-height:1.6;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+/* BRAIN & UTILITY CARDS */
+.arena-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:18px;
 }
-.tool-card{
+.game-card{
   background:var(--panel);
   border:1px solid var(--border);
   border-radius:16px;
@@ -246,14 +279,13 @@ section{padding:40px 0}
   flex-direction:column;
   justify-content:space-between;
 }
-.tool-card:hover{border-color:rgba(22,199,232,.35)}
-.tool-header{
+.game-header{
   display:flex;
   align-items:center;
   gap:10px;
-  margin-bottom:14px;
+  margin-bottom:10px;
 }
-.tool-icon{
+.game-icon{
   width:38px;
   height:38px;
   border-radius:10px;
@@ -263,14 +295,82 @@ section{padding:40px 0}
   justify-content:center;
   font-size:19px;
 }
-.tool-header h3{margin:0;font-size:17px}
-.tool-desc{color:var(--muted);font-size:13px;margin:0 0 15px;line-height:1.5}
-.field-row{
+.game-header h3{margin:0;font-size:17px}
+.game-desc{color:var(--muted);font-size:13px;margin:0 0 14px;line-height:1.5}
+
+/* MEMORY PADS */
+.memory-board{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:10px;
-  margin-bottom:10px;
+  margin:10px 0 14px;
 }
+.mem-pad{
+  height:68px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  font-weight:800;
+  font-size:15px;
+  transition:.15s;
+}
+.mem-pad.lit{
+  background:var(--cyan);
+  color:#07111b;
+  box-shadow:0 0 20px rgba(22,199,232,.6);
+  transform:scale(0.98);
+}
+
+/* REACTION PAD */
+.reaction-pad{
+  height:132px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--card);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:14px;
+  font-weight:800;
+  font-size:16px;
+  user-select:none;
+  transition:.15s;
+}
+.reaction-pad.waiting{
+  background:rgba(255,100,124,.18);
+  border-color:var(--red);
+  color:#ff9aa9;
+}
+.reaction-pad.ready{
+  background:rgba(32,217,154,.22);
+  border-color:var(--green);
+  color:var(--green);
+}
+.reaction-pad small{
+  font-weight:500;
+  font-size:12.5px;
+  color:var(--muted);
+  margin-top:6px;
+}
+
+/* FOCUS TIMER & PASSWORD */
+.timer-display{
+  font-size:38px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-align:center;
+  padding:14px;
+  border-radius:12px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  color:var(--cyan);
+  margin:8px 0 12px;
+  font-variant-numeric:tabular-nums;
+}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
 .field{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
 .field label{font-size:12px;color:var(--muted)}
 .field input{
@@ -282,22 +382,7 @@ section{padding:40px 0}
   color:white;
   outline:0;
 }
-.field input:focus{border-color:var(--cyan)}
-.tool-result{
-  margin-top:14px;
-  padding:12px 14px;
-  border-radius:10px;
-  background:var(--card);
-  border:1px solid var(--border);
-  font-size:14px;
-  line-height:1.6;
-}
-.tool-result strong{color:var(--cyan)}
-.pw-box{
-  display:flex;
-  gap:8px;
-  margin-top:10px;
-}
+.pw-box{display:flex;gap:8px;margin-top:8px}
 .pw-box input{
   flex:1;
   padding:10px 12px;
@@ -308,6 +393,17 @@ section{padding:40px 0}
   font-family:monospace;
   font-size:14px;
 }
+.status-box{
+  margin-top:12px;
+  padding:11px 13px;
+  border-radius:10px;
+  background:var(--card);
+  border:1px solid var(--border);
+  font-size:13.5px;
+  line-height:1.5;
+}
+.positive{color:var(--green) !important}
+.negative{color:var(--red) !important}
 
 .categories{
   display:grid;
@@ -381,7 +477,6 @@ section{padding:40px 0}
   border-radius:17px;
   padding:25px;
 }
-.ai-panel h3{margin-top:0}
 .ai-panel p{color:var(--muted);line-height:1.7}
 footer{
   border-top:1px solid var(--border);
@@ -413,16 +508,14 @@ footer{
 }
 
 @media(max-width:780px){
-  .tools-grid,.categories,.articles{grid-template-columns:repeat(2,1fr)}
+  .arena-grid,.categories,.articles,.quiz-options{grid-template-columns:repeat(2,1fr)}
   .nav a{margin-left:10px;font-size:12.5px}
 }
 @media(max-width:560px){
-  .tools-grid,.categories,.articles,.field-row{grid-template-columns:1fr}
+  .arena-grid,.categories,.articles,.quiz-options{grid-template-columns:1fr}
   .nav{min-height:58px}
   .nav a{margin-left:8px;font-size:12px}
   .logo{font-size:19px}
-  .live-badge{padding:0 10px;font-size:10px}
-  .ticker-item{padding:0 13px;font-size:11.5px}
   .search-box{padding:5px}
   .search-box input{padding:11px;font-size:13px}
   .primary-btn{padding:11px 13px}
@@ -437,23 +530,22 @@ footer{
   <div class="container nav">
     <div class="logo">DAILY<span>KIT</span></div>
     <nav>
-      <a href="#tools">Tools</a>
-      <a href="#categories">Explore</a>
+      <a href="#quiz-arena">Quiz Arena</a>
+      <a href="#brain-lab">Challenges</a>
       <a href="#articles">Guides</a>
     </nav>
   </div>
 </header>
 
-<!-- LIVE CRYPTO TICKER -->
-<div id="live-ticker-bar" aria-label="Live Cryptocurrency Prices">
-  <div class="live-badge">
-    <span class="live-dot"></span>
-    <span>LIVE</span>
-  </div>
-  <div class="ticker-viewport">
-    <div id="crypto-ticker-track" class="ticker-track">
-      <span class="ticker-status">Loading live crypto market...</span>
+<!-- DAILY STREAK & SCORE BAR -->
+<div id="arena-top-bar">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+    <div class="arena-stats">
+      <div class="stat-pill">🔥 Daily Streak: <span id="streakCount">1</span>d</div>
+      <div class="stat-pill">🧠 Quiz Points: <span id="quizPoints">0</span></div>
+      <div class="stat-pill">⚡ Best Reaction: <span id="bestReaction">--</span></div>
     </div>
+    <div class="arena-tagline">Play • Test Your Mind • Beat Your Record</div>
   </div>
 </div>
 
@@ -461,194 +553,187 @@ footer{
 <div id="homePage">
 
   <div class="hero">
-    <div class="eyebrow">SMART TOOLS • LIVE MARKETS • DAILY KNOWLEDGE</div>
-    <h1>Useful Tools.<br><span class="gradient">Smart Decisions.</span></h1>
-    <p>Free financial calculators, live crypto tracking, practical utilities and bite-sized guides built for everyday use.</p>
+    <div class="eyebrow">INTERACTIVE QUIZ ARENA • BRAIN CHALLENGES • STUDY TOOLS</div>
+    <h1>Sharpen Your Mind.<br><span class="gradient">Play &amp; Discover Daily.</span></h1>
+    <p>Test your knowledge, train your memory and reflexes, stay focused with a study timer, and explore useful guides.</p>
 
     <div class="search-box">
       <input id="mainSearch" type="search"
-        placeholder="Search guides, finance, AI, security..."
+        placeholder="Search topics, science, security, study tips..."
         onkeydown="if(event.key==='Enter')searchKnowledge()">
       <button class="primary-btn" onclick="searchKnowledge()">Search</button>
     </div>
-    <div class="search-hint">Free Calculators • Live Crypto Prices • Actionable Guides</div>
+    <div class="search-hint">Interactive Quizzes • Memory &amp; Reflex Games • Focus Timer</div>
   </div>
 
   <div class="container">
 
-    <!-- TOP AD SLOT (Replace inner text with Google AdSense unit after approval) -->
-    <div class="ad-slot" aria-label="Advertisement">Advertisement Space • 728×90 / Responsive</div>
+    <!-- TOP AD SLOT (Replace inner text with Google AdSense code after approval) -->
+    <div class="ad-slot" aria-label="Advertisement">Advertisement Space • Top Banner</div>
 
-    <!-- INTERACTIVE TOOLS & CALCULATORS HUB -->
-    <section id="tools">
-      <h2 class="section-title">Free Daily Tools &amp; Calculators</h2>
-      <p class="section-subtitle">Fast, accurate tools you can bookmark and use anytime.</p>
+    <!-- 1. INTERACTIVE QUIZ ARENA -->
+    <section id="quiz-arena">
+      <h2 class="section-title">Interactive Quiz &amp; Word Arena</h2>
+      <p class="section-subtitle">Answer questions, build streaks, and replay rounds anytime to beat your high score.</p>
 
-      <div class="tools-grid">
+      <div class="quiz-box">
+        <div class="quiz-top">
+          <select id="quizTopic" class="quiz-topic-select" onchange="startQuizRound()">
+            <option value="general">🌍 General Knowledge &amp; World</option>
+            <option value="english">📖 English Vocabulary &amp; Grammar</option>
+            <option value="science">🔬 Science &amp; Space</option>
+          </select>
+          <div class="quiz-meta">
+            <span id="quizProgress">Question 1 / 5</span>
+            <span id="quizRoundScore">Round Score: 0</span>
+          </div>
+        </div>
 
-        <!-- Tool 1: Crypto / Investment Profit Calculator -->
-        <div class="tool-card">
+        <div class="quiz-question" id="quizQuestionText">Loading question...</div>
+        <div class="quiz-options" id="quizOptionsBox"></div>
+
+        <div class="quiz-feedback" id="quizFeedback">
+          <span>Select an answer to earn points and build your streak.</span>
+          <button class="secondary-btn" id="nextQuizBtn" onclick="nextQuestion()" style="display:none">Next Question →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MID AD SLOT -->
+    <div class="ad-slot" aria-label="Advertisement">Advertisement Space • Between Challenges</div>
+
+    <!-- 2. BRAIN CHALLENGES & STUDY TOOLS -->
+    <section id="brain-lab">
+      <h2 class="section-title">Brain Challenges &amp; Study Toolkit</h2>
+      <p class="section-subtitle">High-focus mini challenges and everyday study/security tools.</p>
+
+      <div class="arena-grid">
+
+        <!-- Memory Sequence Game -->
+        <div class="game-card">
           <div>
-            <div class="tool-header">
-              <div class="tool-icon">📈</div>
-              <h3>Crypto &amp; Trade Profit Calculator</h3>
+            <div class="game-header">
+              <div class="game-icon">🧩</div>
+              <h3>Pattern Memory Challenge</h3>
             </div>
-            <p class="tool-desc">Calculate net profit, loss, and ROI percentage before entering any trade.</p>
+            <p class="game-desc">Watch the glowing sequence and repeat it in the exact same order. Every level adds one more step.</p>
+            <div class="memory-board">
+              <button class="mem-pad" data-pad="0" onclick="handlePadClick(0)">1 • CYAN</button>
+              <button class="mem-pad" data-pad="1" onclick="handlePadClick(1)">2 • VIOLET</button>
+              <button class="mem-pad" data-pad="2" onclick="handlePadClick(2)">3 • EMERALD</button>
+              <button class="mem-pad" data-pad="3" onclick="handlePadClick(3)">4 • AMBER</button>
+            </div>
+          </div>
+          <div>
+            <button class="primary-btn" style="width:100%" onclick="startMemoryGame()">Start / Restart Memory Game</button>
+            <div class="status-box" id="memoryStatus">
+              Level: <strong id="memLevel">0</strong> • Best Level: <strong id="memBest">0</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reflex / Reaction Speed Test -->
+        <div class="game-card">
+          <div>
+            <div class="game-header">
+              <div class="game-icon">⚡</div>
+              <h3>Reflex Speed Test</h3>
+            </div>
+            <p class="game-desc">Wait for the box to turn GREEN, then tap as fast as you can. Don't tap too early!</p>
+            <div class="reaction-pad" id="reactionPad" onclick="handleReactionClick()">
+              Tap to Start Test
+              <small>Measures your visual reaction time in milliseconds</small>
+            </div>
+          </div>
+          <div>
+            <div class="status-box" id="reactionStatus">
+              Last Time: <strong>--</strong> • Personal Best: <strong id="reactionBestBox">--</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pomodoro Focus Timer -->
+        <div class="game-card">
+          <div>
+            <div class="game-header">
+              <div class="game-icon">⏱️</div>
+              <h3>Study &amp; Work Focus Timer</h3>
+            </div>
+            <p class="game-desc">Keep this open while studying or working to stay locked in without distractions.</p>
+            <div class="timer-display" id="timerDisplay">25:00</div>
+          </div>
+          <div>
+            <div class="btn-row">
+              <button class="primary-btn" style="flex:1" onclick="startTimer()">Start</button>
+              <button class="secondary-btn" onclick="pauseTimer()">Pause</button>
+              <button class="secondary-btn" onclick="resetTimer(25)">25m</button>
+              <button class="secondary-btn" onclick="resetTimer(5)">5m Break</button>
+            </div>
+            <div class="status-box" id="timerStatus">Mode: <strong>Focus Session (25 min)</strong></div>
+          </div>
+        </div>
+
+        <!-- Strong Password Generator -->
+        <div class="game-card">
+          <div>
+            <div class="game-header">
+              <div class="game-icon">🔐</div>
+              <h3>Instant Password Generator</h3>
+            </div>
+            <p class="game-desc">Create strong, random passwords locally inside your browser.</p>
             <div class="field">
-              <label for="invAmount">Investment Amount ($)</label>
-              <input id="invAmount" type="number" value="1000" min="0" step="any">
-            </div>
-            <div class="field-row">
-              <div class="field">
-                <label for="buyPrice">Buy Price ($)</label>
-                <input id="buyPrice" type="number" value="60000" min="0" step="any">
-              </div>
-              <div class="field">
-                <label for="sellPrice">Sell Price ($)</label>
-                <input id="sellPrice" type="number" value="69000" min="0" step="any">
-              </div>
-            </div>
-          </div>
-          <div>
-            <button class="primary-btn" style="width:100%" onclick="calcProfit()">Calculate Profit</button>
-            <div class="tool-result" id="profitResult">
-              Profit: <strong class="positive">+$150.00 (+15.00%)</strong><br>
-              Total Return: <strong>$1,150.00</strong>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tool 2: Compound Growth Calculator -->
-        <div class="tool-card">
-          <div>
-            <div class="tool-header">
-              <div class="tool-icon">💰</div>
-              <h3>Compound Savings Calculator</h3>
-            </div>
-            <p class="tool-desc">See how consistent monthly savings grow over time with compound returns.</p>
-            <div class="field-row">
-              <div class="field">
-                <label for="startBal">Initial Deposit ($)</label>
-                <input id="startBal" type="number" value="500" min="0" step="any">
-              </div>
-              <div class="field">
-                <label for="monthlyAdd">Monthly Addition ($)</label>
-                <input id="monthlyAdd" type="number" value="200" min="0" step="any">
-              </div>
-            </div>
-            <div class="field-row">
-              <div class="field">
-                <label for="annualRate">Annual Return (%)</label>
-                <input id="annualRate" type="number" value="10" min="0" step="any">
-              </div>
-              <div class="field">
-                <label for="yearsCount">Years</label>
-                <input id="yearsCount" type="number" value="5" min="1" max="50">
-              </div>
-            </div>
-          </div>
-          <div>
-            <button class="primary-btn" style="width:100%" onclick="calcCompound()">Calculate Growth</button>
-            <div class="tool-result" id="compoundResult">
-              Future Value: <strong>$16,309.52</strong><br>
-              Total Invested: <strong>$12,500.00</strong>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tool 3: Quick Percentage Calculator -->
-        <div class="tool-card">
-          <div>
-            <div class="tool-header">
-              <div class="tool-icon">🧮</div>
-              <h3>Percentage &amp; Discount Calculator</h3>
-            </div>
-            <p class="tool-desc">Instantly find percentages, discounts, tax amounts, or commission fees.</p>
-            <div class="field-row">
-              <div class="field">
-                <label for="pctPercent">Percentage (%)</label>
-                <input id="pctPercent" type="number" value="15" step="any">
-              </div>
-              <div class="field">
-                <label for="pctBase">Of Amount ($)</label>
-                <input id="pctBase" type="number" value="240" step="any">
-              </div>
-            </div>
-          </div>
-          <div>
-            <button class="primary-btn" style="width:100%" onclick="calcPercentage()">Calculate</button>
-            <div class="tool-result" id="pctResult">
-              15% of 240 = <strong>36.00</strong><br>
-              After 15% Discount: <strong>204.00</strong>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tool 4: Strong Password Generator -->
-        <div class="tool-card">
-          <div>
-            <div class="tool-header">
-              <div class="tool-icon">🔐</div>
-              <h3>Instant Strong Password Generator</h3>
-            </div>
-            <p class="tool-desc">Generate unbreakable random passwords locally in your browser (never stored).</p>
-            <div class="field">
-              <label for="pwLength">Password Length (8 – 32 characters)</label>
+              <label for="pwLength">Length (8 – 32 chars)</label>
               <input id="pwLength" type="number" value="16" min="8" max="32">
             </div>
             <div class="pw-box">
-              <input id="generatedPw" type="text" readonly value="D8#kP9!vQ2@mX7$L">
+              <input id="generatedPw" type="text" readonly value="K8#mP4!vR9@xT2$Q">
               <button class="secondary-btn" onclick="copyPassword()">Copy</button>
             </div>
           </div>
           <div style="margin-top:12px">
-            <button class="primary-btn" style="width:100%" onclick="generatePassword()">Generate New Password</button>
-            <div class="tool-result" id="pwStatus">
-              Strength: <strong class="positive">Very Strong (16 chars)</strong>
-            </div>
+            <button class="primary-btn" style="width:100%" onclick="generatePassword()">Generate Password</button>
+            <div class="status-box" id="pwStatus">Strength: <strong class="positive">Very Strong (16 chars)</strong></div>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- MID-CONTENT AD SLOT -->
-    <div class="ad-slot" aria-label="Advertisement">Advertisement Space • In-Feed Responsive</div>
-
+    <!-- 3. CATEGORIES & DAILY DISCOVERY -->
     <section id="categories">
-      <h2 class="section-title">Explore Categories</h2>
-      <p class="section-subtitle">Choose a topic and expand your knowledge.</p>
+      <h2 class="section-title">Explore Topics</h2>
+      <p class="section-subtitle">Filter articles by subject or grab a quick daily fact.</p>
 
       <div class="categories">
         <div class="category" onclick="filterCategory('science')">
           <div class="emoji">🔬</div>
           <h3>Science</h3>
-          <p>Discover nature, physics, space and scientific ideas.</p>
+          <p>Nature, physics, space and everyday science.</p>
         </div>
         <div class="category" onclick="filterCategory('technology')">
           <div class="emoji">💻</div>
           <h3>Technology</h3>
-          <p>Explore AI, computers and future innovations.</p>
+          <p>AI, computing, digital habits and innovations.</p>
         </div>
         <div class="category" onclick="filterCategory('world')">
           <div class="emoji">🌍</div>
           <h3>World</h3>
-          <p>Learn about countries, geography and history.</p>
+          <p>Geography, oceans, cultures and global facts.</p>
         </div>
         <div class="category" onclick="filterCategory('education')">
           <div class="emoji">📚</div>
           <h3>Education</h3>
-          <p>Build knowledge through learning and explanations.</p>
+          <p>Memory techniques, learning and skill building.</p>
         </div>
         <div class="category" onclick="filterCategory('health')">
           <div class="emoji">🌱</div>
-          <h3>Health &amp; Lifestyle</h3>
-          <p>Explore general wellness and healthy living.</p>
+          <h3>Health &amp; Focus</h3>
+          <p>Sleep, mental clarity and healthy routines.</p>
         </div>
         <div class="category" onclick="filterCategory('howto')">
           <div class="emoji">🛠️</div>
           <h3>How-to Guides</h3>
-          <p>Discover useful guides for everyday tasks.</p>
+          <p>Practical guides for everyday tasks and safety.</p>
         </div>
       </div>
     </section>
@@ -658,8 +743,8 @@ footer{
         <div>
           <div class="eyebrow">DAILY DISCOVERY</div>
           <h3>One New Fact Every Day</h3>
-          <p>Explore interesting facts and expand your understanding of the world.</p>
-          <button class="primary-btn" onclick="showDailyFact()">Discover Now</button>
+          <p>Discover a bite-sized fact and expand what you know today.</p>
+          <button class="primary-btn" onclick="showDailyFact()">Show Today's Fact</button>
         </div>
         <div class="emoji">💡</div>
       </div>
@@ -668,14 +753,14 @@ footer{
       </div>
     </section>
 
+    <!-- 4. KNOWLEDGE LIBRARY -->
     <section id="articles">
       <h2 class="section-title">Knowledge Library</h2>
-      <p class="section-subtitle">Explore selected topics and practical guides.</p>
+      <p class="section-subtitle">Short, clear reads to pair with your quiz &amp; brain sessions.</p>
 
       <div class="results-info" id="resultCount">Featured articles</div>
 
       <div class="articles" id="articleGrid">
-
         <article class="article" data-category="science"
           data-title="How Does Solar Energy Work?"
           data-description="Solar panels convert sunlight into electricity using photovoltaic cells. These cells generate electrical current when light interacts with semiconductor materials. Solar energy is renewable and can help reduce dependence on fossil fuels.">
@@ -704,11 +789,11 @@ footer{
         </article>
 
         <article class="article" data-category="education"
-          data-title="Why Is Learning Important?"
-          data-description="Learning helps people develop knowledge, skills and the ability to solve problems. It can improve understanding, support personal growth and help people adapt to changes in the world.">
+          data-title="Why Is Active Recall So Effective?"
+          data-description="Testing yourself with questions—rather than passively re-reading notes—forces your brain to retrieve information, strengthening memory pathways and long-term retention.">
           <div class="article-tag">EDUCATION</div>
-          <h3>Why Is Learning Important?</h3>
-          <p>Explore how knowledge helps us understand the world.</p>
+          <h3>Why Is Active Recall So Effective?</h3>
+          <p>Why quizzing yourself beats passive reading.</p>
           <div class="read-more">Read Article →</div>
         </article>
 
@@ -729,7 +814,6 @@ footer{
           <p>Learn basic principles of online account security.</p>
           <div class="read-more">Read Article →</div>
         </article>
-
       </div>
 
       <div id="noResults" class="empty" style="display:none">
@@ -740,7 +824,7 @@ footer{
   </div>
 </div>
 
-<!-- ARTICLE READER VIEW -->
+<!-- ARTICLE DETAIL VIEW -->
 <div class="container" id="articleDetail">
   <section>
     <button class="back-btn" onclick="closeArticle()">← Back to DAILYKIT</button>
@@ -753,7 +837,7 @@ footer{
   </section>
 </div>
 
-<!-- POLICY / ABOUT VIEW (Required for AdSense Approval) -->
+<!-- POLICY VIEW -->
 <div class="container" id="policyModal">
   <section>
     <button class="back-btn" onclick="closePolicy()">← Back to DAILYKIT</button>
@@ -769,11 +853,11 @@ footer{
 <footer>
   <div class="container">
     <div class="logo">DAILY<span>KIT</span></div>
-    <p>Smart Tools, Live Market Data &amp; Practical Knowledge.</p>
+    <p>Interactive Quizzes, Brain Challenges &amp; Everyday Knowledge.</p>
     <div class="footer-links">
       <a href="#about" onclick="openPolicy('about');return false;">About Us</a>
       <a href="#privacy" onclick="openPolicy('privacy');return false;">Privacy Policy</a>
-      <a href="#disclaimer" onclick="openPolicy('disclaimer');return false;">Financial Disclaimer</a>
+      <a href="#disclaimer" onclick="openPolicy('disclaimer');return false;">Terms &amp; Disclaimer</a>
       <a href="#contact" onclick="openPolicy('contact');return false;">Contact</a>
     </div>
     <p>© 2026 DAILYKIT. All rights reserved.</p>
@@ -781,92 +865,290 @@ footer{
 </footer>
 
 <script>
-// 1. CALCULATORS & TOOLS
-function calcProfit() {
-  const inv = parseFloat(document.getElementById("invAmount").value) || 0;
-  const buy = parseFloat(document.getElementById("buyPrice").value) || 0;
-  const sell = parseFloat(document.getElementById("sellPrice").value) || 0;
-  const out = document.getElementById("profitResult");
+// SAVED STATS (LOCAL STORAGE)
+const stats = {
+  points: parseInt(localStorage.getItem("dk_points") || "0", 10),
+  bestReaction: localStorage.getItem("dk_best_rx") || null,
+  memBest: parseInt(localStorage.getItem("dk_mem_best") || "0", 10),
+  streak: parseInt(localStorage.getItem("dk_streak") || "1", 10)
+};
 
-  if (inv <= 0 || buy <= 0 || sell < 0) {
-    out.innerHTML = `<span class="negative">Please enter valid positive numbers.</span>`;
+function updateTopStats() {
+  document.getElementById("quizPoints").textContent = stats.points;
+  document.getElementById("bestReaction").textContent = stats.bestReaction ? stats.bestReaction + " ms" : "--";
+  document.getElementById("reactionBestBox").textContent = stats.bestReaction ? stats.bestReaction + " ms" : "--";
+  document.getElementById("memBest").textContent = stats.memBest;
+  document.getElementById("streakCount").textContent = stats.streak;
+  localStorage.setItem("dk_points", String(stats.points));
+  localStorage.setItem("dk_mem_best", String(stats.memBest));
+  localStorage.setItem("dk_streak", String(stats.streak));
+}
+
+// 1. QUIZ ARENA
+const quizBanks = {
+  general: [
+    { q: "Which ocean is the largest and deepest on Earth?", opts: ["Atlantic Ocean", "Pacific Ocean", "Indian Ocean", "Arctic Ocean"], ans: 1 },
+    { q: "Which country has the largest land area in the world?", opts: ["Canada", "China", "Russia", "United States"], ans: 2 },
+    { q: "What is the capital city of Japan?", opts: ["Seoul", "Kyoto", "Osaka", "Tokyo"], ans: 3 },
+    { q: "How many continents are there on Earth?", opts: ["5", "6", "7", "8"], ans: 2 },
+    { q: "Which language has the most native speakers globally?", opts: ["English", "Spanish", "Mandarin Chinese", "Hindi"], ans: 2 }
+  ],
+  english: [
+    { q: "Choose the word closest in meaning to 'DILIGENT':", opts: ["Lazy", "Hardworking", "Careless", "Shy"], ans: 1 },
+    { q: "Which sentence is grammatically correct?", opts: ["She don't like coffee.", "She doesn't likes coffee.", "She doesn't like coffee.", "She not like coffee."], ans: 2 },
+    { q: "What is the opposite (antonym) of 'SCARCE'?", opts: ["Rare", "Abundant", "Tiny", "Brief"], ans: 1 },
+    { q: "Choose the correct word: 'I need to ___ my progress every week.'", opts: ["track", "tract", "trek", "trick"], ans: 0 },
+    { q: "What does 'CONSISTENT' mean?", opts: ["Happening irregularly", "Acting in the same way over time", "Extremely fast", "Confusing"], ans: 1 }
+  ],
+  science: [
+    { q: "Roughly how long does sunlight take to reach Earth?", opts: ["8 seconds", "8 minutes 20 seconds", "2 hours", "24 hours"], ans: 1 },
+    { q: "Which gas makes up the largest portion of Earth's atmosphere?", opts: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"], ans: 2 },
+    { q: "What is the chemical symbol for gold?", opts: ["Go", "Gd", "Ag", "Au"], ans: 3 },
+    { q: "Which planet is closest to the Sun?", opts: ["Venus", "Mercury", "Mars", "Earth"], ans: 1 },
+    { q: "What part of a cell contains its genetic DNA?", opts: ["Nucleus", "Cell Wall", "Ribosome", "Vacuole"], ans: 0 }
+  ]
+};
+
+let currentTopic = "general";
+let qIndex = 0;
+let roundScore = 0;
+let answeredCurrent = false;
+
+function startQuizRound() {
+  currentTopic = document.getElementById("quizTopic").value;
+  qIndex = 0;
+  roundScore = 0;
+  renderQuestion();
+}
+
+function renderQuestion() {
+  answeredCurrent = false;
+  const list = quizBanks[currentTopic];
+  document.getElementById("quizProgress").textContent = `Question ${qIndex + 1} / ${list.length}`;
+  document.getElementById("quizRoundScore").textContent = `Round Score: ${roundScore}`;
+  document.getElementById("nextQuizBtn").style.display = "none";
+
+  if (qIndex >= list.length) {
+    document.getElementById("quizQuestionText").textContent =
+      `Round Complete! You scored ${roundScore} out of ${list.length * 20} points.`;
+    document.getElementById("quizOptionsBox").innerHTML = "";
+    document.getElementById("quizFeedback").innerHTML = `
+      <span>Great job! Play another round to earn more points.</span>
+      <button class="primary-btn" onclick="startQuizRound()">Play Again</button>
+    `;
     return;
   }
 
-  const units = inv / buy;
-  const total = units * sell;
-  const profit = total - inv;
-  const roi = (profit / inv) * 100;
-  const isUp = profit >= 0;
+  const item = list[qIndex];
+  document.getElementById("quizQuestionText").textContent = item.q;
+  const optsBox = document.getElementById("quizOptionsBox");
+  optsBox.innerHTML = "";
 
-  out.innerHTML = `
-    Profit/Loss: <strong class="${isUp ? "positive" : "negative"}">${isUp ? "+" : ""}$${profit.toFixed(2)} (${isUp ? "+" : ""}${roi.toFixed(2)}%)</strong><br>
-    Total Return: <strong>$${total.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2})}</strong>
+  item.opts.forEach((optText, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "quiz-opt";
+    btn.textContent = optText;
+    btn.onclick = () => selectQuizOption(idx, item.ans, btn);
+    optsBox.appendChild(btn);
+  });
+
+  document.getElementById("quizFeedback").innerHTML = `
+    <span>Pick the best answer.</span>
+    <button class="secondary-btn" id="nextQuizBtn" onclick="nextQuestion()" style="display:none">Next Question →</button>
   `;
 }
 
-function calcCompound() {
-  const initial = parseFloat(document.getElementById("startBal").value) || 0;
-  const monthly = parseFloat(document.getElementById("monthlyAdd").value) || 0;
-  const rate = (parseFloat(document.getElementById("annualRate").value) || 0) / 100 / 12;
-  const months = (parseFloat(document.getElementById("yearsCount").value) || 0) * 12;
-  const out = document.getElementById("compoundResult");
+function selectQuizOption(chosen, correct, btnEl) {
+  if (answeredCurrent) return;
+  answeredCurrent = true;
+  const allBtns = Array.from(document.querySelectorAll(".quiz-opt"));
+  allBtns.forEach(b => (b.disabled = true));
 
-  if (months <= 0) {
-    out.innerHTML = `<span class="negative">Please enter at least 1 year.</span>`;
-    return;
+  const feedback = document.getElementById("quizFeedback");
+  if (chosen === correct) {
+    btnEl.classList.add("correct");
+    roundScore += 20;
+    stats.points += 20;
+    updateTopStats();
+    document.getElementById("quizRoundScore").textContent = `Round Score: ${roundScore}`;
+    feedback.querySelector("span").innerHTML = `<strong class="positive">Correct! +20 points</strong>`;
+  } else {
+    btnEl.classList.add("wrong");
+    allBtns[correct].classList.add("correct");
+    feedback.querySelector("span").innerHTML = `<strong class="negative">Not quite</strong> — correct answer highlighted in green.`;
   }
+  document.getElementById("nextQuizBtn").style.display = "inline-block";
+}
 
-  let balance = initial;
-  for (let i = 0; i < months; i++) {
-    balance = (balance + monthly) * (1 + rate);
+function nextQuestion() {
+  qIndex++;
+  renderQuestion();
+}
+
+// 2. MEMORY SEQUENCE GAME
+let memSeq = [];
+let memPlayerPos = 0;
+let memAcceptingInput = false;
+
+function flashPad(padIdx, duration = 340) {
+  return new Promise(resolve => {
+    const pad = document.querySelector(`.mem-pad[data-pad="${padIdx}"]`);
+    pad.classList.add("lit");
+    setTimeout(() => {
+      pad.classList.remove("lit");
+      setTimeout(resolve, 140);
+    }, duration);
+  });
+}
+
+async function playSequence() {
+  memAcceptingInput = false;
+  memPlayerPos = 0;
+  document.getElementById("memoryStatus").innerHTML =
+    `Watch closely... Level <strong>${memSeq.length}</strong>`;
+  await new Promise(r => setTimeout(r, 450));
+  for (let i = 0; i < memSeq.length; i++) {
+    await flashPad(memSeq[i]);
   }
-  const invested = initial + (monthly * months);
-
-  out.innerHTML = `
-    Future Value: <strong>$${balance.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2})}</strong><br>
-    Total Invested: <strong>$${invested.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2})}</strong>
-  `;
+  memAcceptingInput = true;
+  document.getElementById("memoryStatus").innerHTML =
+    `Your turn! Repeat <strong>${memSeq.length}</strong> step(s).`;
 }
 
-function calcPercentage() {
-  const pct = parseFloat(document.getElementById("pctPercent").value) || 0;
-  const base = parseFloat(document.getElementById("pctBase").value) || 0;
-  const part = (pct / 100) * base;
-  const afterDiscount = base - part;
-
-  document.getElementById("pctResult").innerHTML = `
-    ${pct}% of ${base} = <strong>${part.toFixed(2)}</strong><br>
-    After ${pct}% Discount: <strong>${afterDiscount.toFixed(2)}</strong>
-  `;
+function startMemoryGame() {
+  memSeq = [Math.floor(Math.random() * 4)];
+  document.getElementById("memLevel").textContent = memSeq.length;
+  playSequence();
 }
 
+async function handlePadClick(padIdx) {
+  if (!memAcceptingInput) return;
+  await flashPad(padIdx, 180);
+
+  if (memSeq[memPlayerPos] === padIdx) {
+    memPlayerPos++;
+    if (memPlayerPos === memSeq.length) {
+      memAcceptingInput = false;
+      stats.points += 10;
+      if (memSeq.length > stats.memBest) {
+        stats.memBest = memSeq.length;
+      }
+      updateTopStats();
+      memSeq.push(Math.floor(Math.random() * 4));
+      document.getElementById("memLevel").textContent = memSeq.length;
+      await new Promise(r => setTimeout(r, 500));
+      playSequence();
+    }
+  } else {
+    memAcceptingInput = false;
+    document.getElementById("memoryStatus").innerHTML =
+      `<strong class="negative">Game Over!</strong> Reached Level <strong>${memSeq.length}</strong>. Tap Start to try again.`;
+  }
+}
+
+// 3. REACTION SPEED TEST
+let rxState = "idle"; // idle | waiting | ready
+let rxTimer = null;
+let rxStartTime = 0;
+
+function handleReactionClick() {
+  const pad = document.getElementById("reactionPad");
+  const status = document.getElementById("reactionStatus");
+
+  if (rxState === "idle") {
+    rxState = "waiting";
+    pad.className = "reaction-pad waiting";
+    pad.innerHTML = `Wait for GREEN...<small>Do not tap yet</small>`;
+    const delay = 1400 + Math.floor(Math.random() * 2400);
+    rxTimer = setTimeout(() => {
+      rxState = "ready";
+      rxStartTime = performance.now();
+      pad.className = "reaction-pad ready";
+      pad.innerHTML = `TAP NOW!<small>As fast as you can</small>`;
+    }, delay);
+  } else if (rxState === "waiting") {
+    clearTimeout(rxTimer);
+    rxState = "idle";
+    pad.className = "reaction-pad";
+    pad.innerHTML = `Too Early! Tap to Retry<small>Wait until the box turns green</small>`;
+  } else if (rxState === "ready") {
+    const ms = Math.round(performance.now() - rxStartTime);
+    rxState = "idle";
+    pad.className = "reaction-pad";
+    pad.innerHTML = `${ms} ms — Tap to Test Again<small>${ms < 230 ? "Lightning reflexes!" : ms < 320 ? "Solid speed!" : "Keep practicing!"}</small>`;
+    if (!stats.bestReaction || ms < parseInt(stats.bestReaction, 10)) {
+      stats.bestReaction = String(ms);
+      localStorage.setItem("dk_best_rx", stats.bestReaction);
+    }
+    stats.points += 5;
+    updateTopStats();
+    status.innerHTML = `Last Time: <strong>${ms} ms</strong> • Personal Best: <strong id="reactionBestBox">${stats.bestReaction} ms</strong>`;
+  }
+}
+
+// 4. FOCUS TIMER
+let remainingSec = 25 * 60;
+let timerInterval = null;
+
+function renderTimer() {
+  const m = String(Math.floor(remainingSec / 60)).padStart(2, "0");
+  const s = String(remainingSec % 60).padStart(2, "0");
+  document.getElementById("timerDisplay").textContent = `${m}:${s}`;
+}
+
+function startTimer() {
+  if (timerInterval) return;
+  document.getElementById("timerStatus").innerHTML = `Status: <strong class="positive">Running</strong>`;
+  timerInterval = setInterval(() => {
+    if (remainingSec > 0) {
+      remainingSec--;
+      renderTimer();
+    } else {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      stats.points += 25;
+      updateTopStats();
+      document.getElementById("timerStatus").innerHTML = `Status: <strong class="positive">Session Complete! +25 points</strong>`;
+    }
+  }, 1000);
+}
+
+function pauseTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+  document.getElementById("timerStatus").innerHTML = `Status: <strong>Paused</strong>`;
+}
+
+function resetTimer(minutes) {
+  pauseTimer();
+  remainingSec = minutes * 60;
+  renderTimer();
+  document.getElementById("timerStatus").innerHTML =
+    `Mode: <strong>${minutes === 5 ? "Short Break (5 min)" : "Focus Session (25 min)"}</strong>`;
+}
+
+// 5. PASSWORD GENERATOR
 function generatePassword() {
   let len = parseInt(document.getElementById("pwLength").value, 10) || 16;
   len = Math.min(32, Math.max(8, len));
   document.getElementById("pwLength").value = len;
-
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*_-+";
-  const array = new Uint32Array(len);
-  window.crypto.getRandomValues(array);
-
+  const arr = new Uint32Array(len);
+  window.crypto.getRandomValues(arr);
   let pw = "";
-  for (let i = 0; i < len; i++) {
-    pw += chars[array[i] % chars.length];
-  }
+  for (let i = 0; i < len; i++) pw += chars[arr[i] % chars.length];
   document.getElementById("generatedPw").value = pw;
   document.getElementById("pwStatus").innerHTML =
     `Strength: <strong class="positive">${len >= 14 ? "Very Strong" : "Strong"} (${len} chars)</strong>`;
 }
 
 function copyPassword() {
-  const input = document.getElementById("generatedPw");
-  navigator.clipboard?.writeText(input.value);
-  document.getElementById("pwStatus").innerHTML =
-    `<strong class="positive">Copied to clipboard!</strong>`;
+  const inp = document.getElementById("generatedPw");
+  navigator.clipboard?.writeText(inp.value);
+  document.getElementById("pwStatus").innerHTML = `<strong class="positive">Copied to clipboard!</strong>`;
 }
 
-// 2. SEARCH, CATEGORIES & ARTICLES
+// 6. SEARCH, CATEGORIES & ARTICLES
 const articles = Array.from(document.querySelectorAll(".article"));
 
 function searchKnowledge(){
@@ -883,7 +1165,6 @@ function searchKnowledge(){
       article.querySelector("p").textContent + " " +
       article.dataset.description
     ).toLowerCase();
-
     const match = !query || searchable.includes(query);
     article.style.display = match ? "block" : "none";
     if(match) count++;
@@ -892,7 +1173,6 @@ function searchKnowledge(){
   document.getElementById("noResults").style.display = count ? "none" : "block";
   document.getElementById("resultCount").textContent =
     query ? count + " results for \"" + query + "\"" : "Featured articles";
-
   document.getElementById("articles").scrollIntoView({behavior:"smooth"});
 }
 
@@ -912,7 +1192,6 @@ function filterCategory(category){
   document.getElementById("noResults").style.display = count ? "none" : "block";
   document.getElementById("resultCount").textContent =
     category === "all" ? "All articles" : category.toUpperCase() + " articles";
-
   document.getElementById("articles").scrollIntoView({behavior:"smooth"});
 }
 
@@ -922,7 +1201,7 @@ function showDailyFact(){
     "The Pacific Ocean is the largest ocean on Earth.",
     "Water can exist naturally as a solid, liquid and gas.",
     "Honeybees communicate information about food sources through movement.",
-    "Earth completes one orbit around the Sun in approximately 365.25 days."
+    "Testing your recall helps your brain keep information much longer than re-reading."
   ];
   const today = new Date();
   const index = Math.floor(
@@ -950,29 +1229,28 @@ function closeArticle(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-// 3. POLICY PAGES (ADSENSE COMPLIANCE)
+// 7. POLICY PAGES
 function openPolicy(type) {
   const pages = {
     about: {
       title: "About DAILYKIT",
-      body: "DAILYKIT is a free online utility and knowledge platform providing instant financial calculators, security tools, live market data, and educational guides for everyday users worldwide."
+      body: "DAILYKIT is an interactive learning, brain-challenge, and study utility platform designed to make daily curiosity and focus engaging."
     },
     privacy: {
       title: "Privacy Policy",
-      body: "DAILYKIT respects user privacy. Calculator inputs and generated passwords run locally in your browser and are never stored on our servers. Third-party advertising partners such as Google AdSense may use cookies to serve relevant ads based on visits to this and other websites."
+      body: "Scores, streaks, and generated passwords are stored locally in your browser via localStorage. Advertising partners such as Google AdSense may use cookies in accordance with their privacy policies."
     },
     disclaimer: {
-      title: "Financial & Educational Disclaimer",
-      body: "All calculators, cryptocurrency prices, and articles on DAILYKIT are provided for informational and educational purposes only and do not constitute financial or investment advice."
+      title: "Terms & Disclaimer",
+      body: "All quizzes, brain tests, timers, and articles on DAILYKIT are provided for educational and entertainment purposes."
     },
     contact: {
       title: "Contact Us",
-      body: "For feedback, tool requests, or business inquiries regarding DAILYKIT, please reach out via our official repository or support contact channel."
+      body: "Questions or suggestions for DAILYKIT can be shared through our project repository."
     }
   };
   const page = pages[type];
   if (!page) return;
-
   document.getElementById("homePage").style.display = "none";
   document.getElementById("articleDetail").style.display = "none";
   document.getElementById("policyModal").style.display = "block";
@@ -987,44 +1265,10 @@ function closePolicy() {
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-// 4. LIVE CRYPTO TICKER
-async function loadCryptoPrices() {
-  const track = document.getElementById("crypto-ticker-track");
-  try {
-    const url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,ripple,binancecoin,cardano,dogecoin,tether&order=market_cap_desc&per_page=8&page=1&sparkline=false&price_change_percentage=24h";
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("Market data unavailable");
-
-    const coins = await response.json();
-    const itemsHtml = coins.map(coin => {
-      const change = Number(coin.price_change_percentage_24h || 0);
-      const isUp = change >= 0;
-      const price = Number(coin.current_price).toLocaleString("en-US", {
-        minimumFractionDigits: coin.current_price < 1 ? 3 : 2,
-        maximumFractionDigits: coin.current_price < 1 ? 4 : 2
-      });
-      return `
-        <span class="ticker-item">
-          <span class="ticker-symbol">${coin.symbol.toUpperCase()}</span>
-          <span class="ticker-price">$${price}</span>
-          <span class="${isUp ? "positive" : "negative"}">${isUp ? "+" : ""}${change.toFixed(2)}%</span>
-        </span>
-      `;
-    }).join("");
-
-    track.innerHTML = `
-      <div class="ticker-group">${itemsHtml}</div>
-      <div class="ticker-group" aria-hidden="true">${itemsHtml}</div>
-    `;
-  } catch (error) {
-    if (!track.querySelector(".ticker-item")) {
-      track.innerHTML = `<span class="ticker-status">Market feed temporarily paused • CoinGecko</span>`;
-    }
-  }
-}
-
-loadCryptoPrices();
-setInterval(loadCryptoPrices, 300000);
+// INIT
+updateTopStats();
+renderQuestion();
+renderTimer();
 </script>
 
 </body>
