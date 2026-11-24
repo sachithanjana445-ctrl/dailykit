@@ -1,6 +1,17 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<style>
+.language-selector {
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: white;
+  color: #222;
+  font-size: 14px;
+  cursor: pointer;
+}
+</style>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,8 +48,79 @@ button{cursor:pointer;border:0}
 #result{margin-top:12px;overflow-wrap:anywhere}
 </style>
 </head>
-<body>
+<script>
+const translations = {
+  en: {
+    tools: "Tools",
+    kids: "Kids Zone",
+    knowledge: "Knowledge",
+    games: "Games"
+  },
+  es: {
+    tools: "Herramientas",
+    kids: "Zona Infantil",
+    knowledge: "Conocimiento",
+    games: "Juegos"
+  },
+  fr: {
+    tools: "Outils",
+    kids: "Espace Enfants",
+    knowledge: "Connaissances",
+    games: "Jeux"
+  },
+  de: {
+    tools: "Werkzeuge",
+    kids: "Kinderbereich",
+    knowledge: "Wissen",
+    games: "Spiele"
+  },
+  pt: {
+    tools: "Ferramentas",
+    kids: "Zona Infantil",
+    knowledge: "Conhecimento",
+    games: "Jogos"
+  },
+  ja: {
+    tools: "ツール",
+    kids: "キッズゾーン",
+    knowledge: "知識",
+    games: "ゲーム"
+  },
+  zh: {
+    tools: "工具",
+    kids: "儿童专区",
+    knowledge: "知识",
+    games: "游戏"
+  },
+  hi: {
+    tools: "उपकरण",
+    kids: "बच्चों का क्षेत्र",
+    knowledge: "ज्ञान",
+    games: "खेल"
+  }
+};
 
+function changeLanguage(lang) {
+  const t = translations[lang] || translations.en;
+  const links = document.querySelectorAll("nav a");
+
+  links[0].textContent = t.tools;
+  links[1].textContent = t.kids;
+  links[2].textContent = t.knowledge;
+  links[3].textContent = t.games;
+}
+</script>
+<body>
+<select id="languageSelector" class="language-selector" onchange="changeLanguage(this.value)">
+  <option value="en">🇬🇧 English</option>
+  <option value="es">🇪🇸 Español</option>
+  <option value="fr">🇫🇷 Français</option>
+  <option value="de">🇩🇪 Deutsch</option>
+  <option value="pt">🇵🇹 Português</option>
+  <option value="ja">🇯🇵 日本語</option>
+  <option value="zh">🇨🇳 中文</option>
+  <option value="hi">🇮🇳 हिन्दी</option>
+</select>
 <header>
 <div class="logo">DAILY<span>KIT</span></div>
 <nav>
