@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080d1b">
-<meta name="description" content="DAILYKIT - Interactive Quiz Arena, Memory & Reaction Challenges, Focus Timer and Knowledge Hub.">
-<title>DAILYKIT | Quiz Arena, Brain Challenges & Knowledge Hub</title>
+<meta name="description" content="DAILYKIT - Interactive Language Trainer, Quiz Arena, Brain Challenges and Knowledge Hub.">
+<title>DAILYKIT | Language Trainer, Quiz Arena & Knowledge Hub</title>
 <style>
 :root{
   --bg:#080d1b;
@@ -59,18 +59,13 @@ header{
 .nav a{
   color:var(--muted);
   text-decoration:none;
-  margin-left:16px;
-  font-size:14px;
+  margin-left:14px;
+  font-size:13.5px;
 }
 .nav a:hover{color:var(--cyan)}
 
-/* TOP STREAK & ARENA BAR */
+/* TOP STREAK & SCORE BAR */
 #arena-top-bar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
   background:linear-gradient(90deg,#0b1529,#121f3a);
   border-bottom:1px solid rgba(22,199,232,0.22);
   padding:9px 0;
@@ -79,7 +74,7 @@ header{
 .arena-stats{
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:12px;
   flex-wrap:wrap;
 }
 .stat-pill{
@@ -114,7 +109,7 @@ header{
 
 .hero{
   text-align:center;
-  padding:56px 15px 40px;
+  padding:54px 15px 38px;
   background:radial-gradient(ellipse at 50% 0%,rgba(22,199,232,.16),transparent 60%);
 }
 .eyebrow{
@@ -138,7 +133,7 @@ header{
   color:var(--muted);
   font-size:16px;
   line-height:1.7;
-  max-width:660px;
+  max-width:680px;
   margin:auto;
 }
 .search-box{
@@ -184,6 +179,94 @@ header{
 section{padding:38px 0}
 .section-title{font-size:26px;margin:0 0 8px}
 .section-subtitle{color:var(--muted);margin:0 0 22px;line-height:1.6}
+
+/* LANGUAGE TRAINER */
+.lang-box{
+  background:var(--panel);
+  border:1px solid rgba(134,103,255,.35);
+  border-radius:18px;
+  padding:24px;
+}
+.lang-controls{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+.lang-select-group{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.lang-select{
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+}
+.lang-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px;
+  margin-bottom:16px;
+}
+.lang-top-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+.lang-badge{
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.2px;
+  color:var(--cyan);
+  text-transform:uppercase;
+}
+.lang-phrase{
+  font-size:clamp(24px,4.5vw,34px);
+  font-weight:800;
+  color:var(--text);
+  margin:8px 0;
+}
+.lang-phonetic{
+  color:#b9c6e0;
+  font-size:14px;
+  margin-bottom:8px;
+}
+.lang-meaning{
+  color:var(--green);
+  font-size:16px;
+  font-weight:700;
+}
+.lang-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+.lang-quiz-box{
+  background:rgba(8,13,27,.55);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px;
+}
+.lang-quiz-title{
+  font-size:14px;
+  font-weight:700;
+  color:var(--cyan);
+  margin-bottom:10px;
+}
+.lang-quiz-q{
+  font-size:16px;
+  margin-bottom:12px;
+}
 
 /* QUIZ ARENA */
 .quiz-box{
@@ -298,7 +381,6 @@ section{padding:38px 0}
 .game-header h3{margin:0;font-size:17px}
 .game-desc{color:var(--muted);font-size:13px;margin:0 0 14px;line-height:1.5}
 
-/* MEMORY PADS */
 .memory-board{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -322,7 +404,6 @@ section{padding:38px 0}
   transform:scale(0.98);
 }
 
-/* REACTION PAD */
 .reaction-pad{
   height:132px;
   border-radius:14px;
@@ -356,7 +437,6 @@ section{padding:38px 0}
   margin-top:6px;
 }
 
-/* FOCUS TIMER & PASSWORD */
 .timer-display{
   font-size:38px;
   font-weight:900;
@@ -530,22 +610,23 @@ footer{
   <div class="container nav">
     <div class="logo">DAILY<span>KIT</span></div>
     <nav>
-      <a href="#quiz-arena">Quiz Arena</a>
+      <a href="#language-lab">Languages</a>
+      <a href="#quiz-arena">Quiz</a>
       <a href="#brain-lab">Challenges</a>
       <a href="#articles">Guides</a>
     </nav>
   </div>
 </header>
 
-<!-- DAILY STREAK & SCORE BAR -->
+<!-- TOP STREAK & SCORE BAR -->
 <div id="arena-top-bar">
   <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
     <div class="arena-stats">
       <div class="stat-pill">🔥 Daily Streak: <span id="streakCount">1</span>d</div>
-      <div class="stat-pill">🧠 Quiz Points: <span id="quizPoints">0</span></div>
+      <div class="stat-pill">⭐ Total Points: <span id="quizPoints">0</span></div>
       <div class="stat-pill">⚡ Best Reaction: <span id="bestReaction">--</span></div>
     </div>
-    <div class="arena-tagline">Play • Test Your Mind • Beat Your Record</div>
+    <div class="arena-tagline">Learn Languages • Play • Beat Your Record</div>
   </div>
 </div>
 
@@ -553,9 +634,9 @@ footer{
 <div id="homePage">
 
   <div class="hero">
-    <div class="eyebrow">INTERACTIVE QUIZ ARENA • BRAIN CHALLENGES • STUDY TOOLS</div>
-    <h1>Sharpen Your Mind.<br><span class="gradient">Play &amp; Discover Daily.</span></h1>
-    <p>Test your knowledge, train your memory and reflexes, stay focused with a study timer, and explore useful guides.</p>
+    <div class="eyebrow">LANGUAGE TRAINER • INTERACTIVE QUIZ • BRAIN CHALLENGES</div>
+    <h1>Learn Languages.<br><span class="gradient">Train Your Mind Daily.</span></h1>
+    <p>Practice everyday phrases with audio pronunciation, test your knowledge in interactive quizzes, challenge your reflexes, and stay focused.</p>
 
     <div class="search-box">
       <input id="mainSearch" type="search"
@@ -563,13 +644,67 @@ footer{
         onkeydown="if(event.key==='Enter')searchKnowledge()">
       <button class="primary-btn" onclick="searchKnowledge()">Search</button>
     </div>
-    <div class="search-hint">Interactive Quizzes • Memory &amp; Reflex Games • Focus Timer</div>
+    <div class="search-hint">Italian • Spanish • French • Japanese • Quizzes &amp; Brain Games</div>
   </div>
 
   <div class="container">
 
-    <!-- TOP AD SLOT (Replace inner text with Google AdSense code after approval) -->
+    <!-- TOP AD SLOT -->
     <div class="ad-slot" aria-label="Advertisement">Advertisement Space • Top Banner</div>
+
+    <!-- 0. INTERACTIVE LANGUAGE TRAINER -->
+    <section id="language-lab">
+      <h2 class="section-title">World Language Phrase &amp; Recall Trainer</h2>
+      <p class="section-subtitle">Pick a language and topic, listen to pronunciation, step through flashcards, and test your recall.</p>
+
+      <div class="lang-box">
+        <div class="lang-controls">
+          <div class="lang-select-group">
+            <select id="langSelect" class="lang-select" onchange="changeLanguage()">
+              <option value="it">🇮🇹 Italian (Italiano)</option>
+              <option value="es">🇪🇸 Spanish (Español)</option>
+              <option value="fr">🇫🇷 French (Français)</option>
+              <option value="ja">🇯🇵 Japanese (日本語)</option>
+            </select>
+            <select id="langCategory" class="lang-select" onchange="changeLanguage()">
+              <option value="all">All Topics</option>
+              <option value="greetings">Greetings &amp; Basics</option>
+              <option value="travel">Travel &amp; Directions</option>
+              <option value="food">Food &amp; Café</option>
+            </select>
+          </div>
+          <div class="quiz-meta">
+            <span id="langCardCounter">Phrase 1 / 6</span>
+          </div>
+        </div>
+
+        <div class="lang-card">
+          <div class="lang-top-row">
+            <span class="lang-badge" id="langTopicBadge">GREETINGS</span>
+            <span class="lang-badge" id="langNameBadge" style="color:#a68aff">ITALIAN</span>
+          </div>
+          <div class="lang-phrase" id="langPhraseText">Buongiorno</div>
+          <div class="lang-phonetic" id="langPhoneticText">Pronunciation: bwohn-JOR-noh</div>
+          <div class="lang-meaning" id="langMeaningText">Good morning / Hello</div>
+
+          <div class="lang-actions">
+            <button class="primary-btn" onclick="speakCurrentPhrase()">🔊 Listen</button>
+            <button class="secondary-btn" onclick="prevPhrase()">← Previous</button>
+            <button class="secondary-btn" onclick="nextPhrase()">Next Phrase →</button>
+          </div>
+        </div>
+
+        <div class="lang-quiz-box">
+          <div class="lang-quiz-title">QUICK RECALL CHECK (+15 PTS)</div>
+          <div class="lang-quiz-q" id="langQuizPrompt">Loading recall question...</div>
+          <div class="quiz-options" id="langQuizOptions"></div>
+          <div class="status-box" id="langQuizFeedback">Choose the matching English meaning to earn points.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MID AD SLOT -->
+    <div class="ad-slot" aria-label="Advertisement">Advertisement Space • Mid Page</div>
 
     <!-- 1. INTERACTIVE QUIZ ARENA -->
     <section id="quiz-arena">
@@ -599,9 +734,6 @@ footer{
       </div>
     </section>
 
-    <!-- MID AD SLOT -->
-    <div class="ad-slot" aria-label="Advertisement">Advertisement Space • Between Challenges</div>
-
     <!-- 2. BRAIN CHALLENGES & STUDY TOOLS -->
     <section id="brain-lab">
       <h2 class="section-title">Brain Challenges &amp; Study Toolkit</h2>
@@ -609,7 +741,6 @@ footer{
 
       <div class="arena-grid">
 
-        <!-- Memory Sequence Game -->
         <div class="game-card">
           <div>
             <div class="game-header">
@@ -632,7 +763,6 @@ footer{
           </div>
         </div>
 
-        <!-- Reflex / Reaction Speed Test -->
         <div class="game-card">
           <div>
             <div class="game-header">
@@ -652,14 +782,13 @@ footer{
           </div>
         </div>
 
-        <!-- Pomodoro Focus Timer -->
         <div class="game-card">
           <div>
             <div class="game-header">
               <div class="game-icon">⏱️</div>
               <h3>Study &amp; Work Focus Timer</h3>
             </div>
-            <p class="game-desc">Keep this open while studying or working to stay locked in without distractions.</p>
+            <p class="game-desc">Keep this open while studying languages or working to stay locked in without distractions.</p>
             <div class="timer-display" id="timerDisplay">25:00</div>
           </div>
           <div>
@@ -673,7 +802,6 @@ footer{
           </div>
         </div>
 
-        <!-- Strong Password Generator -->
         <div class="game-card">
           <div>
             <div class="game-header">
@@ -723,7 +851,7 @@ footer{
         <div class="category" onclick="filterCategory('education')">
           <div class="emoji">📚</div>
           <h3>Education</h3>
-          <p>Memory techniques, learning and skill building.</p>
+          <p>Language habits, memory and skill building.</p>
         </div>
         <div class="category" onclick="filterCategory('health')">
           <div class="emoji">🌱</div>
@@ -756,7 +884,7 @@ footer{
     <!-- 4. KNOWLEDGE LIBRARY -->
     <section id="articles">
       <h2 class="section-title">Knowledge Library</h2>
-      <p class="section-subtitle">Short, clear reads to pair with your quiz &amp; brain sessions.</p>
+      <p class="section-subtitle">Short, clear reads to pair with your language &amp; brain sessions.</p>
 
       <div class="results-info" id="resultCount">Featured articles</div>
 
@@ -789,11 +917,11 @@ footer{
         </article>
 
         <article class="article" data-category="education"
-          data-title="Why Is Active Recall So Effective?"
-          data-description="Testing yourself with questions—rather than passively re-reading notes—forces your brain to retrieve information, strengthening memory pathways and long-term retention.">
+          data-title="How to Build a Daily Language Habit"
+          data-description="Learning a new language works best with short, consistent daily practice rather than occasional marathon sessions. Speaking out loud, reviewing phrases, and testing your recall every day builds confidence steadily.">
           <div class="article-tag">EDUCATION</div>
-          <h3>Why Is Active Recall So Effective?</h3>
-          <p>Why quizzing yourself beats passive reading.</p>
+          <h3>How to Build a Daily Language Habit</h3>
+          <p>Short daily practice beats occasional cramming.</p>
           <div class="read-more">Read Article →</div>
         </article>
 
@@ -853,7 +981,7 @@ footer{
 <footer>
   <div class="container">
     <div class="logo">DAILY<span>KIT</span></div>
-    <p>Interactive Quizzes, Brain Challenges &amp; Everyday Knowledge.</p>
+    <p>Language Practice, Interactive Quizzes &amp; Everyday Knowledge.</p>
     <div class="footer-links">
       <a href="#about" onclick="openPolicy('about');return false;">About Us</a>
       <a href="#privacy" onclick="openPolicy('privacy');return false;">Privacy Policy</a>
@@ -882,6 +1010,151 @@ function updateTopStats() {
   localStorage.setItem("dk_points", String(stats.points));
   localStorage.setItem("dk_mem_best", String(stats.memBest));
   localStorage.setItem("dk_streak", String(stats.streak));
+}
+
+// 0. WORLD LANGUAGE PHRASE & RECALL TRAINER
+const languageData = {
+  it: {
+    name: "ITALIAN",
+    speechLang: "it-IT",
+    phrases: [
+      { cat: "greetings", badge: "GREETINGS", phrase: "Buongiorno", phonetic: "bwohn-JOR-noh", meaning: "Good morning / Hello" },
+      { cat: "greetings", badge: "GREETINGS", phrase: "Grazie mille", phonetic: "GRAH-tsyeh MEEL-leh", meaning: "Thank you very much" },
+      { cat: "travel", badge: "TRAVEL", phrase: "Dov'è la stazione?", phonetic: "doh-VEH lah stah-tsyoh-NEH", meaning: "Where is the station?" },
+      { cat: "travel", badge: "TRAVEL", phrase: "Quanto costa?", phonetic: "KWAHN-toh KOS-tah", meaning: "How much does it cost?" },
+      { cat: "food", badge: "FOOD & CAFÉ", phrase: "Un caffè, per favore", phonetic: "oon kahf-FEH pehr fah-VOH-reh", meaning: "One coffee, please" },
+      { cat: "food", badge: "FOOD & CAFÉ", phrase: "Il conto, per piacere", phonetic: "eel KON-toh pehr pyah-CHEH-reh", meaning: "The bill, please" }
+    ]
+  },
+  es: {
+    name: "SPANISH",
+    speechLang: "es-ES",
+    phrases: [
+      { cat: "greetings", badge: "GREETINGS", phrase: "¡Hola! ¿Cómo estás?", phonetic: "OH-lah KOH-moh ehs-TAHS", meaning: "Hello! How are you?" },
+      { cat: "greetings", badge: "GREETINGS", phrase: "Muchas gracias", phonetic: "MOO-chahs GRAH-syahs", meaning: "Thank you very much" },
+      { cat: "travel", badge: "TRAVEL", phrase: "¿Dónde está el hotel?", phonetic: "DOHN-deh ehs-TAH ehl oh-TEHL", meaning: "Where is the hotel?" },
+      { cat: "travel", badge: "TRAVEL", phrase: "No entiendo", phonetic: "noh ehn-TYEHN-doh", meaning: "I don't understand" },
+      { cat: "food", badge: "FOOD & CAFÉ", phrase: "La cuenta, por favor", phonetic: "lah KWEHN-tah pohr fah-VOHR", meaning: "The check, please" },
+      { cat: "food", badge: "FOOD & CAFÉ", phrase: "Agua fría, por favor", phonetic: "AH-gwah FREE-ah pohr fah-VOHR", meaning: "Cold water, please" }
+    ]
+  },
+  fr: {
+    name: "FRENCH",
+    speechLang: "fr-FR",
+    phrases: [
+      { cat: "greetings", badge: "GREETINGS", phrase: "Bonjour, comment ça va ?", phonetic: "bohn-ZHOOR koh-MAHNG sah vah", meaning: "Hello, how is it going?" },
+      { cat: "greetings", badge: "GREETINGS", phrase: "Merci beaucoup", phonetic: "mehr-SEE boh-KOO", meaning: "Thank you very much" },
+      { cat: "travel", badge: "TRAVEL", phrase: "Où est la sortie ?", phonetic: "oo eh lah sohr-TEE", meaning: "Where is the exit?" },
+      { cat: "travel", badge: "TRAVEL", phrase: "À gauche / À droite", phonetic: "ah GOHSH / ah DRWAHT", meaning: "To the left / To the right" },
+      { cat: "food", badge: "FOOD & CAFÉ", phrase: "Un café, s'il vous plaît", phonetic: "uhn kah-FEH seel voo PLEH", meaning: "A coffee, please" },
+      { cat: "food", badge: "FOOD & CAFÉ", phrase: "C'est délicieux", phonetic: "seh day-lee-SYUH", meaning: "It is delicious" }
+    ]
+  },
+  ja: {
+    name: "JAPANESE",
+    speechLang: "ja-JP",
+    phrases: [
+      { cat: "greetings", badge: "GREETINGS", phrase: "おはようございます", phonetic: "Ohayō gozaimasu", meaning: "Good morning (polite)" },
+      { cat: "greetings", badge: "GREETINGS", phrase: "ありがとうございます", phonetic: "Arigatō gozaimasu", meaning: "Thank you very much" },
+      { cat: "travel", badge: "TRAVEL", phrase: "駅はどこですか？", phonetic: "Eki wa doko desu ka?", meaning: "Where is the station?" },
+      { cat: "travel", badge: "TRAVEL", phrase: "すみません", phonetic: "Sumimasen", meaning: "Excuse me / Sorry" },
+      { cat: "food", badge: "FOOD & CAFÉ", phrase: "お水をください", phonetic: "Omizu o kudasai", meaning: "Water, please" },
+      { cat: "food", badge: "FOOD & CAFÉ", phrase: "おいしいです", phonetic: "Oishii desu", meaning: "It is delicious" }
+    ]
+  }
+};
+
+let activeLangCode = "it";
+let filteredPhrases = [];
+let phraseIdx = 0;
+let langQuizAnswered = false;
+
+function changeLanguage() {
+  activeLangCode = document.getElementById("langSelect").value;
+  const catFilter = document.getElementById("langCategory").value;
+  const langObj = languageData[activeLangCode];
+
+  filteredPhrases = langObj.phrases.filter(p => catFilter === "all" || p.cat === catFilter);
+  if (!filteredPhrases.length) filteredPhrases = langObj.phrases.slice();
+  phraseIdx = 0;
+  renderPhraseCard();
+}
+
+function renderPhraseCard() {
+  const langObj = languageData[activeLangCode];
+  const item = filteredPhrases[phraseIdx];
+
+  document.getElementById("langNameBadge").textContent = langObj.name;
+  document.getElementById("langTopicBadge").textContent = item.badge;
+  document.getElementById("langCardCounter").textContent = `Phrase ${phraseIdx + 1} / ${filteredPhrases.length}`;
+  document.getElementById("langPhraseText").textContent = item.phrase;
+  document.getElementById("langPhoneticText").textContent = `Pronunciation: ${item.phonetic}`;
+  document.getElementById("langMeaningText").textContent = item.meaning;
+
+  renderLangRecallQuiz(langObj, item);
+}
+
+function nextPhrase() {
+  phraseIdx = (phraseIdx + 1) % filteredPhrases.length;
+  renderPhraseCard();
+}
+
+function prevPhrase() {
+  phraseIdx = (phraseIdx - 1 + filteredPhrases.length) % filteredPhrases.length;
+  renderPhraseCard();
+}
+
+function speakCurrentPhrase() {
+  const langObj = languageData[activeLangCode];
+  const item = filteredPhrases[phraseIdx];
+  if (!("speechSynthesis" in window)) {
+    alert(`${item.phrase} (${item.phonetic})`);
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(item.phrase);
+  utter.lang = langObj.speechLang;
+  utter.rate = 0.9;
+  window.speechSynthesis.speak(utter);
+}
+
+function renderLangRecallQuiz(langObj, targetItem) {
+  langQuizAnswered = false;
+  document.getElementById("langQuizPrompt").innerHTML =
+    `What does <strong>"${targetItem.phrase}"</strong> (${langObj.name}) mean in English?`;
+
+  const pool = langObj.phrases.map(p => p.meaning).filter(m => m !== targetItem.meaning);
+  const distractors = pool.sort(() => Math.random() - 0.5).slice(0, 3);
+  const options = [targetItem.meaning, ...distractors].sort(() => Math.random() - 0.5);
+
+  const box = document.getElementById("langQuizOptions");
+  box.innerHTML = "";
+  options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.className = "quiz-opt";
+    btn.textContent = opt;
+    btn.onclick = () => {
+      if (langQuizAnswered) return;
+      langQuizAnswered = true;
+      box.querySelectorAll("button").forEach(b => (b.disabled = true));
+      const fb = document.getElementById("langQuizFeedback");
+      if (opt === targetItem.meaning) {
+        btn.classList.add("correct");
+        stats.points += 15;
+        updateTopStats();
+        fb.innerHTML = `<strong class="positive">Nice! +15 points</strong> — "${targetItem.phrase}" means "${targetItem.meaning}".`;
+      } else {
+        btn.classList.add("wrong");
+        box.querySelectorAll("button").forEach(b => {
+          if (b.textContent === targetItem.meaning) b.classList.add("correct");
+        });
+        fb.innerHTML = `<strong class="negative">Good try!</strong> Correct meaning: <strong>${targetItem.meaning}</strong>.`;
+      }
+    };
+    box.appendChild(btn);
+  });
+
+  document.getElementById("langQuizFeedback").textContent = "Choose the matching English meaning to earn points.";
 }
 
 // 1. QUIZ ARENA
@@ -1047,7 +1320,7 @@ async function handlePadClick(padIdx) {
 }
 
 // 3. REACTION SPEED TEST
-let rxState = "idle"; // idle | waiting | ready
+let rxState = "idle";
 let rxTimer = null;
 let rxStartTime = 0;
 
@@ -1199,7 +1472,7 @@ function showDailyFact(){
   const facts = [
     "Light from the Sun takes about 8 minutes and 20 seconds to reach Earth.",
     "The Pacific Ocean is the largest ocean on Earth.",
-    "Water can exist naturally as a solid, liquid and gas.",
+    "Speaking new phrases out loud helps your brain lock in pronunciation faster.",
     "Honeybees communicate information about food sources through movement.",
     "Testing your recall helps your brain keep information much longer than re-reading."
   ];
@@ -1234,7 +1507,7 @@ function openPolicy(type) {
   const pages = {
     about: {
       title: "About DAILYKIT",
-      body: "DAILYKIT is an interactive learning, brain-challenge, and study utility platform designed to make daily curiosity and focus engaging."
+      body: "DAILYKIT is an interactive language-practice, quiz, brain-challenge, and study platform designed to make daily learning engaging."
     },
     privacy: {
       title: "Privacy Policy",
@@ -1242,7 +1515,7 @@ function openPolicy(type) {
     },
     disclaimer: {
       title: "Terms & Disclaimer",
-      body: "All quizzes, brain tests, timers, and articles on DAILYKIT are provided for educational and entertainment purposes."
+      body: "All language guides, quizzes, brain tests, timers, and articles on DAILYKIT are provided for educational and entertainment purposes."
     },
     contact: {
       title: "Contact Us",
@@ -1267,6 +1540,7 @@ function closePolicy() {
 
 // INIT
 updateTopStats();
+changeLanguage();
 renderQuestion();
 renderTimer();
 </script>
