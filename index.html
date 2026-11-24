@@ -110,6 +110,63 @@ function changeLanguage(lang) {
   links[3].textContent = t.games;
 }
 </script>
+<script>
+const translations = {
+en: {
+hero: "Everything You Need, Every Day.",
+desc: "Learn, Create, Explore and Discover with DAILYKIT.",
+search: "Search tools and activities..."
+},
+es: {
+hero: "Todo lo que necesitas, cada día.",
+desc: "Aprende, crea, explora y descubre con DAILYKIT.",
+search: "Buscar herramientas y actividades..."
+},
+fr: {
+hero: "Tout ce dont vous avez besoin, chaque jour.",
+desc: "Apprenez, créez, explorez et découvrez avec DAILYKIT.",
+search: "Rechercher des outils et des activités..."
+},
+de: {
+hero: "Alles, was du jeden Tag brauchst.",
+desc: "Lernen, gestalten, erkunden und entdecken mit DAILYKIT.",
+search: "Tools und Aktivitäten suchen..."
+},
+pt: {
+hero: "Tudo o que você precisa, todos os dias.",
+desc: "Aprenda, crie, explore e descubra com DAILYKIT.",
+search: "Pesquisar ferramentas e atividades..."
+},
+ja: {
+hero: "毎日必要なもの、すべて。",
+desc: "DAILYKITで学び、創造し、探検し、発見しましょう。",
+search: "ツールやアクティビティを検索..."
+},
+zh: {
+hero: "每天所需的一切。",
+desc: "使用 DAILYKIT 学习、创造、探索和发现。",
+search: "搜索工具和活动..."
+},
+hi: {
+hero: "हर दिन आपकी ज़रूरत की हर चीज़।",
+desc: "DAILYKIT के साथ सीखें, बनाएं, खोजें और जानें।",
+search: "टूल और गतिविधियाँ खोजें..."
+}
+};
+
+const oldChangeLanguage = changeLanguage;
+
+function changeLanguage(lang) {
+const t = translations[lang];
+if (!t) return;
+
+document.getElementById("heroTitle").textContent = t.hero;
+document.getElementById("heroDescription").textContent = t.desc;
+document.getElementById("search").placeholder = t.search;
+
+oldChangeLanguage(lang);
+}
+</script>
 <body>
 <header>
 <div class="logo">DAILY<span>KIT</span></div>
