@@ -191,30 +191,51 @@ section{padding:26px 0}
   padding:22px;
 }
 
-/* LANGUAGE SELECTOR BUTTONS */
+/* LANGUAGE SELECTOR BUTTONS ONLY */
 .lang-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-bottom:18px;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
 }
 .lang-pill{
-  padding:14px 12px;
-  border-radius:16px;
+  padding:20px 16px;
+  border-radius:18px;
   background:var(--surface);
   color:var(--ink);
   border:2px solid var(--line);
-  border-bottom:4px solid #cbd5e1;
-  font-size:17px;
+  border-bottom:5px solid #cbd5e1;
+  font-size:19px;
   font-weight:900;
-  transition:.1s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  transition:.12s;
 }
-.lang-pill:hover{border-color:var(--blue)}
-.lang-pill.active{
-  background:#e6f6ff;
-  border-color:var(--blue);
-  border-bottom-color:var(--blue-dark);
-  color:var(--blue-dark);
+.lang-pill:hover{
+  transform:translateY(-2px);
+  border-color:var(--green);
+  background:#f7fff0;
+}
+.lang-pill:active{
+  transform:translateY(2px);
+  border-bottom-width:2px;
+}
+
+/* INSIDE SELECTED LANGUAGE VIEW */
+#languageLessonView{display:none}
+.lesson-top-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.active-lang-title{
+  font-size:20px;
+  font-weight:900;
+  color:var(--green-dark);
 }
 
 /* STEP PATH */
@@ -440,11 +461,10 @@ footer{
 }
 
 @media(max-width:760px){
-  .lang-grid{grid-template-columns:repeat(2,1fr)}
   .sub-grid,.facts-grid,.ans-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:520px){
-  .path-row,.sub-grid,.facts-grid,.ans-grid{grid-template-columns:1fr}
+  .lang-grid,.path-row,.sub-grid,.facts-grid,.ans-grid{grid-template-columns:1fr}
   .nav-links a{padding:6px 9px;font-size:13px}
 }
 </style>
@@ -466,7 +486,7 @@ footer{
 <div class="score-strip">
   <div class="wrap score-inner">
     <div class="star-pill">⭐ Stars: <span id="starsVal">0</span></div>
-    <div class="strip-tip">Tap a language, start at Step 1, and collect stars!</div>
+    <div class="strip-tip">Pick a language to start from Lesson 1 and collect stars!</div>
   </div>
 </div>
 
@@ -477,9 +497,9 @@ footer{
     <div class="wrap">
       <div class="hero-card">
         <h1>Learn Step by Step.<br><span>Simple &amp; Fun Every Day!</span></h1>
-        <p>Pick a language to start from Step 1 with sound, play easy quizzes, and read fun facts about Science, Biology, AI, and History.</p>
+        <p>Pick a language to enter its lessons from Step 1 with sound, play easy quizzes, and read fun facts about Science, Biology, AI, and History.</p>
         <div class="hero-actions">
-          <a href="#languages" style="text-decoration:none"><button class="duo-btn">🗣️ Start Lesson 1</button></a>
+          <a href="#languages" style="text-decoration:none"><button class="duo-btn">🗣️ Pick a Language</button></a>
           <a href="#quiz" style="text-decoration:none"><button class="duo-btn duo-blue">🎯 Play Quiz</button></a>
         </div>
       </div>
@@ -488,58 +508,67 @@ footer{
 
   <div class="wrap">
 
-    <!-- 1. DUOLINGO-STYLE LANGUAGE PATH -->
+    <!-- 1. PICK A LANGUAGE & GO STEP BY STEP -->
     <section id="languages">
       <div class="sec-head">
         <h2>1. Pick a Language &amp; Go Step by Step</h2>
-        <p>Choose your language, tap a step from 1 to 3, and press 🔊 Listen.</p>
+        <p id="langSectionDesc">Tap a language below to go inside and start lessons from the beginning.</p>
       </div>
 
       <div class="duo-card">
-        <div class="lang-grid">
-          <button class="lang-pill active" onclick="chooseLang('it', this)">🇮🇹 Italian</button>
-          <button class="lang-pill" onclick="chooseLang('es', this)">🇪🇸 Spanish</button>
-          <button class="lang-pill" onclick="chooseLang('fr', this)">🇫🇷 French</button>
-          <button class="lang-pill" onclick="chooseLang('ja', this)">🇯🇵 Japanese</button>
+        <!-- LANGUAGE BUTTONS ONLY -->
+        <div id="languagePickerView" class="lang-grid">
+          <button class="lang-pill" onclick="enterLanguage('it')">🇮🇹 Italian</button>
+          <button class="lang-pill" onclick="enterLanguage('es')">🇪🇸 Spanish</button>
+          <button class="lang-pill" onclick="enterLanguage('fr')">🇫🇷 French</button>
+          <button class="lang-pill" onclick="enterLanguage('ja')">🇯🇵 Japanese</button>
         </div>
 
-        <div class="path-row">
-          <button class="path-step active" onclick="chooseStep(0, this)">
-            <small>STEP 1 • START HERE</small>
-            👋 Hello &amp; Hi
-          </button>
-          <button class="path-step" onclick="chooseStep(1, this)">
-            <small>STEP 2 • NEXT STEP</small>
-            🙏 Please &amp; Thank You
-          </button>
-          <button class="path-step" onclick="chooseStep(2, this)">
-            <small>STEP 3 • FUN WORDS</small>
-            🍎 Food &amp; Bye
-          </button>
-        </div>
-
-        <div class="flash-box">
-          <span class="chip-tag" id="stepBadge">ITALIAN • STEP 1</span>
-          <div class="big-phrase" id="phraseMain">Ciao!</div>
-          <div class="pron-line" id="phraseSay">Say: CHOW!</div>
-          <div class="meaning-line" id="phraseMeaning">Meaning: Hi! / Bye!</div>
-
-          <div class="example-box">
-            <div id="exLine">"Ciao Anna!"</div>
-            <small id="exSub">"Hi Anna!"</small>
+        <!-- INSIDE SELECTED LANGUAGE LESSONS -->
+        <div id="languageLessonView">
+          <div class="lesson-top-bar">
+            <div class="active-lang-title" id="activeLangHeading">🇮🇹 Italian Lessons</div>
+            <button class="duo-btn duo-ghost" onclick="backToLanguages()" style="padding:9px 14px;font-size:14px">⬅ All Languages</button>
           </div>
 
-          <div class="btn-cluster">
-            <button class="duo-btn" onclick="listenPhrase()">🔊 Listen</button>
-            <button class="duo-btn duo-ghost" onclick="prevItem()">⬅ Back</button>
-            <button class="duo-btn duo-blue" onclick="nextItem()">Next ➡</button>
+          <div class="path-row">
+            <button class="path-step active" onclick="chooseStep(0, this)">
+              <small>STEP 1 • START HERE</small>
+              👋 Hello &amp; Hi
+            </button>
+            <button class="path-step" onclick="chooseStep(1, this)">
+              <small>STEP 2 • NEXT STEP</small>
+              🙏 Please &amp; Thank You
+            </button>
+            <button class="path-step" onclick="chooseStep(2, this)">
+              <small>STEP 3 • FUN WORDS</small>
+              🍎 Food &amp; Bye
+            </button>
           </div>
-        </div>
 
-        <div class="feedback-strip" style="flex-direction:column;align-items:stretch">
-          <div id="matchPrompt">Quick Match (+10 ⭐): What does "Ciao!" mean?</div>
-          <div class="ans-grid" id="matchChoices"></div>
-          <div id="matchStatus" style="color:var(--muted)">Tap the matching meaning above!</div>
+          <div class="flash-box">
+            <span class="chip-tag" id="stepBadge">ITALIAN • STEP 1</span>
+            <div class="big-phrase" id="phraseMain">Ciao!</div>
+            <div class="pron-line" id="phraseSay">Say: CHOW!</div>
+            <div class="meaning-line" id="phraseMeaning">Meaning: Hi! / Bye!</div>
+
+            <div class="example-box">
+              <div id="exLine">"Ciao Anna!"</div>
+              <small id="exSub">"Hi Anna!"</small>
+            </div>
+
+            <div class="btn-cluster">
+              <button class="duo-btn" onclick="listenPhrase()">🔊 Listen</button>
+              <button class="duo-btn duo-ghost" onclick="prevItem()">⬅ Back</button>
+              <button class="duo-btn duo-blue" onclick="nextItem()">Next ➡</button>
+            </div>
+          </div>
+
+          <div class="feedback-strip" style="flex-direction:column;align-items:stretch">
+            <div id="matchPrompt">Quick Match (+10 ⭐): What does "Ciao!" mean?</div>
+            <div class="ans-grid" id="matchChoices"></div>
+            <div id="matchStatus" style="color:var(--muted)">Tap the matching meaning above!</div>
+          </div>
         </div>
       </div>
     </section>
@@ -708,6 +737,7 @@ document.getElementById("starsVal").textContent = stars;
 
 const courses = {
   it: {
+    flag: "🇮🇹",
     label: "ITALIAN",
     voice: "it-IT",
     steps: [
@@ -726,6 +756,7 @@ const courses = {
     ]
   },
   es: {
+    flag: "🇪🇸",
     label: "SPANISH",
     voice: "es-ES",
     steps: [
@@ -744,6 +775,7 @@ const courses = {
     ]
   },
   fr: {
+    flag: "🇫🇷",
     label: "FRENCH",
     voice: "fr-FR",
     steps: [
@@ -762,6 +794,7 @@ const courses = {
     ]
   },
   ja: {
+    flag: "🇯🇵",
     label: "JAPANESE",
     voice: "ja-JP",
     steps: [
@@ -786,14 +819,28 @@ let selStep = 0;
 let selIdx = 0;
 let matchDone = false;
 
-function chooseLang(code, btn){
+function enterLanguage(code){
   selLang = code;
   selStep = 0;
   selIdx = 0;
-  document.querySelectorAll(".lang-pill").forEach(b => b.classList.remove("active"));
-  if(btn) btn.classList.add("active");
+
+  document.getElementById("languagePickerView").style.display = "none";
+  document.getElementById("languageLessonView").style.display = "block";
+  document.getElementById("langSectionDesc").textContent =
+    "Start from Step 1 and go step by step. Tap All Languages anytime to switch.";
+
+  const c = courses[selLang];
+  document.getElementById("activeLangHeading").textContent = `${c.flag} ${c.label} • Start at Step 1`;
   document.querySelectorAll(".path-step").forEach((b, i) => b.classList.toggle("active", i === 0));
+
   renderCard();
+}
+
+function backToLanguages(){
+  document.getElementById("languageLessonView").style.display = "none";
+  document.getElementById("languagePickerView").style.display = "grid";
+  document.getElementById("langSectionDesc").textContent =
+    "Tap a language below to go inside and start lessons from the beginning.";
 }
 
 function chooseStep(stepIdx, btn){
@@ -811,8 +858,10 @@ function renderCard(){
 
   document.getElementById("stepBadge").textContent = `${c.label} • STEP ${selStep + 1}`;
   document.getElementById("phraseMain").textContent = card.word;
-  document.getElementById("phraseSay").textContent = `Say: ${card.say}`; document.getElementById("phraseMeaning").textContent = `Meaning: ${card.meaning}`;
-  document.getElementById("exLine").textContent = `"${card.ex}"`; document.getElementById("exSub").textContent = `"${card.exSub}"`;
+  document.getElementById("phraseSay").textContent = `Say: ${card.say}`;
+  document.getElementById("phraseMeaning").textContent = `Meaning: ${card.meaning}`;
+  document.getElementById("exLine").textContent = `"${card.ex}"`;
+  document.getElementById("exSub").textContent = `"${card.exSub}"`;
 
   renderMatch(c, card);
 }
@@ -912,7 +961,7 @@ function resetQuiz(){
 function drawQuiz(){
   qLocked = false;
   const list = quizData[activeQTopic];
-  document.getElementById("qProgress").textContent = `Question ${Math.min(activeQIndex + 1, list.length)} /${list.length}`;
+  document.getElementById("qProgress").textContent = `Question ${Math.min(activeQIndex + 1, list.length)} / ${list.length}`;
   document.getElementById("qNextBtn").style.display = "none";
 
   if(activeQIndex >= list.length){
@@ -972,4 +1021,27 @@ function filterFacts(cat){
     if(show) count++;
   });
   document.getElementById("factsLabel").textContent =
-    cat === "all" ? `Showing all ${count
+    cat === "all" ? `Showing all ${count} fun facts` : `Showing ${count} ${cat.toUpperCase()} fun facts`;
+  document.getElementById("facts").scrollIntoView({ behavior: "smooth" });
+}
+
+factCards.forEach(card => {
+  card.onclick = () => {
+    document.getElementById("homeView").style.display = "none";
+    document.getElementById("factReader").style.display = "block";
+    document.getElementById("readerBadge").textContent = card.dataset.cat.toUpperCase();
+    document.getElementById("readerHeading").textContent = card.dataset.title;
+    document.getElementById("readerText").textContent = card.dataset.text;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+});
+
+function closeFactReader(){
+  document.getElementById("factReader").style.display = "none";
+  document.getElementById("homeView").style.display = "block";
+}
+
+drawQuiz();
+</script>
+</body>
+</html>
