@@ -322,6 +322,66 @@ footer {
   }
   footer { padding-bottom:85px; }
 }
+#social-fun .discovery {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#social-fun .big-emoji {
+  font-size: 75px;
+}
+
+#personalityQuiz .card,
+#personalityResult .card {
+  text-align: center;
+  padding: 25px;
+}
+
+#quizOptions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+#quizOptions button {
+  padding: 15px;
+  border: 1px solid var(--cyan);
+  border-radius: 12px;
+  background: rgba(0, 200, 255, 0.08);
+  color: inherit;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+#quizOptions button:hover {
+  background: rgba(0, 200, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+#social-fun .info-button {
+  margin: 8px 5px;
+  cursor: pointer;
+  font: inherit;
+}
+
+#resultCard {
+  border: 1px solid var(--cyan);
+  border-radius: 18px;
+}
+
+@media(max-width:600px) {
+  #quizOptions {
+    grid-template-columns: 1fr;
+  }
+
+  #social-fun .big-emoji {
+    font-size: 55px;
+  }
+}
 </style>
 </head>
 
@@ -439,6 +499,55 @@ footer {
       <span class="coming" data-i18n="coming">Coming soon</span>
     </div>
 
+  </div>
+</section>
+
+<section id="social-fun">
+  <div class="section-heading">
+    <h2 data-i18n="socialTitle">🎉 Social Fun</h2>
+    <span data-i18n="socialSubtitle">PLAY • DISCOVER • SHARE</span>
+  </div>
+
+  <div class="discovery">
+    <div>
+      <h2 data-i18n="personalityTitle">Discover Your Personality!</h2>
+      <p data-i18n="personalityDesc">
+  Answer 5 fun questions and discover your playful personality type.
+</p>
+      <button class="info-button" onclick="startPersonalityTest()">
+  <span data-i18n="takeTest">Take the Test</span> →
+</button>
+     
+    </div>
+    <div class="big-emoji">🎭</div>
+  </div>
+
+  <div id="personalityQuiz" style="display:none; margin-top:20px;">
+    <div class="card">
+      <h3 id="quizProgress">Question 1 of 5</h3>
+      <h2 id="quizQuestion" style="margin:20px 0;"></h2>
+      <div id="quizOptions" class="grid"></div>
+    </div>
+  </div>
+
+  <div id="personalityResult" style="display:none; margin-top:20px;">
+    <div class="card" id="resultCard">
+      <div class="emoji">✨</div>
+      <h2 id="resultTitle"></h2>
+      <p id="resultDescription"></p>
+      <p style="margin-top:15px;color:var(--cyan);">
+        DAILYKIT • DISCOVER YOURSELF
+      </p>
+    </div>
+    <button class="info-button" onclick="sharePersonalityResult()">
+  <span data-i18n="shareResult">Share Result</span>
+</button>
+    <button class="info-button" onclick="downloadPersonalityResult()">
+  <span data-i18n="downloadCard">Download Card</span>
+</button>
+    <button class="info-button" onclick="startPersonalityTest()">
+  <span data-i18n="tryAgain">Try Again</span>
+</button>
   </div>
 </section>
 
@@ -588,7 +697,14 @@ notes:"Smart Notes", notesDesc:"Keep your thoughts and ideas organized.",
 noResults:"No matching results found.",
 futureTitle:"Your Future Starts Here",
 futureDesc:"One platform. Endless possibilities. Explore, learn, create and discover more.",
-footerText:"One Digital World For Everything.", rights:"All rights reserved."
+footerText:"One Digital World For Everything.", rights:"All rights reserved.",socialTitle:"Social Fun",
+socialSubtitle:"PLAY • DISCOVER • SHARE",
+personalityTitle:"Discover Your Personality!",
+personalityDesc:"Answer 5 fun questions and discover your playful personality type.",
+takeTest:"Take the Test",
+shareResult:"Share Result",
+downloadCard:"Download Card",
+tryAgain:"Try Again"
 },
 es: {
 explore:"Explorar", discovery:"Descubrir", tools:"Herramientas", learn:"Aprender",
@@ -619,7 +735,15 @@ notes:"Notas inteligentes", notesDesc:"Organiza tus pensamientos e ideas.",
 noResults:"No se encontraron resultados.",
 futureTitle:"Tu futuro comienza aquí",
 futureDesc:"Una plataforma. Infinitas posibilidades. Explora, aprende, crea y descubre más.",
-footerText:"Un mundo digital para todo.", rights:"Todos los derechos reservados."
+footerText:"Un mundo digital para todo.", rights:"Todos los derechos reservados."rights:"Todos los derechos reservados.",
+socialTitle:"Diversión Social",
+socialSubtitle:"JUEGA • DESCUBRE • COMPARTE",
+personalityTitle:"¡Descubre tu personalidad!",
+personalityDesc:"Responde 5 preguntas divertidas y descubre tu tipo de personalidad.",
+takeTest:"Hacer el test",
+shareResult:"Compartir resultado",
+downloadCard:"Descargar tarjeta",
+tryAgain:"Intentar de nuevo"
 },
 fr: {
 explore:"Explorer", discovery:"Découverte", tools:"Outils", learn:"Apprendre",
@@ -650,7 +774,14 @@ notes:"Notes intelligentes", notesDesc:"Organisez vos pensées et vos idées.",
 noResults:"Aucun résultat correspondant.",
 futureTitle:"Votre avenir commence ici",
 futureDesc:"Une plateforme. Des possibilités infinies. Explorez, apprenez, créez et découvrez.",
-footerText:"Un monde numérique pour tout.", rights:"Tous droits réservés."
+footerText:"Un monde numérique pour tout.", rights:"Tous droits réservés.",socialTitle:"Divertissement social",
+socialSubtitle:"JOUE • DÉCOUVRE • PARTAGE",
+personalityTitle:"Découvre ta personnalité !",
+personalityDesc:"Réponds à 5 questions amusantes et découvre ton type de personnalité.",
+takeTest:"Faire le test",
+shareResult:"Partager le résultat",
+downloadCard:"Télécharger la carte",
+tryAgain:"Réessayer"
 },
 de: {
 explore:"Entdecken", discovery:"Entdeckungen", tools:"Werkzeuge", learn:"Lernen",
@@ -681,7 +812,14 @@ notes:"Intelligente Notizen", notesDesc:"Organisiere deine Gedanken und Ideen.",
 noResults:"Keine passenden Ergebnisse gefunden.",
 futureTitle:"Deine Zukunft beginnt hier",
 futureDesc:"Eine Plattform. Unendliche Möglichkeiten. Entdecke, lerne und erschaffe.",
-footerText:"Eine digitale Welt für alles.", rights:"Alle Rechte vorbehalten."
+footerText:"Eine digitale Welt für alles.", rights:"Alle Rechte vorbehalten.",socialTitle:"Socialer Spaß",
+socialSubtitle:"SPIELEN • ENTDECKEN • TEILEN",
+personalityTitle:"Entdecke deine Persönlichkeit!",
+personalityDesc:"Beantworte 5 unterhaltsame Fragen und entdecke deinen Persönlichkeitstyp.",
+takeTest:"Test starten",
+shareResult:"Ergebnis teilen",
+downloadCard:"Karte herunterladen",
+tryAgain:"Erneut versuchen"
 },
 pt: {
 explore:"Explorar", discovery:"Descobrir", tools:"Ferramentas", learn:"Aprender",
@@ -712,7 +850,14 @@ notes:"Notas inteligentes", notesDesc:"Organize seus pensamentos e ideias.",
 noResults:"Nenhum resultado encontrado.",
 futureTitle:"Seu futuro começa aqui",
 futureDesc:"Uma plataforma. Possibilidades infinitas. Explore, aprenda, crie e descubra.",
-footerText:"Um mundo digital para tudo.", rights:"Todos os direitos reservados."
+footerText:"Um mundo digital para tudo.", rights:"Todos os direitos reservados.",socialTitle:"Diversão Social",
+socialSubtitle:"JOGUE • DESCUBRA • COMPARTILHE",
+personalityTitle:"Descubra sua personalidade!",
+personalityDesc:"Responda a 5 perguntas divertidas e descubra seu tipo de personalidade.",
+takeTest:"Fazer o teste",
+shareResult:"Compartilhar resultado",
+downloadCard:"Baixar cartão",
+tryAgain:"Tentar novamente"
 },
 ja: {
 explore:"探索", discovery:"発見", tools:"ツール", learn:"学習",
@@ -774,7 +919,14 @@ notes:"智能笔记", notesDesc:"整理你的想法和创意。",
 noResults:"没有找到匹配结果。",
 futureTitle:"你的未来从这里开始",
 futureDesc:"一个平台，无限可能。探索、学习、创造和发现更多。",
-footerText:"满足一切需求的数字世界。", rights:"保留所有权利。"
+footerText:"满足一切需求的数字世界。", rights:"保留所有权利。",socialTitle:"ソーシャルファン",
+socialSubtitle:"遊ぶ • 発見する • 共有する",
+personalityTitle:"あなたの性格を発見しよう！",
+personalityDesc:"5つの楽しい質問に答えて、あなたの性格タイプを発見しましょう。",
+takeTest:"テストを始める",
+shareResult:"結果を共有",
+downloadCard:"カードをダウンロード",
+tryAgain:"もう一度試す"
 },
 hi: {
 explore:"खोजें", discovery:"खोज", tools:"टूल्स", learn:"सीखें",
@@ -805,7 +957,14 @@ notes:"स्मार्ट नोट्स", notesDesc:"अपने विच
 noResults:"कोई मेल खाता परिणाम नहीं मिला।",
 futureTitle:"आपका भविष्य यहाँ से शुरू होता है",
 futureDesc:"एक प्लेटफ़ॉर्म। अनंत संभावनाएं। खोजें, सीखें, बनाएं और आगे बढ़ें।",
-footerText:"हर ज़रूरत के लिए एक डिजिटल दुनिया।", rights:"सर्वाधिकार सुरक्षित।"
+footerText:"हर ज़रूरत के लिए एक डिजिटल दुनिया।", rights:"सर्वाधिकार सुरक्षित।",socialTitle:"सोशल फन",
+socialSubtitle:"खेलें • खोजें • साझा करें",
+personalityTitle:"अपना व्यक्तित्व जानें!",
+personalityDesc:"5 मज़ेदार सवालों के जवाब दें और अपने व्यक्तित्व का प्रकार जानें।",
+takeTest:"टेस्ट शुरू करें",
+shareResult:"परिणाम साझा करें",
+downloadCard:"कार्ड डाउनलोड करें",
+tryAgain:"फिर से कोशिश करें"
 }
 };
 
@@ -832,8 +991,26 @@ function changeLanguage(lang) {
 
   try {
     localStorage.setItem("dailykit-language", lang);
-  } catch (error) {}
+  } catch (error) {}const quiz = document.getElementById("personalityQuiz");
+const result = document.getElementById("personalityResult");
+
+if (quiz && quiz.style.display !== "none") {
+  showPersonalityQuestion();
 }
+
+if (result && result.style.display !== "none") {
+  showPersonalityResult();
+}
+  const quiz = document.getElementById("personalityQuiz");
+  const result = document.getElementById("personalityResult");
+
+  if (quiz && quiz.style.display !== "none") {
+    showPersonalityQuestion();
+  }
+
+  if (result && result.style.display !== "none") {
+    showPersonalityResult();
+  }
 
 document.getElementById("languageSelector").addEventListener("change", function() {
   changeLanguage(this.value);
@@ -886,6 +1063,345 @@ try {
     document.body.classList.add("light");
   }
 } catch (error) {}
+
+const personalityQuizTranslations = {
+  en: {
+    progress: "Question {n} of {total}",
+    questions: [
+      ["What do you enjoy doing most?", ["Exploring new places", "Solving difficult problems", "Creating something new", "Helping other people"]],
+      ["Choose your ideal weekend.", ["An exciting adventure", "Reading or learning", "Making art or music", "Spending time with friends"]],
+      ["What describes you best?", ["Curious and adventurous", "Logical and thoughtful", "Imaginative and original", "Friendly and supportive"]],
+      ["When facing a challenge, you...", ["Try a new approach", "Analyze every detail", "Think creatively", "Bring people together"]],
+      ["Choose one superpower.", ["Explore any world", "Know everything", "Create anything", "Inspire everyone"]]
+    ]
+  },
+  es: {
+    progress: "Pregunta {n} de {total}",
+    questions: [
+      ["¿Qué disfrutas hacer más?", ["Explorar lugares nuevos", "Resolver problemas difíciles", "Crear algo nuevo", "Ayudar a otras personas"]],
+      ["Elige tu fin de semana ideal.", ["Una aventura emocionante", "Leer o aprender", "Hacer arte o música", "Pasar tiempo con amigos"]],
+      ["¿Qué te describe mejor?", ["Curioso y aventurero", "Lógico y reflexivo", "Imaginativo y original", "Amable y solidario"]],
+      ["Cuando enfrentas un desafío...", ["Pruebas un nuevo enfoque", "Analizas cada detalle", "Piensas creativamente", "Unes a las personas"]],
+      ["Elige un superpoder.", ["Explorar cualquier mundo", "Saberlo todo", "Crear cualquier cosa", "Inspirar a todos"]]
+    ]
+  },
+  fr: {
+    progress: "Question {n} sur {total}",
+    questions: [
+      ["Qu'aimes-tu faire le plus ?", ["Explorer de nouveaux endroits", "Résoudre des problèmes difficiles", "Créer quelque chose de nouveau", "Aider les autres"]],
+      ["Choisis ton week-end idéal.", ["Une aventure passionnante", "Lire ou apprendre", "Créer de l'art ou de la musique", "Passer du temps avec des amis"]],
+      ["Qu'est-ce qui te décrit le mieux ?", ["Curieux et aventureux", "Logique et réfléchi", "Imaginatif et original", "Amical et attentionné"]],
+      ["Face à un défi, tu...", ["Essaies une nouvelle approche", "Analyses chaque détail", "Penses de façon créative", "Rassembles les gens"]],
+      ["Choisis un super-pouvoir.", ["Explorer tous les mondes", "Tout savoir", "Tout créer", "Inspirer tout le monde"]]
+    ]
+  },
+  de: {
+    progress: "Frage {n} von {total}",
+    questions: [
+      ["Was machst du am liebsten?", ["Neue Orte entdecken", "Schwierige Probleme lösen", "Etwas Neues erschaffen", "Anderen Menschen helfen"]],
+      ["Wähle dein ideales Wochenende.", ["Ein aufregendes Abenteuer", "Lesen oder Lernen", "Kunst oder Musik machen", "Zeit mit Freunden verbringen"]],
+      ["Was beschreibt dich am besten?", ["Neugierig und abenteuerlustig", "Logisch und nachdenklich", "Fantasievoll und originell", "Freundlich und hilfsbereit"]],
+      ["Wenn du vor einer Herausforderung stehst...", ["Probierst du etwas Neues", "Analysierst du jedes Detail", "Denkst du kreativ", "Bringst du Menschen zusammen"]],
+      ["Wähle eine Superkraft.", ["Jede Welt erkunden", "Alles wissen", "Alles erschaffen", "Alle inspirieren"]]
+    ]
+  },
+  pt: {
+    progress: "Pergunta {n} de {total}",
+    questions: [
+      ["O que você mais gosta de fazer?", ["Explorar novos lugares", "Resolver problemas difíceis", "Criar algo novo", "Ajudar outras pessoas"]],
+      ["Escolha seu fim de semana ideal.", ["Uma aventura emocionante", "Ler ou aprender", "Criar arte ou música", "Passar tempo com amigos"]],
+      ["O que melhor descreve você?", ["Curioso e aventureiro", "Lógico e reflexivo", "Imaginativo e original", "Amigável e prestativo"]],
+      ["Ao enfrentar um desafio, você...", ["Tenta uma nova abordagem", "Analisa cada detalhe", "Pensa de forma criativa", "Une as pessoas"]],
+      ["Escolha um superpoder.", ["Explorar qualquer mundo", "Saber tudo", "Criar qualquer coisa", "Inspirar todos"]]
+    ]
+  },
+  ja: {
+    progress: "質問 {n}/{total}",
+    questions: [
+      ["一番好きなことは何ですか？", ["新しい場所を探検する", "難しい問題を解決する", "新しいものを作る", "人を助ける"]],
+      ["理想の週末を選んでください。", ["ワクワクする冒険", "読書や学習", "芸術や音楽を作る", "友達と過ごす"]],
+      ["あなたに最も当てはまるのは？", ["好奇心旺盛で冒険好き", "論理的で思慮深い", "想像力豊かで独創的", "親しみやすく協力的"]],
+      ["困難に直面したとき...", ["新しい方法を試す", "細部まで分析する", "創造的に考える", "人々をまとめる"]],
+      ["超能力を一つ選んでください。", ["どんな世界も探検する", "すべてを知る", "何でも創造する", "みんなを元気づける"]]
+    ]
+  },
+  zh: {
+    progress: "第 {n} 题，共 {total} 题",
+    questions: [
+      ["你最喜欢做什么？", ["探索新的地方", "解决困难的问题", "创造新事物", "帮助他人"]],
+      ["选择你理想的周末。", ["刺激的冒险", "阅读或学习", "创作艺术或音乐", "与朋友共度时光"]],
+      ["哪一项最能描述你？", ["好奇且喜欢冒险", "理性且善于思考", "富有想象力且有创意", "友善且乐于助人"]],
+      ["面对挑战时，你会……", ["尝试新的方法", "分析每个细节", "创造性地思考", "团结大家"]],
+      ["选择一种超能力。", ["探索任何世界", "无所不知", "创造任何事物", "激励所有人"]]
+    ]
+  },
+  hi: {
+    progress: "प्रश्न {n} / {total}",
+    questions: [
+      ["आपको सबसे ज्यादा क्या करना पसंद है?", ["नई जगहों की खोज करना", "कठिन समस्याएँ हल करना", "कुछ नया बनाना", "दूसरों की मदद करना"]],
+      ["अपना आदर्श सप्ताहांत चुनें।", ["रोमांचक साहसिक यात्रा", "पढ़ना या सीखना", "कला या संगीत बनाना", "दोस्तों के साथ समय बिताना"]],
+      ["आपका सबसे अच्छा वर्णन क्या है?", ["जिज्ञासु और साहसी", "तार्किक और विचारशील", "कल्पनाशील और रचनात्मक", "मिलनसार और सहयोगी"]],
+      ["किसी चुनौती का सामना करते समय आप...", ["नया तरीका आज़माते हैं", "हर विवरण का विश्लेषण करते हैं", "रचनात्मक सोचते हैं", "लोगों को साथ लाते हैं"]],
+      ["एक सुपरपावर चुनें।", ["किसी भी दुनिया की खोज करना", "सब कुछ जानना", "कुछ भी बनाना", "सबको प्रेरित करना"]]
+    ]
+  }
+};
+const personalityQuestions = [
+  {
+    question: "What do you enjoy doing most?",
+    options: [
+      ["Exploring new places", "explorer"],
+      ["Solving difficult problems", "thinker"],
+      ["Creating something new", "creator"],
+      ["Helping other people", "leader"]
+    ]
+  },
+  {
+    question: "Choose your ideal weekend.",
+    options: [
+      ["An exciting adventure", "explorer"],
+      ["Reading or learning", "thinker"],
+      ["Making art or music", "creator"],
+      ["Spending time with friends", "leader"]
+    ]
+  },
+  {
+    question: "What describes you best?",
+    options: [
+      ["Curious and adventurous", "explorer"],
+      ["Logical and thoughtful", "thinker"],
+      ["Imaginative and original", "creator"],
+      ["Friendly and supportive", "leader"]
+    ]
+  },
+  {
+    question: "When facing a challenge, you...",
+    options: [
+      ["Try a new approach", "explorer"],
+      ["Analyze every detail", "thinker"],
+      ["Think creatively", "creator"],
+      ["Bring people together", "leader"]
+    ]
+  },
+  {
+    question: "Choose one superpower.",
+    options: [
+      ["Explore any world", "explorer"],
+      ["Know everything", "thinker"],
+      ["Create anything", "creator"],
+      ["Inspire everyone", "leader"]
+    ]
+  }
+];
+
+const personalityTypesTranslations = {
+  en: {
+    explorer: {
+      title: "The Explorer 🌍",
+      description: "You love discovering new things, exploring possibilities and experiencing the world."
+    },
+    thinker: {
+      title: "The Thinker 🧠",
+      description: "You enjoy ideas, knowledge and solving interesting challenges."
+    },
+    creator: {
+      title: "The Creator 🎨",
+      description: "You bring imagination to life and enjoy making original things."
+    },
+    leader: {
+      title: "The Connector ⭐",
+      description: "You enjoy bringing people together and making a positive difference."
+    }
+  },
+  es: {
+    explorer: { title: "El Explorador 🌍", description: "Te encanta descubrir cosas nuevas, explorar posibilidades y experimentar el mundo." },
+    thinker: { title: "El Pensador 🧠", description: "Disfrutas las ideas, el conocimiento y resolver desafíos interesantes." },
+    creator: { title: "El Creador 🎨", description: "Das vida a tu imaginación y disfrutas creando cosas originales." },
+    leader: { title: "El Conector ⭐", description: "Disfrutas unir a las personas y generar un impacto positivo." }
+  },
+  fr: {
+    explorer: { title: "L'Explorateur 🌍", description: "Tu aimes découvrir de nouvelles choses, explorer les possibilités et vivre le monde." },
+    thinker: { title: "Le Penseur 🧠", description: "Tu apprécies les idées, le savoir et la résolution de défis intéressants." },
+    creator: { title: "Le Créateur 🎨", description: "Tu donnes vie à ton imagination et aimes créer des choses originales." },
+    leader: { title: "Le Connecteur ⭐", description: "Tu aimes rassembler les gens et apporter une contribution positive." }
+  },
+  de: {
+    explorer: { title: "Der Entdecker 🌍", description: "Du liebst es, Neues zu entdecken, Möglichkeiten zu erkunden und die Welt zu erleben." },
+    thinker: { title: "Der Denker 🧠", description: "Du magst Ideen, Wissen und das Lösen interessanter Herausforderungen." },
+    creator: { title: "Der Kreative 🎨", description: "Du erweckst deine Fantasie zum Leben und erschaffst gerne originelle Dinge." },
+    leader: { title: "Der Verbinder ⭐", description: "Du bringst gerne Menschen zusammen und bewirkst positive Veränderungen." }
+  },
+  pt: {
+    explorer: { title: "O Explorador 🌍", description: "Você adora descobrir coisas novas, explorar possibilidades e conhecer o mundo." },
+    thinker: { title: "O Pensador 🧠", description: "Você gosta de ideias, conhecimento e resolver desafios interessantes." },
+    creator: { title: "O Criador 🎨", description: "Você transforma imaginação em realidade e gosta de criar coisas originais." },
+    leader: { title: "O Conector ⭐", description: "Você gosta de unir pessoas e fazer uma diferença positiva." }
+  },
+  ja: {
+    explorer: { title: "探検家 🌍", description: "新しいことを発見し、可能性を探り、世界を体験するのが好きです。" },
+    thinker: { title: "思考家 🧠", description: "アイデアや知識、興味深い課題を解決することを楽しみます。" },
+    creator: { title: "クリエイター 🎨", description: "想像力を形にし、独創的なものを作ることを楽しみます。" },
+    leader: { title: "つなぐ人 ⭐", description: "人々をつなぎ、前向きな変化を生み出すことを楽しみます。" }
+  },
+  zh: {
+    explorer: { title: "探索者 🌍", description: "你喜欢发现新事物、探索各种可能性并体验世界。" },
+    thinker: { title: "思考者 🧠", description: "你喜欢创意、知识以及解决有趣的挑战。" },
+    creator: { title: "创造者 🎨", description: "你善于发挥想象力，喜欢创造独特的事物。" },
+    leader: { title: "连接者 ⭐", description: "你喜欢团结大家，并带来积极的改变。" }
+  },
+  hi: {
+    explorer: { title: "खोजकर्ता 🌍", description: "आपको नई चीज़ें खोजना, नई संभावनाएँ तलाशना और दुनिया का अनुभव करना पसंद है।" },
+    thinker: { title: "विचारक 🧠", description: "आपको विचार, ज्ञान और दिलचस्प चुनौतियों को हल करना पसंद है।" },
+    creator: { title: "रचनाकार 🎨", description: "आप अपनी कल्पना को साकार करना और अनोखी चीज़ें बनाना पसंद करते हैं।" },
+    leader: { title: "जोड़ने वाला ⭐", description: "आप लोगों को साथ लाना और सकारात्मक बदलाव करना पसंद करते हैं।" }
+  }
+};
+
+function showPersonalityQuestion() function showPersonalityQuestion() {
+  const lang = document.getElementById("languageSelector").value || "en";
+  const quiz = personalityQuizTranslations[lang] || personalityQuizTranslations.en;
+
+  const question = personalityQuestions[personalityIndex];
+  const translated = quiz.questions[personalityIndex];
+
+  document.getElementById("quizProgress").textContent =
+    quiz.progress
+      .replace("{n}", personalityIndex + 1)
+      .replace("{total}", personalityQuestions.length);
+
+  document.getElementById("quizQuestion").textContent = translated[0];
+
+  const optionsContainer = document.getElementById("quizOptions");
+  optionsContainer.innerHTML = "";
+
+  question.options.forEach((option, index) => {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "card";
+    button.style.cursor = "pointer";
+    button.style.color = "var(--text)";
+    button.textContent = translated[1][index];
+
+    button.addEventListener("click", () => {
+      personalityScores[option[1]]++;
+      personalityIndex++;
+
+      if (personalityIndex < personalityQuestions.length) {
+        showPersonalityQuestion();
+      } else {
+        showPersonalityResult();
+      }
+    });
+
+    optionsContainer.appendChild(button);
+  });
+}
+
+function showPersonalityResult() {
+  const winner = Object.keys(personalityScores).reduce((a, b) =>
+    personalityScores[a] >= personalityScores[b] ? a : b
+  );
+
+  const lang = document.getElementById("languageSelector").value || "en";
+  const dictionary = personalityTypesTranslations[lang] || personalityTypesTranslations.en;
+
+  currentPersonalityResult = dictionary[winner];
+
+  document.getElementById("personalityQuiz").style.display = "none";
+  document.getElementById("personalityResult").style.display = "block";
+
+  document.getElementById("resultTitle").textContent =
+    currentPersonalityResult.title;
+
+  document.getElementById("resultDescription").textContent =
+    currentPersonalityResult.description;
+
+  document.getElementById("personalityResult").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+function sharePersonalityResult() {
+  if (!currentPersonalityResult) return;
+
+  const message =
+    "My DAILYKIT personality result is: " +
+    currentPersonalityResult.title +
+    "\n" +
+    currentPersonalityResult.description +
+    "\nDiscover yours at: " +
+    window.location.href;
+
+  const whatsappURL =
+    "https://wa.me/?text=" + encodeURIComponent(message);
+
+  window.open(whatsappURL, "_blank");
+}
+
+function downloadPersonalityResult() {
+  if (!currentPersonalityResult) return;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = 1080;
+  canvas.height = 1350;
+
+  const ctx = canvas.getContext("2d");
+
+  const gradient = ctx.createLinearGradient(0, 0, 1080, 1350);
+  gradient.addColorStop(0, "#08152d");
+  gradient.addColorStop(1, "#39236b");
+
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 1080, 1350);
+
+  ctx.textAlign = "center";
+
+  ctx.fillStyle = "#20d9ff";
+  ctx.font = "bold 48px Arial";
+  ctx.fillText("DAILYKIT", 540, 180);
+
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 58px Arial";
+  ctx.fillText("MY PERSONALITY", 540, 420);
+
+  ctx.fillStyle = "#a98cff";
+  ctx.font = "bold 76px Arial";
+  ctx.fillText(currentPersonalityResult.title, 540, 620);
+
+  ctx.fillStyle = "#e4eaff";
+  ctx.font = "38px Arial";
+
+  const words = currentPersonalityResult.description.split(" ");
+  let line = "";
+  let y = 790;
+
+  words.forEach(word => {
+    const testLine = line + word + " ";
+    if (ctx.measureText(testLine).width > 820) {
+      ctx.fillText(line, 540, y);
+      line = word + " ";
+      y += 65;
+    } else {
+      line = testLine;
+    }
+  });
+
+  if (line) ctx.fillText(line, 540, y);
+
+  ctx.fillStyle = "#20d9ff";
+  ctx.font = "bold 34px Arial";
+  ctx.fillText("DISCOVER YOURSELF", 540, 1160);
+
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "30px Arial";
+  ctx.fillText("dailykit", 540, 1240);
+
+  const link = document.createElement("a");
+  link.download = "dailykit-personality-result.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+}
+
 </script>
 
 </body>
