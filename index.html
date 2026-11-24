@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080d1b">
-<meta name="description" content="DAILYKIT Knowledge Hub - Search, discover and learn.">
-<title>DAILYKIT | Knowledge Hub</title>
+<meta name="description" content="DAILYKIT - Free Online Calculators, Live Crypto Market & Knowledge Hub.">
+<title>DAILYKIT | Smart Tools, Live Markets & Knowledge Hub</title>
 <style>
 :root{
   --bg:#080d1b;
@@ -15,6 +15,8 @@
   --muted:#9eacc5;
   --cyan:#16c7e8;
   --purple:#8667ff;
+  --green:#20d99a;
+  --red:#ff647c;
   --border:rgba(255,255,255,.09);
 }
 *{box-sizing:border-box}
@@ -25,7 +27,7 @@ body{
   background:var(--bg);
   color:var(--text);
 }
-button,input{font:inherit}
+button,input,select{font:inherit}
 button{cursor:pointer}
 .container{
   width:min(1100px,92%);
@@ -56,12 +58,12 @@ header{
 .nav a{
   color:var(--muted);
   text-decoration:none;
-  margin-left:18px;
+  margin-left:16px;
   font-size:14px;
 }
 .nav a:hover{color:var(--cyan)}
 
-/* DAILYKIT LIVE TOP TICKER */
+/* LIVE TOP TICKER */
 #live-ticker-bar{
   display:flex;
   align-items:center;
@@ -81,7 +83,7 @@ header{
   height:100%;
   background:#0d192f;
   border-right:1px solid rgba(22,199,232,0.25);
-  color:#16c7e8;
+  color:var(--cyan);
   font-size:11px;
   font-weight:800;
   letter-spacing:1.2px;
@@ -92,8 +94,8 @@ header{
   width:8px;
   height:8px;
   border-radius:50%;
-  background:#20d99a;
-  box-shadow:0 0 8px #20d99a;
+  background:var(--green);
+  box-shadow:0 0 8px var(--green);
   animation:pulseDot 1.6s infinite;
 }
 @keyframes pulseDot{
@@ -134,28 +136,32 @@ header{
   white-space:nowrap;
   border-right:1px solid rgba(255,255,255,0.07);
 }
-.ticker-symbol{
-  font-weight:800;
-  color:#f4f7ff;
+.ticker-symbol{font-weight:800;color:#f4f7ff}
+.ticker-price{color:#cbd5e6;font-weight:600}
+.ticker-status{color:var(--muted);font-size:12px;padding:0 16px;white-space:nowrap}
+.positive{color:var(--green) !important}
+.negative{color:var(--red) !important}
+
+/* AD PLACEHOLDER (ADSENSE READY) */
+.ad-slot{
+  margin:22px auto;
+  min-height:90px;
+  background:rgba(20,33,58,0.45);
+  border:1px dashed rgba(255,255,255,0.14);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#6c7d9c;
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
 }
-.ticker-price{
-  color:#cbd5e6;
-  font-weight:600;
-}
-.ticker-status{
-  color:#9eacc5;
-  font-size:12px;
-  padding:0 16px;
-  white-space:nowrap;
-}
-.positive{color:#20d99a !important}
-.negative{color:#ff647c !important}
 
 .hero{
   text-align:center;
-  padding:68px 15px 50px;
-  background:
-  radial-gradient(ellipse at 50% 0%,rgba(22,199,232,.16),transparent 60%);
+  padding:58px 15px 42px;
+  background:radial-gradient(ellipse at 50% 0%,rgba(22,199,232,.16),transparent 60%);
 }
 .eyebrow{
   color:var(--cyan);
@@ -164,9 +170,9 @@ header{
   letter-spacing:3px;
 }
 .hero h1{
-  font-size:clamp(35px,7vw,65px);
+  font-size:clamp(34px,6.5vw,62px);
   line-height:1.1;
-  margin:18px 0;
+  margin:16px 0;
 }
 .gradient{
   background:linear-gradient(90deg,var(--cyan),#a68aff);
@@ -178,11 +184,13 @@ header{
   color:var(--muted);
   font-size:16px;
   line-height:1.7;
+  max-width:650px;
+  margin:auto;
 }
 .search-box{
   display:flex;
   max-width:680px;
-  margin:30px auto 12px;
+  margin:28px auto 12px;
   padding:7px;
   background:var(--panel);
   border:1px solid rgba(22,199,232,.35);
@@ -192,7 +200,7 @@ header{
 .search-box input{
   flex:1;
   min-width:0;
-  padding:15px;
+  padding:14px;
   border:0;
   outline:0;
   background:transparent;
@@ -201,26 +209,106 @@ header{
 .primary-btn{
   border:0;
   border-radius:10px;
-  padding:13px 22px;
+  padding:12px 20px;
   color:#07111b;
   font-weight:bold;
   background:var(--cyan);
+  transition:.2s;
 }
 .primary-btn:hover{filter:brightness(1.1)}
-.search-hint{
-  color:var(--muted);
-  font-size:12px;
+.secondary-btn{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:11px 16px;
+  color:var(--text);
+  background:var(--card);
+  font-weight:bold;
 }
-section{padding:45px 0}
-.section-title{
-  font-size:26px;
-  margin:0 0 8px;
+.secondary-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.search-hint{color:var(--muted);font-size:12px}
+
+section{padding:40px 0}
+.section-title{font-size:26px;margin:0 0 8px}
+.section-subtitle{color:var(--muted);margin:0 0 24px;line-height:1.6}
+
+/* TOOLS & CALCULATORS HUB */
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
 }
-.section-subtitle{
-  color:var(--muted);
-  margin:0 0 25px;
+.tool-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.tool-card:hover{border-color:rgba(22,199,232,.35)}
+.tool-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+.tool-icon{
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  background:rgba(22,199,232,.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:19px;
+}
+.tool-header h3{margin:0;font-size:17px}
+.tool-desc{color:var(--muted);font-size:13px;margin:0 0 15px;line-height:1.5}
+.field-row{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:10px;
+}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.field label{font-size:12px;color:var(--muted)}
+.field input{
+  width:100%;
+  padding:10px 12px;
+  border-radius:9px;
+  border:1px solid var(--border);
+  background:var(--bg);
+  color:white;
+  outline:0;
+}
+.field input:focus{border-color:var(--cyan)}
+.tool-result{
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:10px;
+  background:var(--card);
+  border:1px solid var(--border);
+  font-size:14px;
   line-height:1.6;
 }
+.tool-result strong{color:var(--cyan)}
+.pw-box{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+.pw-box input{
+  flex:1;
+  padding:10px 12px;
+  border-radius:9px;
+  border:1px solid var(--border);
+  background:var(--bg);
+  color:var(--green);
+  font-family:monospace;
+  font-size:14px;
+}
+
 .categories{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -240,12 +328,8 @@ section{padding:45px 0}
 }
 .category .emoji{font-size:28px}
 .category h3{margin:13px 0 7px;font-size:17px}
-.category p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.5;
-  margin:0;
-}
+.category p{color:var(--muted);font-size:13px;line-height:1.5;margin:0}
+
 .discovery{
   background:linear-gradient(120deg,#122a43,#211b48);
   border:1px solid var(--border);
@@ -259,6 +343,7 @@ section{padding:45px 0}
 .discovery h3{font-size:21px;margin:8px 0}
 .discovery p{color:#c0cbe0;line-height:1.6}
 .discovery .emoji{font-size:42px}
+
 .articles{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -280,21 +365,9 @@ section{padding:45px 0}
   font-weight:bold;
 }
 .article h3{font-size:17px;line-height:1.4}
-.article p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.6;
-}
-.read-more{
-  color:var(--cyan);
-  font-size:13px;
-  font-weight:bold;
-}
-.results-info{
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:15px;
-}
+.article p{color:var(--muted);font-size:13px;line-height:1.6}
+.read-more{color:var(--cyan);font-size:13px;font-weight:bold}
+.results-info{color:var(--muted);font-size:13px;margin-bottom:15px}
 .empty{
   color:var(--muted);
   text-align:center;
@@ -310,20 +383,26 @@ section{padding:45px 0}
 }
 .ai-panel h3{margin-top:0}
 .ai-panel p{color:var(--muted);line-height:1.7}
-.ai-label{
-  color:var(--cyan);
-  font-size:12px;
-  font-weight:bold;
-  letter-spacing:1px;
-}
 footer{
   border-top:1px solid var(--border);
-  padding:30px 0;
+  padding:32px 0;
   text-align:center;
   color:var(--muted);
   font-size:13px;
 }
-#articleDetail{display:none}
+.footer-links{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+  margin:12px 0;
+}
+.footer-links a{
+  color:var(--cyan);
+  text-decoration:none;
+  font-size:13px;
+}
+#articleDetail,#policyModal{display:none}
 .back-btn{
   background:var(--card);
   color:var(--cyan);
@@ -333,15 +412,14 @@ footer{
   margin-bottom:20px;
 }
 
-@media(max-width:750px){
-  .categories,.articles{grid-template-columns:repeat(2,1fr)}
-  .nav a{margin-left:8px;font-size:12px}
-  .hero{padding-top:52px}
+@media(max-width:780px){
+  .tools-grid,.categories,.articles{grid-template-columns:repeat(2,1fr)}
+  .nav a{margin-left:10px;font-size:12.5px}
 }
-@media(max-width:480px){
-  .categories,.articles{grid-template-columns:1fr}
+@media(max-width:560px){
+  .tools-grid,.categories,.articles,.field-row{grid-template-columns:1fr}
   .nav{min-height:58px}
-  .nav a{margin-left:7px}
+  .nav a{margin-left:8px;font-size:12px}
   .logo{font-size:19px}
   .live-badge{padding:0 10px;font-size:10px}
   .ticker-item{padding:0 13px;font-size:11.5px}
@@ -359,14 +437,14 @@ footer{
   <div class="container nav">
     <div class="logo">DAILY<span>KIT</span></div>
     <nav>
+      <a href="#tools">Tools</a>
       <a href="#categories">Explore</a>
-      <a href="#articles">Knowledge</a>
-      <a href="#ai">AI Hub</a>
+      <a href="#articles">Guides</a>
     </nav>
   </div>
 </header>
 
-<!-- DAILYKIT LIVE TOP TICKER -->
+<!-- LIVE CRYPTO TICKER -->
 <div id="live-ticker-bar" aria-label="Live Cryptocurrency Prices">
   <div class="live-badge">
     <span class="live-dot"></span>
@@ -378,26 +456,164 @@ footer{
     </div>
   </div>
 </div>
-<!-- END LIVE TOP TICKER -->
 
 <main>
 <div id="homePage">
 
   <div class="hero">
-    <div class="eyebrow">YOUR WORLD OF KNOWLEDGE</div>
-    <h1>Discover More.<br><span class="gradient">Know Everything.</span></h1>
-    <p>Search the world, explore ideas and discover something new every day.</p>
+    <div class="eyebrow">SMART TOOLS • LIVE MARKETS • DAILY KNOWLEDGE</div>
+    <h1>Useful Tools.<br><span class="gradient">Smart Decisions.</span></h1>
+    <p>Free financial calculators, live crypto tracking, practical utilities and bite-sized guides built for everyday use.</p>
 
     <div class="search-box">
       <input id="mainSearch" type="search"
-        placeholder="What do you want to know?"
+        placeholder="Search guides, finance, AI, security..."
         onkeydown="if(event.key==='Enter')searchKnowledge()">
       <button class="primary-btn" onclick="searchKnowledge()">Search</button>
     </div>
-    <div class="search-hint">Explore knowledge • Learn new things • Discover ideas</div>
+    <div class="search-hint">Free Calculators • Live Crypto Prices • Actionable Guides</div>
   </div>
 
   <div class="container">
+
+    <!-- TOP AD SLOT (Replace inner text with Google AdSense unit after approval) -->
+    <div class="ad-slot" aria-label="Advertisement">Advertisement Space • 728×90 / Responsive</div>
+
+    <!-- INTERACTIVE TOOLS & CALCULATORS HUB -->
+    <section id="tools">
+      <h2 class="section-title">Free Daily Tools &amp; Calculators</h2>
+      <p class="section-subtitle">Fast, accurate tools you can bookmark and use anytime.</p>
+
+      <div class="tools-grid">
+
+        <!-- Tool 1: Crypto / Investment Profit Calculator -->
+        <div class="tool-card">
+          <div>
+            <div class="tool-header">
+              <div class="tool-icon">📈</div>
+              <h3>Crypto &amp; Trade Profit Calculator</h3>
+            </div>
+            <p class="tool-desc">Calculate net profit, loss, and ROI percentage before entering any trade.</p>
+            <div class="field">
+              <label for="invAmount">Investment Amount ($)</label>
+              <input id="invAmount" type="number" value="1000" min="0" step="any">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="buyPrice">Buy Price ($)</label>
+                <input id="buyPrice" type="number" value="60000" min="0" step="any">
+              </div>
+              <div class="field">
+                <label for="sellPrice">Sell Price ($)</label>
+                <input id="sellPrice" type="number" value="69000" min="0" step="any">
+              </div>
+            </div>
+          </div>
+          <div>
+            <button class="primary-btn" style="width:100%" onclick="calcProfit()">Calculate Profit</button>
+            <div class="tool-result" id="profitResult">
+              Profit: <strong class="positive">+$150.00 (+15.00%)</strong><br>
+              Total Return: <strong>$1,150.00</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tool 2: Compound Growth Calculator -->
+        <div class="tool-card">
+          <div>
+            <div class="tool-header">
+              <div class="tool-icon">💰</div>
+              <h3>Compound Savings Calculator</h3>
+            </div>
+            <p class="tool-desc">See how consistent monthly savings grow over time with compound returns.</p>
+            <div class="field-row">
+              <div class="field">
+                <label for="startBal">Initial Deposit ($)</label>
+                <input id="startBal" type="number" value="500" min="0" step="any">
+              </div>
+              <div class="field">
+                <label for="monthlyAdd">Monthly Addition ($)</label>
+                <input id="monthlyAdd" type="number" value="200" min="0" step="any">
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="annualRate">Annual Return (%)</label>
+                <input id="annualRate" type="number" value="10" min="0" step="any">
+              </div>
+              <div class="field">
+                <label for="yearsCount">Years</label>
+                <input id="yearsCount" type="number" value="5" min="1" max="50">
+              </div>
+            </div>
+          </div>
+          <div>
+            <button class="primary-btn" style="width:100%" onclick="calcCompound()">Calculate Growth</button>
+            <div class="tool-result" id="compoundResult">
+              Future Value: <strong>$16,309.52</strong><br>
+              Total Invested: <strong>$12,500.00</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tool 3: Quick Percentage Calculator -->
+        <div class="tool-card">
+          <div>
+            <div class="tool-header">
+              <div class="tool-icon">🧮</div>
+              <h3>Percentage &amp; Discount Calculator</h3>
+            </div>
+            <p class="tool-desc">Instantly find percentages, discounts, tax amounts, or commission fees.</p>
+            <div class="field-row">
+              <div class="field">
+                <label for="pctPercent">Percentage (%)</label>
+                <input id="pctPercent" type="number" value="15" step="any">
+              </div>
+              <div class="field">
+                <label for="pctBase">Of Amount ($)</label>
+                <input id="pctBase" type="number" value="240" step="any">
+              </div>
+            </div>
+          </div>
+          <div>
+            <button class="primary-btn" style="width:100%" onclick="calcPercentage()">Calculate</button>
+            <div class="tool-result" id="pctResult">
+              15% of 240 = <strong>36.00</strong><br>
+              After 15% Discount: <strong>204.00</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tool 4: Strong Password Generator -->
+        <div class="tool-card">
+          <div>
+            <div class="tool-header">
+              <div class="tool-icon">🔐</div>
+              <h3>Instant Strong Password Generator</h3>
+            </div>
+            <p class="tool-desc">Generate unbreakable random passwords locally in your browser (never stored).</p>
+            <div class="field">
+              <label for="pwLength">Password Length (8 – 32 characters)</label>
+              <input id="pwLength" type="number" value="16" min="8" max="32">
+            </div>
+            <div class="pw-box">
+              <input id="generatedPw" type="text" readonly value="D8#kP9!vQ2@mX7$L">
+              <button class="secondary-btn" onclick="copyPassword()">Copy</button>
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <button class="primary-btn" style="width:100%" onclick="generatePassword()">Generate New Password</button>
+            <div class="tool-result" id="pwStatus">
+              Strength: <strong class="positive">Very Strong (16 chars)</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MID-CONTENT AD SLOT -->
+    <div class="ad-slot" aria-label="Advertisement">Advertisement Space • In-Feed Responsive</div>
 
     <section id="categories">
       <h2 class="section-title">Explore Categories</h2>
@@ -441,7 +657,7 @@ footer{
       <div class="discovery">
         <div>
           <div class="eyebrow">DAILY DISCOVERY</div>
-          <h3>One New Thing Every Day</h3>
+          <h3>One New Fact Every Day</h3>
           <p>Explore interesting facts and expand your understanding of the world.</p>
           <button class="primary-btn" onclick="showDailyFact()">Discover Now</button>
         </div>
@@ -454,7 +670,7 @@ footer{
 
     <section id="articles">
       <h2 class="section-title">Knowledge Library</h2>
-      <p class="section-subtitle">Explore selected topics and learn something useful.</p>
+      <p class="section-subtitle">Explore selected topics and practical guides.</p>
 
       <div class="results-info" id="resultCount">Featured articles</div>
 
@@ -521,32 +737,30 @@ footer{
       </div>
     </section>
 
-    <section id="ai">
-      <h2 class="section-title">AI Knowledge Assistant</h2>
-      <p class="section-subtitle">A dedicated space for future AI-powered answers.</p>
-
-      <div class="ai-panel">
-        <div class="ai-label">✨ AI KNOWLEDGE</div>
-        <h3>Ask. Understand. Discover.</h3>
-        <p>DAILYKIT AI Answers will help users understand questions, explore ideas and discover useful information.</p>
-        <p><strong>Coming Soon</strong> — AI service connection will be added through a secure backend.</p>
-      </div>
-    </section>
-
   </div>
 </div>
 
+<!-- ARTICLE READER VIEW -->
 <div class="container" id="articleDetail">
   <section>
-    <button class="back-btn" onclick="closeArticle()">← Back to Knowledge Hub</button>
+    <button class="back-btn" onclick="closeArticle()">← Back to DAILYKIT</button>
     <div class="eyebrow" id="detailCategory"></div>
     <h1 id="detailTitle"></h1>
     <div class="ai-panel">
       <p id="detailDescription"></p>
     </div>
-    <p style="color:var(--muted);font-size:12px;margin-top:15px">
-      Educational overview. Consult reliable sources for further research.
-    </p>
+    <div class="ad-slot" aria-label="Advertisement">Advertisement Space • Article Bottom</div>
+  </section>
+</div>
+
+<!-- POLICY / ABOUT VIEW (Required for AdSense Approval) -->
+<div class="container" id="policyModal">
+  <section>
+    <button class="back-btn" onclick="closePolicy()">← Back to DAILYKIT</button>
+    <h1 id="policyTitle"></h1>
+    <div class="ai-panel">
+      <p id="policyContent"></p>
+    </div>
   </section>
 </div>
 
@@ -555,23 +769,113 @@ footer{
 <footer>
   <div class="container">
     <div class="logo">DAILY<span>KIT</span></div>
-    <p>Explore the World. Expand Your Knowledge.</p>
+    <p>Smart Tools, Live Market Data &amp; Practical Knowledge.</p>
+    <div class="footer-links">
+      <a href="#about" onclick="openPolicy('about');return false;">About Us</a>
+      <a href="#privacy" onclick="openPolicy('privacy');return false;">Privacy Policy</a>
+      <a href="#disclaimer" onclick="openPolicy('disclaimer');return false;">Financial Disclaimer</a>
+      <a href="#contact" onclick="openPolicy('contact');return false;">Contact</a>
+    </div>
     <p>© 2026 DAILYKIT. All rights reserved.</p>
   </div>
 </footer>
 
 <script>
+// 1. CALCULATORS & TOOLS
+function calcProfit() {
+  const inv = parseFloat(document.getElementById("invAmount").value) || 0;
+  const buy = parseFloat(document.getElementById("buyPrice").value) || 0;
+  const sell = parseFloat(document.getElementById("sellPrice").value) || 0;
+  const out = document.getElementById("profitResult");
+
+  if (inv <= 0 || buy <= 0 || sell < 0) {
+    out.innerHTML = `<span class="negative">Please enter valid positive numbers.</span>`;
+    return;
+  }
+
+  const units = inv / buy;
+  const total = units * sell;
+  const profit = total - inv;
+  const roi = (profit / inv) * 100;
+  const isUp = profit >= 0;
+
+  out.innerHTML = `
+    Profit/Loss: <strong class="${isUp ? "positive" : "negative"}">${isUp ? "+" : ""}$${profit.toFixed(2)} (${isUp ? "+" : ""}${roi.toFixed(2)}%)</strong><br>
+    Total Return: <strong>$${total.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2})}</strong>
+  `;
+}
+
+function calcCompound() {
+  const initial = parseFloat(document.getElementById("startBal").value) || 0;
+  const monthly = parseFloat(document.getElementById("monthlyAdd").value) || 0;
+  const rate = (parseFloat(document.getElementById("annualRate").value) || 0) / 100 / 12;
+  const months = (parseFloat(document.getElementById("yearsCount").value) || 0) * 12;
+  const out = document.getElementById("compoundResult");
+
+  if (months <= 0) {
+    out.innerHTML = `<span class="negative">Please enter at least 1 year.</span>`;
+    return;
+  }
+
+  let balance = initial;
+  for (let i = 0; i < months; i++) {
+    balance = (balance + monthly) * (1 + rate);
+  }
+  const invested = initial + (monthly * months);
+
+  out.innerHTML = `
+    Future Value: <strong>$${balance.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2})}</strong><br>
+    Total Invested: <strong>$${invested.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2})}</strong>
+  `;
+}
+
+function calcPercentage() {
+  const pct = parseFloat(document.getElementById("pctPercent").value) || 0;
+  const base = parseFloat(document.getElementById("pctBase").value) || 0;
+  const part = (pct / 100) * base;
+  const afterDiscount = base - part;
+
+  document.getElementById("pctResult").innerHTML = `
+    ${pct}% of ${base} = <strong>${part.toFixed(2)}</strong><br>
+    After ${pct}% Discount: <strong>${afterDiscount.toFixed(2)}</strong>
+  `;
+}
+
+function generatePassword() {
+  let len = parseInt(document.getElementById("pwLength").value, 10) || 16;
+  len = Math.min(32, Math.max(8, len));
+  document.getElementById("pwLength").value = len;
+
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*_-+";
+  const array = new Uint32Array(len);
+  window.crypto.getRandomValues(array);
+
+  let pw = "";
+  for (let i = 0; i < len; i++) {
+    pw += chars[array[i] % chars.length];
+  }
+  document.getElementById("generatedPw").value = pw;
+  document.getElementById("pwStatus").innerHTML =
+    `Strength: <strong class="positive">${len >= 14 ? "Very Strong" : "Strong"} (${len} chars)</strong>`;
+}
+
+function copyPassword() {
+  const input = document.getElementById("generatedPw");
+  navigator.clipboard?.writeText(input.value);
+  document.getElementById("pwStatus").innerHTML =
+    `<strong class="positive">Copied to clipboard!</strong>`;
+}
+
+// 2. SEARCH, CATEGORIES & ARTICLES
 const articles = Array.from(document.querySelectorAll(".article"));
 
 function searchKnowledge(){
-  const query = document.getElementById("mainSearch")
-    .value.trim().toLowerCase();
-
+  const query = document.getElementById("mainSearch").value.trim().toLowerCase();
   document.getElementById("homePage").style.display = "block";
   document.getElementById("articleDetail").style.display = "none";
+  document.getElementById("policyModal").style.display = "none";
 
   let count = 0;
-
   articles.forEach(article => {
     const searchable = (
       article.dataset.title + " " +
@@ -585,42 +889,31 @@ function searchKnowledge(){
     if(match) count++;
   });
 
-  document.getElementById("noResults").style.display =
-    count ? "none" : "block";
-
+  document.getElementById("noResults").style.display = count ? "none" : "block";
   document.getElementById("resultCount").textContent =
-    query ? count + " results for \"" + query + "\"" :
-    "Featured articles";
+    query ? count + " results for \"" + query + "\"" : "Featured articles";
 
-  document.getElementById("articles").scrollIntoView({
-    behavior:"smooth"
-  });
+  document.getElementById("articles").scrollIntoView({behavior:"smooth"});
 }
 
 function filterCategory(category){
   document.getElementById("mainSearch").value = "";
   document.getElementById("homePage").style.display = "block";
   document.getElementById("articleDetail").style.display = "none";
+  document.getElementById("policyModal").style.display = "none";
 
   let count = 0;
-
   articles.forEach(article => {
-    const match = category === "all" ||
-      article.dataset.category === category;
-
+    const match = category === "all" || article.dataset.category === category;
     article.style.display = match ? "block" : "none";
     if(match) count++;
   });
 
-  document.getElementById("noResults").style.display =
-    count ? "none" : "block";
-
+  document.getElementById("noResults").style.display = count ? "none" : "block";
   document.getElementById("resultCount").textContent =
     category === "all" ? "All articles" : category.toUpperCase() + " articles";
 
-  document.getElementById("articles").scrollIntoView({
-    behavior:"smooth"
-  });
+  document.getElementById("articles").scrollIntoView({behavior:"smooth"});
 }
 
 function showDailyFact(){
@@ -631,13 +924,10 @@ function showDailyFact(){
     "Honeybees communicate information about food sources through movement.",
     "Earth completes one orbit around the Sun in approximately 365.25 days."
   ];
-
   const today = new Date();
   const index = Math.floor(
-    (Date.UTC(today.getFullYear(),today.getMonth(),today.getDate()) /
-    86400000) % facts.length
+    (Date.UTC(today.getFullYear(),today.getMonth(),today.getDate()) / 86400000) % facts.length
   );
-
   document.getElementById("dailyFactText").textContent = facts[index];
   document.getElementById("dailyFact").style.display = "block";
 }
@@ -645,17 +935,11 @@ function showDailyFact(){
 articles.forEach(article => {
   article.addEventListener("click", () => {
     document.getElementById("homePage").style.display = "none";
+    document.getElementById("policyModal").style.display = "none";
     document.getElementById("articleDetail").style.display = "block";
-
-    document.getElementById("detailCategory").textContent =
-      article.dataset.category.toUpperCase();
-
-    document.getElementById("detailTitle").textContent =
-      article.dataset.title;
-
-    document.getElementById("detailDescription").textContent =
-      article.dataset.description;
-
+    document.getElementById("detailCategory").textContent = article.dataset.category.toUpperCase();
+    document.getElementById("detailTitle").textContent = article.dataset.title;
+    document.getElementById("detailDescription").textContent = article.dataset.description;
     window.scrollTo({top:0,behavior:"smooth"});
   });
 });
@@ -666,17 +950,50 @@ function closeArticle(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-// DAILYKIT LIVE CRYPTO TICKER
+// 3. POLICY PAGES (ADSENSE COMPLIANCE)
+function openPolicy(type) {
+  const pages = {
+    about: {
+      title: "About DAILYKIT",
+      body: "DAILYKIT is a free online utility and knowledge platform providing instant financial calculators, security tools, live market data, and educational guides for everyday users worldwide."
+    },
+    privacy: {
+      title: "Privacy Policy",
+      body: "DAILYKIT respects user privacy. Calculator inputs and generated passwords run locally in your browser and are never stored on our servers. Third-party advertising partners such as Google AdSense may use cookies to serve relevant ads based on visits to this and other websites."
+    },
+    disclaimer: {
+      title: "Financial & Educational Disclaimer",
+      body: "All calculators, cryptocurrency prices, and articles on DAILYKIT are provided for informational and educational purposes only and do not constitute financial or investment advice."
+    },
+    contact: {
+      title: "Contact Us",
+      body: "For feedback, tool requests, or business inquiries regarding DAILYKIT, please reach out via our official repository or support contact channel."
+    }
+  };
+  const page = pages[type];
+  if (!page) return;
+
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("articleDetail").style.display = "none";
+  document.getElementById("policyModal").style.display = "block";
+  document.getElementById("policyTitle").textContent = page.title;
+  document.getElementById("policyContent").textContent = page.body;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function closePolicy() {
+  document.getElementById("policyModal").style.display = "none";
+  document.getElementById("homePage").style.display = "block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// 4. LIVE CRYPTO TICKER
 async function loadCryptoPrices() {
   const track = document.getElementById("crypto-ticker-track");
-
   try {
     const url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,ripple,binancecoin,cardano,dogecoin,tether&order=market_cap_desc&per_page=8&page=1&sparkline=false&price_change_percentage=24h";
-
     const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Market data unavailable");
-    }
+    if (!response.ok) throw new Error("Market data unavailable");
 
     const coins = await response.json();
     const itemsHtml = coins.map(coin => {
@@ -686,19 +1003,15 @@ async function loadCryptoPrices() {
         minimumFractionDigits: coin.current_price < 1 ? 3 : 2,
         maximumFractionDigits: coin.current_price < 1 ? 4 : 2
       });
-
       return `
         <span class="ticker-item">
           <span class="ticker-symbol">${coin.symbol.toUpperCase()}</span>
           <span class="ticker-price">$${price}</span>
-          <span class="${isUp ? "positive" : "negative"}">
-            ${isUp ? "+" : ""}${change.toFixed(2)}%
-          </span>
+          <span class="${isUp ? "positive" : "negative"}">${isUp ? "+" : ""}${change.toFixed(2)}%</span>
         </span>
       `;
     }).join("");
 
-    // Seamless loop සඳහා group දෙකක් දානවා
     track.innerHTML = `
       <div class="ticker-group">${itemsHtml}</div>
       <div class="ticker-group" aria-hidden="true">${itemsHtml}</div>
@@ -712,7 +1025,6 @@ async function loadCryptoPrices() {
 
 loadCryptoPrices();
 setInterval(loadCryptoPrices, 300000);
-// END LIVE CRYPTO TICKER
 </script>
 
 </body>
