@@ -3,45 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080d1b">
-<meta name="description" content="DAILYKIT - Fun and simple learning for kids and beginners: Languages, Science, Biology, AI and History.">
-<title>DAILYKIT Kids | Simple &amp; Fun Learning</title>
+<meta name="theme-color" content="#58cc02">
+<meta name="description" content="DAILYKIT - Duolingo-style simple learning for kids and beginners: Languages, Science, Biology, AI and History.">
+<title>DAILYKIT | Fun &amp; Simple Learning</title>
 <style>
 :root{
-  --bg:#091021;
-  --panel:#121d36;
-  --card:#182747;
-  --text:#f7faff;
-  --muted:#b7c6e3;
-  --cyan:#22d3ee;
-  --purple:#a78bfa;
-  --green:#34d399;
-  --red:#fb7185;
-  --yellow:#facc15;
-  --border:rgba(255,255,255,.12);
+  --bg:#f7f9fc;
+  --surface:#ffffff;
+  --ink:#1f2937;
+  --muted:#5b677a;
+  --line:#e2e8f0;
+  --green:#58cc02;
+  --green-dark:#46a302;
+  --blue:#1cb0f6;
+  --blue-dark:#148bc4;
+  --purple:#ce82ff;
+  --purple-dark:#a555dc;
+  --amber:#ffc800;
+  --amber-dark:#d9a400;
+  --red:#ff4b4b;
+  --red-dark:#d43232;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;
   background:var(--bg);
-  color:var(--text);
+  color:var(--ink);
   font-size:16px;
 }
 button,select{font:inherit}
 button{cursor:pointer}
-.container{
-  width:min(1040px,92%);
+.wrap{
+  width:min(980px,92%);
   margin:auto;
 }
+
+/* TOP NAV */
 header{
-  border-bottom:1px solid var(--border);
-  background:rgba(9,16,33,.95);
+  background:var(--surface);
+  border-bottom:2px solid var(--line);
   position:sticky;
   top:0;
   z-index:20;
-  backdrop-filter:blur(12px);
 }
 .nav{
   min-height:66px;
@@ -51,203 +56,253 @@ header{
   gap:12px;
   flex-wrap:wrap;
 }
-.logo{
+.brand{
   font-size:24px;
   font-weight:900;
-  color:var(--cyan);
+  color:var(--green-dark);
+  letter-spacing:.5px;
 }
-.logo span{color:white}
-.nav a{
-  color:var(--muted);
+.brand span{color:var(--blue)}
+.nav-links{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.nav-links a{
   text-decoration:none;
-  margin-left:14px;
-  font-size:15px;
-  font-weight:700;
+  color:var(--muted);
+  font-weight:800;
+  font-size:14px;
+  padding:8px 12px;
+  border-radius:12px;
 }
-.nav a:hover{color:var(--yellow)}
+.nav-links a:hover{
+  background:#eef6ff;
+  color:var(--blue-dark);
+}
 
-.top-bar{
-  background:#0f1930;
-  border-bottom:1px solid var(--border);
+/* SCORE STRIP */
+.score-strip{
+  background:#eef8e6;
+  border-bottom:2px solid #d5efb9;
   padding:10px 0;
 }
-.stars-row{
+.score-inner{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
+  gap:10px;
   flex-wrap:wrap;
 }
-.star-badge{
-  background:var(--card);
-  border:1px solid rgba(250,204,21,.35);
-  color:var(--yellow);
+.star-pill{
+  background:var(--surface);
+  border:2px solid #ffe066;
+  border-bottom-width:4px;
+  color:#b47b00;
   padding:6px 14px;
   border-radius:999px;
-  font-weight:800;
+  font-weight:900;
   font-size:15px;
 }
-.kid-note{
-  color:var(--muted);
+.strip-tip{
+  color:#3b6e12;
+  font-weight:700;
   font-size:14px;
 }
 
+/* DUO 3D BUTTONS */
+.duo-btn{
+  border:0;
+  border-radius:16px;
+  padding:13px 20px;
+  font-weight:900;
+  font-size:16px;
+  background:var(--green);
+  color:white;
+  border-bottom:4px solid var(--green-dark);
+  transition:transform .08s ease;
+}
+.duo-btn:hover{filter:brightness(1.03)}
+.duo-btn:active{transform:translateY(2px);border-bottom-width:2px}
+
+.duo-blue{
+  background:var(--blue);
+  border-bottom-color:var(--blue-dark);
+}
+.duo-ghost{
+  background:var(--surface);
+  color:var(--ink);
+  border:2px solid var(--line);
+  border-bottom:4px solid #cbd5e1;
+}
+.duo-ghost:hover{border-color:var(--blue);color:var(--blue-dark)}
+
+/* HERO */
 .hero{
   text-align:center;
-  padding:42px 15px 28px;
-  background:radial-gradient(ellipse at 50% 0%,rgba(34,211,238,.18),transparent 65%);
+  padding:38px 14px 26px;
+}
+.hero-card{
+  background:var(--surface);
+  border:2px solid var(--line);
+  border-bottom:5px solid #cbd5e1;
+  border-radius:26px;
+  padding:30px 22px;
 }
 .hero h1{
-  font-size:clamp(32px,6vw,52px);
-  margin:10px 0 12px;
+  margin:0 0 10px;
+  font-size:clamp(30px,5.5vw,48px);
   line-height:1.15;
+  color:var(--ink);
 }
-.hero h1 span{color:var(--yellow)}
+.hero h1 span{color:var(--green-dark)}
 .hero p{
-  color:var(--muted);
-  max-width:600px;
   margin:0 auto 22px;
-  line-height:1.6;
+  max-width:580px;
+  color:var(--muted);
   font-size:17px;
+  line-height:1.55;
 }
-.hero-btns{
+.hero-actions{
   display:flex;
   justify-content:center;
   gap:12px;
   flex-wrap:wrap;
 }
 
-.big-btn{
-  border:0;
-  border-radius:14px;
-  padding:13px 20px;
-  font-weight:800;
-  font-size:16px;
-  background:var(--cyan);
-  color:#071324;
-  transition:.15s;
+section{padding:26px 0}
+.sec-head{margin-bottom:14px}
+.sec-head h2{
+  margin:0 0 4px;
+  font-size:25px;
+  font-weight:900;
 }
-.big-btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
-.soft-btn{
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:12px 18px;
-  font-weight:700;
-  font-size:15px;
-  background:var(--card);
-  color:var(--text);
-  transition:.15s;
-}
-.soft-btn:hover{border-color:var(--cyan);color:var(--cyan)}
-
-section{padding:32px 0}
-.sec-title{
-  font-size:26px;
-  margin:0 0 6px;
-}
-.sec-sub{
+.sec-head p{
+  margin:0;
   color:var(--muted);
-  margin:0 0 18px;
   font-size:15px;
 }
 
-.panel{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:20px;
+.duo-card{
+  background:var(--surface);
+  border:2px solid var(--line);
+  border-bottom:5px solid #cbd5e1;
+  border-radius:24px;
   padding:22px;
 }
 
-/* LANGUAGE BUTTONS */
-.lang-btns{
+/* LANGUAGE SELECTOR BUTTONS */
+.lang-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:12px;
-  margin-bottom:16px;
-}
-.lang-btn{
-  padding:15px 12px;
-  border-radius:15px;
-  border:2px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  font-size:17px;
-  font-weight:800;
-  transition:.15s;
-}
-.lang-btn.active{
-  border-color:var(--yellow);
-  background:rgba(250,204,21,.14);
-  color:var(--yellow);
-}
-
-/* EASY STEPS */
-.steps-row{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
   margin-bottom:18px;
 }
-.step-btn{
-  padding:12px;
-  border-radius:13px;
-  border:1px solid var(--border);
-  background:var(--bg);
-  color:var(--text);
-  text-align:left;
-  font-weight:700;
+.lang-pill{
+  padding:14px 12px;
+  border-radius:16px;
+  background:var(--surface);
+  color:var(--ink);
+  border:2px solid var(--line);
+  border-bottom:4px solid #cbd5e1;
+  font-size:17px;
+  font-weight:900;
+  transition:.1s;
 }
-.step-btn small{
-  display:block;
-  color:var(--cyan);
-  font-size:12px;
-  margin-bottom:3px;
-}
-.step-btn.active{
-  border-color:var(--green);
-  background:rgba(52,211,153,.14);
+.lang-pill:hover{border-color:var(--blue)}
+.lang-pill.active{
+  background:#e6f6ff;
+  border-color:var(--blue);
+  border-bottom-color:var(--blue-dark);
+  color:var(--blue-dark);
 }
 
-.word-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
+/* STEP PATH */
+.path-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:18px;
+}
+.path-step{
+  padding:13px 14px;
+  border-radius:16px;
+  background:#f8fafc;
+  color:var(--ink);
+  border:2px solid var(--line);
+  border-bottom:4px solid #cbd5e1;
+  text-align:left;
+  font-weight:800;
+}
+.path-step small{
+  display:block;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.6px;
+  color:var(--blue-dark);
+  margin-bottom:3px;
+}
+.path-step.active{
+  background:#effce4;
+  border-color:var(--green);
+  border-bottom-color:var(--green-dark);
+  color:#245900;
+}
+
+/* FLASHCARD */
+.flash-box{
+  background:#f0f9ff;
+  border:2px solid #bae6fd;
+  border-radius:20px;
   padding:22px;
   text-align:center;
   margin-bottom:16px;
 }
-.big-word{
-  font-size:clamp(28px,5vw,42px);
+.chip-tag{
+  display:inline-block;
+  background:var(--surface);
+  border:2px solid #bae6fd;
+  color:var(--blue-dark);
+  font-size:12px;
   font-weight:900;
-  margin:8px 0;
-  color:white;
+  padding:4px 12px;
+  border-radius:999px;
 }
-.say-it{
-  color:var(--cyan);
+.big-phrase{
+  font-size:clamp(30px,5.5vw,44px);
+  font-weight:900;
+  margin:10px 0 6px;
+  color:var(--ink);
+}
+.pron-line{
+  color:var(--purple-dark);
+  font-weight:800;
   font-size:16px;
-  font-weight:700;
   margin-bottom:6px;
 }
-.meaning-txt{
-  color:var(--green);
-  font-size:20px;
-  font-weight:800;
-  margin-bottom:12px;
+.meaning-line{
+  color:var(--green-dark);
+  font-weight:900;
+  font-size:21px;
+  margin-bottom:14px;
 }
-.ex-box{
-  background:rgba(9,16,33,.55);
-  border-radius:12px;
+.example-box{
+  background:var(--surface);
+  border:2px solid #e0f2fe;
+  border-radius:14px;
   padding:12px 14px;
-  font-size:15px;
+  max-width:560px;
   margin:0 auto 16px;
-  max-width:620px;
+  font-size:15px;
+  font-weight:700;
 }
-.ex-box small{
+.example-box small{
   display:block;
   color:var(--muted);
+  font-weight:600;
   margin-top:4px;
 }
-.card-actions{
+.btn-cluster{
   display:flex;
   justify-content:center;
   gap:10px;
@@ -255,7 +310,7 @@ section{padding:32px 0}
 }
 
 /* QUIZ */
-.quiz-top{
+.quiz-bar{
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -263,339 +318,361 @@ section{padding:32px 0}
   flex-wrap:wrap;
   margin-bottom:14px;
 }
-select.kid-select{
+select.duo-select{
   padding:10px 14px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:var(--card);
-  color:white;
-  font-size:15px;
-  font-weight:700;
-}
-.q-text{
-  font-size:21px;
+  border-radius:14px;
+  border:2px solid var(--line);
+  border-bottom:4px solid #cbd5e1;
+  background:var(--surface);
+  color:var(--ink);
   font-weight:800;
-  margin:12px 0 16px;
-  line-height:1.4;
+  font-size:15px;
 }
-.opts-grid{
+.q-prompt{
+  font-size:21px;
+  font-weight:900;
+  margin:10px 0 16px;
+  line-height:1.35;
+}
+.ans-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:12px;
 }
-.opt-btn{
+.ans-btn{
   padding:14px 16px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
+  border-radius:16px;
+  background:var(--surface);
+  color:var(--ink);
+  border:2px solid var(--line);
+  border-bottom:4px solid #cbd5e1;
   text-align:left;
   font-size:16px;
-  font-weight:700;
-  transition:.15s;
+  font-weight:800;
+  transition:.1s;
 }
-.opt-btn:hover:not(:disabled){
-  border-color:var(--cyan);
+.ans-btn:hover:not(:disabled){
+  border-color:var(--blue);
+  background:#f8fcff;
 }
-.opt-btn.right{
+.ans-btn.good{
+  background:#effce4;
   border-color:var(--green);
-  background:rgba(52,211,153,.2);
-  color:var(--green);
+  border-bottom-color:var(--green-dark);
+  color:#235800;
 }
-.opt-btn.wrong{
+.ans-btn.bad{
+  background:#fff1f2;
   border-color:var(--red);
-  background:rgba(251,113,133,.2);
-  color:var(--red);
+  border-bottom-color:var(--red-dark);
+  color:#9f1239;
 }
-.msg-box{
+.feedback-strip{
   margin-top:14px;
-  padding:12px 14px;
-  border-radius:12px;
-  background:var(--bg);
-  border:1px solid var(--border);
+  padding:12px 15px;
+  border-radius:15px;
+  background:#f8fafc;
+  border:2px solid var(--line);
   font-size:15px;
+  font-weight:700;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-/* SUBJECT CARDS */
-.topic-grid{
+/* SUBJECTS */
+.sub-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:14px;
 }
-.topic-card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:20px;
+.sub-tile{
+  background:var(--surface);
+  border:2px solid var(--line);
+  border-bottom:5px solid #cbd5e1;
+  border-radius:20px;
+  padding:18px;
   cursor:pointer;
-  transition:.15s;
+  transition:.12s;
 }
-.topic-card:hover{
-  transform:translateY(-3px);
-  border-color:var(--yellow);
+.sub-tile:hover{
+  transform:translateY(-2px);
+  border-color:var(--green);
 }
-.topic-emoji{font-size:32px}
-.topic-card h3{margin:10px 0 6px;font-size:19px}
-.topic-card p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.5}
+.sub-ico{font-size:32px}
+.sub-tile h3{margin:8px 0 4px;font-size:19px;font-weight:900}
+.sub-tile p{margin:0;color:var(--muted);font-size:14px;line-height:1.45}
 
-/* SIMPLE STORY CARDS */
-.stories-grid{
+/* FUN FACTS */
+.facts-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:14px;
 }
-.story-card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:20px;
+.fact-tile{
+  background:var(--surface);
+  border:2px solid var(--line);
+  border-bottom:5px solid #cbd5e1;
+  border-radius:20px;
+  padding:18px;
   cursor:pointer;
-  transition:.15s;
+  transition:.12s;
 }
-.story-card:hover{
+.fact-tile:hover{
   border-color:var(--purple);
 }
-.tag{
-  display:inline-block;
-  font-size:12px;
-  font-weight:800;
-  color:var(--cyan);
-  margin-bottom:8px;
-}
-.story-card h3{margin:0 0 8px;font-size:18px;line-height:1.35}
-.story-card p{margin:0 0 12px;color:var(--muted);font-size:14.5px;line-height:1.5}
-.read-txt{color:var(--yellow);font-weight:800;font-size:14px}
+.fact-tile h3{margin:8px 0 6px;font-size:18px;font-weight:900;line-height:1.35}
+.fact-tile p{margin:0 0 10px;color:var(--muted);font-size:14px;line-height:1.45}
+.fact-link{color:var(--blue-dark);font-weight:900;font-size:14px}
 
-#readerBox{display:none}
+#factReader{display:none}
 footer{
-  border-top:1px solid var(--border);
-  padding:26px 0;
+  margin-top:24px;
+  background:var(--surface);
+  border-top:2px solid var(--line);
+  padding:22px 0;
   text-align:center;
   color:var(--muted);
   font-size:14px;
+  font-weight:700;
 }
 
 @media(max-width:760px){
-  .lang-btns{grid-template-columns:repeat(2,1fr)}
-  .topic-grid,.stories-grid,.opts-grid{grid-template-columns:repeat(2,1fr)}
+  .lang-grid{grid-template-columns:repeat(2,1fr)}
+  .sub-grid,.facts-grid,.ans-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:520px){
-  .steps-row,.topic-grid,.stories-grid,.opts-grid{grid-template-columns:1fr}
-  .nav a{margin-left:10px;font-size:14px}
+  .path-row,.sub-grid,.facts-grid,.ans-grid{grid-template-columns:1fr}
+  .nav-links a{padding:6px 9px;font-size:13px}
 }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="container nav">
-    <div class="logo">DAILY<span>KIT</span> ⭐</div>
-    <nav>
+  <div class="wrap nav">
+    <div class="brand">DAILY<span>KIT</span></div>
+    <nav class="nav-links">
       <a href="#languages">Languages</a>
-      <a href="#fun-quiz">Fun Quiz</a>
+      <a href="#quiz">Quiz</a>
       <a href="#subjects">Topics</a>
-      <a href="#stories">Fun Facts</a>
+      <a href="#facts">Fun Facts</a>
     </nav>
   </div>
 </header>
 
-<div class="top-bar">
-  <div class="container stars-row">
-    <div class="star-badge">⭐ Stars: <span id="starCount">0</span></div>
-    <div class="kid-note">Easy &amp; fun for kids &amp; beginners!</div>
+<div class="score-strip">
+  <div class="wrap score-inner">
+    <div class="star-pill">⭐ Stars: <span id="starsVal">0</span></div>
+    <div class="strip-tip">Tap a language, start at Step 1, and collect stars!</div>
   </div>
 </div>
 
 <main>
-<div id="mainView">
+<div id="homeView">
 
   <div class="hero">
-    <h1>Learn Languages &amp; Cool Stuff<br><span>The Easy Way!</span></h1>
-    <p>Tap a language, listen to how words sound, play easy quizzes, and read fun facts about Science, Biology, AI, and History.</p>
-    <div class="hero-btns">
-      <a href="#languages" style="text-decoration:none"><button class="big-btn">🗣️ Start Languages</button></a>
-      <a href="#fun-quiz" style="text-decoration:none"><button class="soft-btn">🎯 Play Fun Quiz</button></a>
+    <div class="wrap">
+      <div class="hero-card">
+        <h1>Learn Step by Step.<br><span>Simple &amp; Fun Every Day!</span></h1>
+        <p>Pick a language to start from Step 1 with sound, play easy quizzes, and read fun facts about Science, Biology, AI, and History.</p>
+        <div class="hero-actions">
+          <a href="#languages" style="text-decoration:none"><button class="duo-btn">🗣️ Start Lesson 1</button></a>
+          <a href="#quiz" style="text-decoration:none"><button class="duo-btn duo-blue">🎯 Play Quiz</button></a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="container">
+  <div class="wrap">
 
-    <!-- 1. EASY LANGUAGE LESSONS -->
+    <!-- 1. DUOLINGO-STYLE LANGUAGE PATH -->
     <section id="languages">
-      <h2 class="sec-title">1. Pick a Language &amp; Start at Step 1</h2>
-      <p class="sec-sub">Tap a language, pick Step 1, 2, or 3, and press 🔊 Listen!</p>
+      <div class="sec-head">
+        <h2>1. Pick a Language &amp; Go Step by Step</h2>
+        <p>Choose your language, tap a step from 1 to 3, and press 🔊 Listen.</p>
+      </div>
 
-      <div class="panel">
-        <div class="lang-btns">
-          <button class="lang-btn active" onclick="pickLang('it', this)">🇮🇹 Italian</button>
-          <button class="lang-btn" onclick="pickLang('es', this)">🇪🇸 Spanish</button>
-          <button class="lang-btn" onclick="pickLang('fr', this)">🇫🇷 French</button>
-          <button class="lang-btn" onclick="pickLang('ja', this)">🇯🇵 Japanese</button>
+      <div class="duo-card">
+        <div class="lang-grid">
+          <button class="lang-pill active" onclick="chooseLang('it', this)">🇮🇹 Italian</button>
+          <button class="lang-pill" onclick="chooseLang('es', this)">🇪🇸 Spanish</button>
+          <button class="lang-pill" onclick="chooseLang('fr', this)">🇫🇷 French</button>
+          <button class="lang-pill" onclick="chooseLang('ja', this)">🇯🇵 Japanese</button>
         </div>
 
-        <div class="steps-row">
-          <button class="step-btn active" onclick="pickStep(0, this)">
-            <small>STEP 1 • EASY</small>
-            👋 Say Hello!
+        <div class="path-row">
+          <button class="path-step active" onclick="chooseStep(0, this)">
+            <small>STEP 1 • START HERE</small>
+            👋 Hello &amp; Hi
           </button>
-          <button class="step-btn" onclick="pickStep(1, this)">
-            <small>STEP 2 • EASY</small>
-            🙏 Thank You &amp; Please
+          <button class="path-step" onclick="chooseStep(1, this)">
+            <small>STEP 2 • NEXT STEP</small>
+            🙏 Please &amp; Thank You
           </button>
-          <button class="step-btn" onclick="pickStep(2, this)">
-            <small>STEP 3 • EASY</small>
-            🍎 Food &amp; Bye!
+          <button class="path-step" onclick="chooseStep(2, this)">
+            <small>STEP 3 • FUN WORDS</small>
+            🍎 Food &amp; Bye
           </button>
         </div>
 
-        <div class="word-card">
-          <div class="tag" id="cardLangLabel">ITALIAN • STEP 1</div>
-          <div class="big-word" id="cardWord">Ciao!</div>
-          <div class="say-it" id="cardSay">Sounds like: CHOW!</div>
-          <div class="meaning-txt" id="cardMeaning">Means: Hi! / Bye!</div>
+        <div class="flash-box">
+          <span class="chip-tag" id="stepBadge">ITALIAN • STEP 1</span>
+          <div class="big-phrase" id="phraseMain">Ciao!</div>
+          <div class="pron-line" id="phraseSay">Say: CHOW!</div>
+          <div class="meaning-line" id="phraseMeaning">Meaning: Hi! / Bye!</div>
 
-          <div class="ex-box">
-            <div id="cardEx">"Ciao Anna!"</div>
-            <small id="cardExEn">"Hi Anna!"</small>
+          <div class="example-box">
+            <div id="exLine">"Ciao Anna!"</div>
+            <small id="exSub">"Hi Anna!"</small>
           </div>
 
-          <div class="card-actions">
-            <button class="big-btn" onclick="sayWord()">🔊 Listen</button>
-            <button class="soft-btn" onclick="prevCard()">⬅ Back</button>
-            <button class="soft-btn" onclick="nextCard()">Next ➡</button>
+          <div class="btn-cluster">
+            <button class="duo-btn" onclick="listenPhrase()">🔊 Listen</button>
+            <button class="duo-btn duo-ghost" onclick="prevItem()">⬅ Back</button>
+            <button class="duo-btn duo-blue" onclick="nextItem()">Next ➡</button>
           </div>
         </div>
 
-        <div class="msg-box">
-          <strong>Quick Match (+10 ⭐):</strong> <span id="matchQuestion">What does "Ciao!" mean?</span>
-          <div class="opts-grid" id="matchOptions" style="margin-top:10px"></div>
-          <div id="matchResult" style="margin-top:10px;color:var(--muted)">Tap an answer below!</div>
+        <div class="feedback-strip" style="flex-direction:column;align-items:stretch">
+          <div id="matchPrompt">Quick Match (+10 ⭐): What does "Ciao!" mean?</div>
+          <div class="ans-grid" id="matchChoices"></div>
+          <div id="matchStatus" style="color:var(--muted)">Tap the matching meaning above!</div>
         </div>
       </div>
     </section>
 
-    <!-- 2. EASY QUIZ -->
-    <section id="fun-quiz">
-      <h2 class="sec-title">2. Easy Quiz Time</h2>
-      <p class="sec-sub">Pick a subject and tap the right answer to win ⭐ stars!</p>
+    <!-- 2. SIMPLE QUIZ -->
+    <section id="quiz">
+      <div class="sec-head">
+        <h2>2. Easy Quiz</h2>
+        <p>Choose Science, Biology, AI, or History and tap an answer.</p>
+      </div>
 
-      <div class="panel">
-        <div class="quiz-top">
-          <select class="kid-select" id="quizSubject" onchange="startEasyQuiz()">
+      <div class="duo-card">
+        <div class="quiz-bar">
+          <select class="duo-select" id="quizTopicPick" onchange="resetQuiz()">
             <option value="science">🔬 Science</option>
-            <option value="biology">🐾 Biology (Animals &amp; Nature)</option>
-            <option value="ai">🤖 AI (Smart Computers)</option>
-            <option value="history">🏰 History (Long Ago)</option>
+            <option value="biology">🐾 Biology</option>
+            <option value="ai">🤖 AI</option>
+            <option value="history">🏰 History</option>
           </select>
-          <div id="quizCounter" style="color:var(--muted);font-weight:700">Question 1 / 3</div>
+          <div id="qProgress" style="font-weight:800;color:var(--muted)">Question 1 / 3</div>
         </div>
 
-        <div class="q-text" id="easyQText">Loading...</div>
-        <div class="opts-grid" id="easyQOpts"></div>
-        <div class="msg-box" id="easyQMsg">
-          <span id="easyQFeedback">Pick an answer!</span>
-          <button class="soft-btn" id="easyNextBtn" onclick="nextEasyQ()" style="display:none;margin-left:10px">Next Question ➡</button>
+        <div class="q-prompt" id="qText">Loading...</div>
+        <div class="ans-grid" id="qOptions"></div>
+
+        <div class="feedback-strip">
+          <span id="qFeedback">Tap an answer to earn ⭐ stars!</span>
+          <button class="duo-btn duo-blue" id="qNextBtn" onclick="advanceQuiz()" style="display:none;padding:9px 16px;font-size:14px">Next ➡</button>
         </div>
       </div>
     </section>
 
-    <!-- 3. TOPICS -->
+    <!-- 3. SUBJECTS -->
     <section id="subjects">
-      <h2 class="sec-title">3. Cool Topics</h2>
-      <p class="sec-sub">Tap any topic to see fun stories below.</p>
+      <div class="sec-head">
+        <h2>3. Pick a Topic</h2>
+        <p>Tap any topic to filter the fun facts below.</p>
+      </div>
 
-      <div class="topic-grid">
-        <div class="topic-card" onclick="filterCards('all')">
-          <div class="topic-emoji">🌈</div>
-          <h3>Show All</h3>
-          <p>See all fun stories in one place.</p>
+      <div class="sub-grid">
+        <div class="sub-tile" onclick="filterFacts('all')">
+          <div class="sub-ico">🌟</div>
+          <h3>All Topics</h3>
+          <p>Show every fun fact in one list.</p>
         </div>
-        <div class="topic-card" onclick="filterCards('language')">
-          <div class="topic-emoji">🗣️</div>
+        <div class="sub-tile" onclick="filterFacts('language')">
+          <div class="sub-ico">💬</div>
           <h3>Languages</h3>
-          <p>How listening helps you learn new words.</p>
+          <p>Easy tips for learning new words.</p>
         </div>
-        <div class="topic-card" onclick="filterCards('science')">
-          <div class="topic-emoji">☀️</div>
+        <div class="sub-tile" onclick="filterFacts('science')">
+          <div class="sub-ico">☀️</div>
           <h3>Science</h3>
-          <p>Sun, rainbows, water, and how things move.</p>
+          <p>Sun, ice, rainbows, and everyday wonders.</p>
         </div>
-        <div class="topic-card" onclick="filterCards('biology')">
-          <div class="topic-emoji">🐝</div>
+        <div class="sub-tile" onclick="filterFacts('biology')">
+          <div class="sub-ico">🌱</div>
           <h3>Biology</h3>
-          <p>Animals, plants, seeds, and living things.</p>
+          <p>Plants, seeds, animals, and bees.</p>
         </div>
-        <div class="topic-card" onclick="filterCards('ai')">
-          <div class="topic-emoji">🤖</div>
+        <div class="sub-tile" onclick="filterFacts('ai')">
+          <div class="sub-ico">🤖</div>
           <h3>AI</h3>
-          <p>How computers learn from examples like kids do.</p>
+          <p>How smart computers learn from examples.</p>
         </div>
-        <div class="topic-card" onclick="filterCards('history')">
-          <div class="topic-emoji">🏺</div>
+        <div class="sub-tile" onclick="filterFacts('history')">
+          <div class="sub-ico">📜</div>
           <h3>History</h3>
-          <p>Old castles, early writing, and life long ago.</p>
+          <p>How people lived and wrote long ago.</p>
         </div>
       </div>
     </section>
 
-    <!-- 4. EASY FUN FACTS -->
-    <section id="stories">
-      <h2 class="sec-title">4. Fun &amp; Easy Facts</h2>
-      <p class="sec-sub" id="storiesCount">Showing all fun facts</p>
+    <!-- 4. FUN FACTS -->
+    <section id="facts">
+      <div class="sec-head">
+        <h2>4. Fun Facts</h2>
+        <p id="factsLabel">Showing all fun facts</p>
+      </div>
 
-      <div class="stories-grid" id="storiesGrid">
-        <div class="story-card" data-cat="language"
-          data-title="How to Learn New Words Fast"
-          data-body="You do not need to learn 100 words in one day! Just 2 or 3 words a day is great. Say them out loud, press Listen, and use them when you play or talk.">
-          <div class="tag">LANGUAGES</div>
-          <h3>How to Learn New Words Fast</h3>
-          <p>Just a few words every day is enough to start!</p>
-          <div class="read-txt">Read More ➡</div>
+      <div class="facts-grid" id="factsList">
+        <div class="fact-tile" data-cat="language"
+          data-title="A Few Words a Day Is Enough"
+          data-text="You don't need to learn 50 words at once! Learning just 2 or 3 words a day, tapping Listen, and saying them out loud helps your brain remember them easily.">
+          <span class="chip-tag">LANGUAGES</span>
+          <h3>A Few Words a Day Is Enough</h3>
+          <p>Small daily steps beat big cramming sessions.</p>
+          <div class="fact-link">Read Fact ➡</div>
         </div>
 
-        <div class="story-card" data-cat="science"
-          data-title="Why Does the Sun Give Us Light?"
-          data-body="The Sun is a giant, super-hot ball of glowing gas far up in space. Its light travels through space and reaches Earth so we can see during the day and plants can grow.">
-          <div class="tag">SCIENCE</div>
-          <h3>Why Does the Sun Give Us Light?</h3>
-          <p>A big glowing star in space lights up our day.</p>
-          <div class="read-txt">Read More ➡</div>
+        <div class="fact-tile" data-cat="science"
+          data-title="How the Sun Lights Up Our Day"
+          data-text="The Sun is a huge glowing ball of hot gas in space. Its light travels to Earth in about 8 minutes so we can see clearly and plants can grow.">
+          <span class="chip-tag">SCIENCE</span>
+          <h3>How the Sun Lights Up Our Day</h3>
+          <p>Sunlight travels from space to keep Earth bright and warm.</p>
+          <div class="fact-link">Read Fact ➡</div>
         </div>
 
-        <div class="story-card" data-cat="biology"
-          data-title="How a Tiny Seed Grows Into a Plant"
-          data-body="Inside a tiny seed is a baby plant sleeping with a little food pack. When it gets water, warmth, and soil, it wakes up, pushes roots down, and grows leaves toward the light.">
-          <div class="tag">BIOLOGY</div>
-          <h3>How a Tiny Seed Grows Into a Plant</h3>
-          <p>Water, warmth, and sunlight wake up a sleeping seed.</p>
-          <div class="read-txt">Read More ➡</div>
+        <div class="fact-tile" data-cat="biology"
+          data-title="How a Seed Wakes Up"
+          data-text="Inside a tiny seed is a baby plant with a little snack pack. Give it water, warmth, and soil, and it sprouts roots and green leaves!">
+          <span class="chip-tag">BIOLOGY</span>
+          <h3>How a Seed Wakes Up</h3>
+          <p>Water and warmth help a sleeping seed grow.</p>
+          <div class="fact-link">Read Fact ➡</div>
         </div>
 
-        <div class="story-card" data-cat="ai"
-          data-title="What Is AI in Simple Words?"
-          data-body="AI (Artificial Intelligence) is computer software that learns by looking at lots of examples—a bit like how you learn what a cat looks like after seeing many cats. It is a helpful tool, not a magic person.">
-          <div class="tag">AI</div>
-          <h3>What Is AI in Simple Words?</h3>
-          <p>Computers learning patterns from lots of examples.</p>
-          <div class="read-txt">Read More ➡</div>
+        <div class="fact-tile" data-cat="ai"
+          data-title="How AI Learns Like a Student"
+          data-text="AI (Artificial Intelligence) is computer code that learns patterns from lots of examples—similar to how you learn what a cat looks like after seeing many cats.">
+          <span class="chip-tag">AI</span>
+          <h3>How AI Learns Like a Student</h3>
+          <p>Computers spot patterns from examples people give them.</p>
+          <div class="fact-link">Read Fact ➡</div>
         </div>
 
-        <div class="story-card" data-cat="history"
-          data-title="How People Wrote Before Paper"
-          data-body="Thousands of years ago, before paper and printers existed, people carved pictures and symbols onto clay, stone, or leaves to remember stories, food counts, and rules.">
-          <div class="tag">HISTORY</div>
-          <h3>How People Wrote Before Paper</h3>
-          <p>Long ago, people wrote on clay and stone!</p>
-          <div class="read-txt">Read More ➡</div>
+        <div class="fact-tile" data-cat="history"
+          data-title="Writing Before Paper"
+          data-text="Long before paper and books were invented, people carved pictures and signs onto clay, stone, and leaves to save stories and count food.">
+          <span class="chip-tag">HISTORY</span>
+          <h3>Writing Before Paper</h3>
+          <p>People used clay and stone long before paper existed.</p>
+          <div class="fact-link">Read Fact ➡</div>
         </div>
 
-        <div class="story-card" data-cat="biology"
-          data-title="Why Bees Are Super Helpers"
-          data-body="As bees fly from flower to flower to drink sweet nectar, tiny yellow pollen sticks to their bodies. Carrying that pollen helps flowers make seeds and fruits!">
-          <div class="tag">BIOLOGY</div>
-          <h3>Why Bees Are Super Helpers</h3>
-          <p>Bees help flowers grow seeds and yummy fruits.</p>
-          <div class="read-txt">Read More ➡</div>
+        <div class="fact-tile" data-cat="biology"
+          data-title="How Bees Help Flowers"
+          data-text="When bees visit flowers for sweet nectar, tiny pollen sticks to their fuzzy bodies and helps plants make new seeds and fruits.">
+          <span class="chip-tag">BIOLOGY</span>
+          <h3>How Bees Help Flowers</h3>
+          <p>Bees carry pollen so flowers can grow seeds and fruit.</p>
+          <div class="fact-link">Read Fact ➡</div>
         </div>
       </div>
     </section>
@@ -603,218 +680,296 @@ footer{
   </div>
 </div>
 
-<!-- READER VIEW -->
-<div class="container" id="readerBox">
+<!-- READER -->
+<div class="wrap" id="factReader">
   <section>
-    <button class="soft-btn" onclick="closeReader()" style="margin-bottom:16px">⬅ Back</button>
-    <div class="tag" id="readerTag"></div>
-    <h1 id="readerTitle" style="margin:6px 0 14px"></h1>
-    <div class="panel">
-      <p id="readerBody" style="margin:0;line-height:1.7;font-size:17px;color:var(--muted)"></p>
+    <button class="duo-btn duo-ghost" onclick="closeFactReader()" style="margin-bottom:16px">⬅ Back</button>
+    <div class="duo-card">
+      <span class="chip-tag" id="readerBadge"></span>
+      <h1 id="readerHeading" style="margin:10px 0 12px;font-size:28px"></h1>
+      <p id="readerText" style="margin:0;color:var(--muted);font-size:17px;line-height:1.65"></p>
     </div>
   </section>
 </div>
 </main>
 
 <footer>
-  <div class="container">
-    <strong>DAILYKIT</strong> • Simple Learning for Kids &amp; Beginners
-  </div>
+  <div class="wrap">DAILYKIT • Simple &amp; Friendly Learning</div>
 </footer>
 
 <script>
-let stars = parseInt(localStorage.getItem("dk_kid_stars") || "0", 10);
-function addStars(n){
-  stars += n;
-  localStorage.setItem("dk_kid_stars", String(stars));
-  document.getElementById("starCount").textContent = stars;
+let stars = parseInt(localStorage.getItem("dk_duo_stars") || "0", 10);
+function awardStars(pts){
+  stars += pts;
+  localStorage.setItem("dk_duo_stars", String(stars));
+  document.getElementById("starsVal").textContent = stars;
 }
-document.getElementById("starCount").textContent = stars;
+document.getElementById("starsVal").textContent = stars;
 
-// EASY LANGUAGES
-const kidLangs = {
+const courses = {
   it: {
-    name: "ITALIAN",
+    label: "ITALIAN",
     voice: "it-IT",
     steps: [
       [
-        { word: "Ciao!", say: "CHOW!", meaning: "Hi! / Bye!", ex: "Ciao Anna!", exEn: "Hi Anna!" },
-        { word: "Buongiorno!", say: "bwohn-JOHR-noh", meaning: "Good morning!", ex: "Buongiorno, maestra!", exEn: "Good morning, teacher!" }
+        { word: "Ciao!", say: "CHOW!", meaning: "Hi! / Bye!", ex: "Ciao Anna!", exSub: "Hi Anna!" },
+        { word: "Buongiorno!", say: "bwohn-JOHR-noh", meaning: "Good morning!", ex: "Buongiorno a tutti!", exSub: "Good morning everyone!" }
       ],
       [
-        { word: "Grazie!", say: "GRAH-tsyeh", meaning: "Thank you!", ex: "Grazie mille!", exEn: "Thank you so much!" },
-        { word: "Per favore", say: "pehr fah-VOH-reh", meaning: "Please", ex: "Acqua, per favore.", exEn: "Water, please." }
+        { word: "Grazie!", say: "GRAH-tsyeh", meaning: "Thank you!", ex: "Grazie mille!", exSub: "Thank you so much!" },
+        { word: "Per favore", say: "pehr fah-VOH-reh", meaning: "Please", ex: "Acqua, per favore.", exSub: "Water, please." }
       ],
       [
-        { word: "Una mela", say: "OO-nah MEH-lah", meaning: "An apple", ex: "Mangio una mela.", exEn: "I eat an apple." },
-        { word: "A domani!", say: "ah doh-MAH-nee", meaning: "See you tomorrow!", ex: "Ciao, a domani!", exEn: "Bye, see you tomorrow!" }
+        { word: "Una mela", say: "OO-nah MEH-lah", meaning: "An apple", ex: "Mangio una mela.", exSub: "I eat an apple." },
+        { word: "A domani!", say: "ah doh-MAH-nee", meaning: "See you tomorrow!", ex: "Ciao, a domani!", exSub: "Bye, see you tomorrow!" }
       ]
     ]
   },
   es: {
-    name: "SPANISH",
+    label: "SPANISH",
     voice: "es-ES",
     steps: [
       [
-        { word: "¡Hola!", say: "OH-lah!", meaning: "Hello! / Hi!", ex: "¡Hola, amigo!", exEn: "Hi, friend!" },
-        { word: "¡Buenos días!", say: "BWEH-nohs DEE-ahs", meaning: "Good morning!", ex: "¡Buenos días a todos!", exEn: "Good morning everyone!" }
+        { word: "¡Hola!", say: "OH-lah!", meaning: "Hello! / Hi!", ex: "¡Hola, amigo!", exSub: "Hi, friend!" },
+        { word: "¡Buenos días!", say: "BWEH-nohs DEE-ahs", meaning: "Good morning!", ex: "¡Buenos días!", exSub: "Good morning!" }
       ],
       [
-        { word: "¡Gracias!", say: "GRAH-syahs", meaning: "Thank you!", ex: "¡Muchas gracias!", exEn: "Thank you very much!" },
-        { word: "Por favor", say: "pohr fah-VOHR", meaning: "Please", ex: "Ayuda, por favor.", exEn: "Help, please." }
+        { word: "¡Gracias!", say: "GRAH-syahs", meaning: "Thank you!", ex: "¡Muchas gracias!", exSub: "Thank you very much!" },
+        { word: "Por favor", say: "pohr fah-VOHR", meaning: "Please", ex: "Agua, por favor.", exSub: "Water, please." }
       ],
       [
-        { word: "Una manzana", say: "OO-nah mahn-SAH-nah", meaning: "An apple", ex: "Tengo una manzana.", exEn: "I have an apple." },
-        { word: "¡Hasta mañana!", say: "AHS-tah mah-NYAH-nah", meaning: "See you tomorrow!", ex: "¡Adiós, hasta mañana!", exEn: "Bye, see you tomorrow!" }
+        { word: "Una manzana", say: "OO-nah mahn-SAH-nah", meaning: "An apple", ex: "Como una manzana.", exSub: "I eat an apple." },
+        { word: "¡Hasta mañana!", say: "AHS-tah mah-NYAH-nah", meaning: "See you tomorrow!", ex: "¡Adiós, hasta mañana!", exSub: "Bye, see you tomorrow!" }
       ]
     ]
   },
   fr: {
-    name: "FRENCH",
+    label: "FRENCH",
     voice: "fr-FR",
     steps: [
       [
-        { word: "Bonjour !", say: "bohn-ZHOOR", meaning: "Hello! / Good day!", ex: "Bonjour Léo !", exEn: "Hello Leo!" },
-        { word: "Salut !", say: "sah-LOO", meaning: "Hi! / Bye!", ex: "Salut tout le monde !", exEn: "Hi everyone!" }
+        { word: "Bonjour !", say: "bohn-ZHOOR", meaning: "Hello! / Good day!", ex: "Bonjour Léo !", exSub: "Hello Leo!" },
+        { word: "Salut !", say: "sah-LOO", meaning: "Hi! / Bye!", ex: "Salut tout le monde !", exSub: "Hi everyone!" }
       ],
       [
-        { word: "Merci !", say: "mehr-SEE", meaning: "Thank you!", ex: "Merci beaucoup !", exEn: "Thank you very much!" },
-        { word: "S'il vous plaît", say: "seel voo pleh", meaning: "Please", ex: "De l'eau, s'il vous plaît.", exEn: "Some water, please." }
+        { word: "Merci !", say: "mehr-SEE", meaning: "Thank you!", ex: "Merci beaucoup !", exSub: "Thank you very much!" },
+        { word: "S'il vous plaît", say: "seel voo pleh", meaning: "Please", ex: "Un verre d'eau, s'il vous plaît.", exSub: "A glass of water, please." }
       ],
       [
-        { word: "Une pomme", say: "oon pohm", meaning: "An apple", ex: "J'aime une pomme.", exEn: "I like an apple." },
-        { word: "À demain !", say: "ah duh-MEHN", meaning: "See you tomorrow!", ex: "Salut, à demain !", exEn: "Bye, see you tomorrow!" }
+        { word: "Une pomme", say: "oon pohm", meaning: "An apple", ex: "Je mange une pomme.", exSub: "I eat an apple." },
+        { word: "À demain !", say: "ah duh-MEHN", meaning: "See you tomorrow!", ex: "Salut, à demain !", exSub: "Bye, see you tomorrow!" }
       ]
     ]
   },
   ja: {
-    name: "JAPANESE",
+    label: "JAPANESE",
     voice: "ja-JP",
     steps: [
       [
-        { word: "こんにちは", say: "Konnichiwa", meaning: "Hello! / Good afternoon!", ex: "こんにちは、元気？", exEn: "Hello, how are you?" },
-        { word: "おはよう", say: "Ohayō", meaning: "Good morning!", ex: "おはよう、きょうもげんき！", exEn: "Good morning, energetic today!" }
+        { word: "こんにちは", say: "Konnichiwa", meaning: "Hello!", ex: "こんにちは、元気？", exSub: "Hello, how are you?" },
+        { word: "おはよう", say: "Ohayō", meaning: "Good morning!", ex: "おはよう、きょうもげんき！", exSub: "Good morning, energetic today!" }
       ],
       [
-        { word: "ありがとう", say: "Arigatō", meaning: "Thank you!", ex: "本当にありがとう！", exEn: "Thank you so much!" },
-        { word: "おねがいします", say: "Onegai shimasu", meaning: "Please", ex: "これをおねがいします。", exEn: "This one, please." }
+        { word: "ありがとう", say: "Arigatō", meaning: "Thank you!", ex: "本当にありがとう！", exSub: "Thank you so much!" },
+        { word: "おねがいします", say: "Onegai shimasu", meaning: "Please", ex: "これをおねがいします。", exSub: "This one, please." }
       ],
       [
-        { word: "りんご", say: "Ringo", meaning: "Apple", ex: "赤いりんごが好きです。", exEn: "I like red apples." },
-        { word: "またあした", say: "Mata ashita", meaning: "See you tomorrow!", ex: "バイバイ、またあした！", exEn: "Bye-bye, see you tomorrow!" }
+        { word: "りんご", say: "Ringo", meaning: "Apple", ex: "赤いりんごが好きです。", exSub: "I like red apples." },
+        { word: "またあした", say: "Mata ashita", meaning: "See you tomorrow!", ex: "バイバイ、またあした！", exSub: "Bye-bye, see you tomorrow!" }
       ]
     ]
   }
 };
 
-let curLang = "it";
-let curStep = 0;
-let curCard = 0;
-let matchedOnce = false;
+let selLang = "it";
+let selStep = 0;
+let selIdx = 0;
+let matchDone = false;
 
-function pickLang(code, btn){
-  curLang = code;
-  curStep = 0;
-  curCard = 0;
-  document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
+function chooseLang(code, btn){
+  selLang = code;
+  selStep = 0;
+  selIdx = 0;
+  document.querySelectorAll(".lang-pill").forEach(b => b.classList.remove("active"));
   if(btn) btn.classList.add("active");
-  document.querySelectorAll(".step-btn").forEach((b, i) => b.classList.toggle("active", i === 0));
-  showCard();
+  document.querySelectorAll(".path-step").forEach((b, i) => b.classList.toggle("active", i === 0));
+  renderCard();
 }
 
-function pickStep(stepIdx, btn){
-  curStep = stepIdx;
-  curCard = 0;
-  document.querySelectorAll(".step-btn").forEach(b => b.classList.remove("active"));
+function chooseStep(stepIdx, btn){
+  selStep = stepIdx;
+  selIdx = 0;
+  document.querySelectorAll(".path-step").forEach(b => b.classList.remove("active"));
   if(btn) btn.classList.add("active");
-  showCard();
+  renderCard();
 }
 
-function showCard(){
-  const lang = kidLangs[curLang];
-  const cards = lang.steps[curStep];
-  const item = cards[curCard % cards.length];
+function renderCard(){
+  const c = courses[selLang];
+  const list = c.steps[selStep];
+  const card = list[selIdx % list.length];
 
-  document.getElementById("cardLangLabel").textContent = `${lang.name} • STEP ${curStep + 1}`;
-  document.getElementById("cardWord").textContent = item.word;
-  document.getElementById("cardSay").textContent = `Sounds like: ${item.say}`;
-  document.getElementById("cardMeaning").textContent = `Means: ${item.meaning}`;
-  document.getElementById("cardEx").textContent = `"${item.ex}"`;
-  document.getElementById("cardExEn").textContent = `"${item.exEn}"`;
+  document.getElementById("stepBadge").textContent = `${c.label} • STEP ${selStep + 1}`;
+  document.getElementById("phraseMain").textContent = card.word;
+  document.getElementById("phraseSay").textContent = `Say: ${card.say}`; document.getElementById("phraseMeaning").textContent = `Meaning: ${card.meaning}`;
+  document.getElementById("exLine").textContent = `"${card.ex}"`; document.getElementById("exSub").textContent = `"${card.exSub}"`;
 
-  buildMatch(lang, item);
+  renderMatch(c, card);
 }
 
-function nextCard(){
-  const cards = kidLangs[curLang].steps[curStep];
-  curCard = (curCard + 1) % cards.length;
-  showCard();
+function nextItem(){
+  const list = courses[selLang].steps[selStep];
+  selIdx = (selIdx + 1) % list.length;
+  renderCard();
 }
 
-function prevCard(){
-  const cards = kidLangs[curLang].steps[curStep];
-  curCard = (curCard - 1 + cards.length) % cards.length;
-  showCard();
+function prevItem(){
+  const list = courses[selLang].steps[selStep];
+  selIdx = (selIdx - 1 + list.length) % list.length;
+  renderCard();
 }
 
-function sayWord(){
-  const lang = kidLangs[curLang];
-  const item = lang.steps[curStep][curCard % lang.steps[curStep].length];
+function listenPhrase(){
+  const c = courses[selLang];
+  const card = c.steps[selStep][selIdx % c.steps[selStep].length];
   if("speechSynthesis" in window){
     window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(item.word);
-    u.lang = lang.voice;
+    const u = new SpeechSynthesisUtterance(card.word);
+    u.lang = c.voice;
     u.rate = 0.85;
     window.speechSynthesis.speak(u);
   }
 }
 
-function buildMatch(lang, target){
-  matchedOnce = false;
-  document.getElementById("matchQuestion").textContent = `What does "${target.word}" mean?`;
+function renderMatch(course, target){
+  matchDone = false;
+  document.getElementById("matchPrompt").textContent = `Quick Match (+10 ⭐): What does "${target.word}" mean?`;
   const pool = [];
-  lang.steps.forEach(st => st.forEach(c => {
-    if(c.meaning !== target.meaning && !pool.includes(c.meaning)) pool.push(c.meaning);
+  course.steps.forEach(s => s.forEach(item => {
+    if(item.meaning !== target.meaning && !pool.includes(item.meaning)) pool.push(item.meaning);
   }));
-  const choices = [target.meaning, ...pool.slice(0, 3)].sort(() => Math.random() - 0.5);
-  const box = document.getElementById("matchOptions");
+  const opts = [target.meaning, ...pool.slice(0, 3)].sort(() => Math.random() - 0.5);
+  const box = document.getElementById("matchChoices");
   box.innerHTML = "";
-  document.getElementById("matchResult").textContent = "Tap an answer below!";
+  document.getElementById("matchStatus").textContent = "Tap the matching meaning above!";
 
-  choices.forEach(ch => {
+  opts.forEach(opt => {
     const b = document.createElement("button");
-    b.className = "opt-btn";
-    b.textContent = ch;
+    b.className = "ans-btn";
+    b.textContent = opt;
     b.onclick = () => {
-      if(matchedOnce) return;
-      matchedOnce = true;
+      if(matchDone) return;
+      matchDone = true;
       box.querySelectorAll("button").forEach(x => x.disabled = true);
-      if(ch === target.meaning){
-        b.classList.add("right");
-        addStars(10);
-        document.getElementById("matchResult").innerHTML = `<strong style="color:var(--green)">Awesome! +10 ⭐</strong>`;
+      if(opt === target.meaning){
+        b.classList.add("good");
+        awardStars(10);
+        document.getElementById("matchStatus").innerHTML = `<span style="color:var(--green-dark)">Nice work! +10 ⭐</span>`;
       } else {
-        b.classList.add("wrong");
-        box.querySelectorAll("button").forEach(x => { if(x.textContent === target.meaning) x.classList.add("right"); });
-        document.getElementById("matchResult").innerHTML = `Good try! It means <strong>${target.meaning}</strong>.`;
+        b.classList.add("bad");
+        box.querySelectorAll("button").forEach(x => { if(x.textContent === target.meaning) x.classList.add("good"); });
+        document.getElementById("matchStatus").innerHTML = `Good try! It means <strong>${target.meaning}</strong>.`;
       }
     };
     box.appendChild(b);
   });
 }
 
-// EASY QUIZ
-const easyQuizzes = {
+// QUIZ
+const quizData = {
   science: [
-    { q: "Which one gives us bright light in the sky during the day?", opts: ["The Sun", "A pillow", "A spoon", "A shoe"], ans: 0 },
-    { q: "When water gets very cold in a freezer, what does it become?", opts: ["Ice", "Sand", "Smoke", "Soap"], ans: 0 },
-    { q: "What do you see in the sky after rain when sunlight shines?", opts: ["A rainbow", "A traffic light", "A submarine", "A toaster"], ans: 0 }
+    { q: "Which one gives us light in the sky during the day?", opts: ["The Sun", "A pillow", "A spoon", "A shoe"], ans: 0 },
+    { q: "What does water become when it freezes?", opts: ["Ice", "Sand", "Smoke", "Soap"], ans: 0 },
+    { q: "What appears in the sky when sunlight hits rain?", opts: ["A rainbow", "A traffic light", "A submarine", "A toaster"], ans: 0 }
   ],
   biology: [
-    { q: "Which animal can fly and build nests in trees?", opts: ["Bird", "Fish", "Crab", "Turtle"], ans: 0 },
-    { q: "What do plants need to grow big and healthy?", opts: ["Water & sunlight", "Candy & soda", "Toy cars", "Plastic bags"], ans: 0 },
-    { q: "Which part of a plant drinks water from the soil?", opts: ["Roots", "Hat", "Wheels", "Buttons"], ans: 0 }
+    { q: "Which animal can fly and build nests?", opts: ["Bird", "Fish", "Crab", "Turtle"], ans: 0 },
+    { q: "What do plants need to grow?", opts: ["Water & sunlight", "Candy & soda", "Toy cars", "Plastic bags"], ans: 0 },
+    { q: "Which part of a plant takes in water from soil?", opts: ["Roots", "Hat", "Wheels", "Buttons"], ans: 0 }
   ],
   ai: [
-    { q: "How does a smart AI computer learn to spot a dog in a picture?", opts: ["By looking at many dog pictures", "By eating lunch", "By sleeping in bed", "By riding a bike"], ans: 0 },
-    { q: "Who makes
+    { q: "How does AI learn to spot a dog in photos?", opts: ["From many dog examples", "By eating lunch", "By sleeping", "By riding a bike"], ans: 0 },
+    { q: "Who builds and checks AI tools?", opts: ["People", "Clouds", "Rocks", "Bananas"], ans: 0 },
+    { q: "Is AI a real person?", opts: ["No, it is computer software", "Yes, a superhero", "Yes, a puppy", "Yes, a tree"], ans: 0 }
+  ],
+  history: [
+    { q: "Long ago before cars, how did people travel?", opts: ["Walking, boats, or animals", "Rockets", "Subways", "Space shuttles"], ans: 0 },
+    { q: "What is history?", opts: ["Stories from the past", "Tomorrow's weather", "A game score", "A shopping list"], ans: 0 },
+    { q: "What did people write on long before paper?", opts: ["Clay or stone", "Smartphones", "TV remotes", "Plastic cards"], ans: 0 }
+  ]
+};
+
+let activeQTopic = "science";
+let activeQIndex = 0;
+let qLocked = false;
+
+function resetQuiz(){
+  activeQTopic = document.getElementById("quizTopicPick").value;
+  activeQIndex = 0;
+  drawQuiz();
+}
+
+function drawQuiz(){
+  qLocked = false;
+  const list = quizData[activeQTopic];
+  document.getElementById("qProgress").textContent = `Question ${Math.min(activeQIndex + 1, list.length)} /${list.length}`;
+  document.getElementById("qNextBtn").style.display = "none";
+
+  if(activeQIndex >= list.length){
+    document.getElementById("qText").textContent = "🎉 Quiz complete! Awesome job!";
+    document.getElementById("qOptions").innerHTML = "";
+    document.getElementById("qFeedback").textContent = "Try another topic or play again!";
+    document.getElementById("qNextBtn").textContent = "Play Again";
+    document.getElementById("qNextBtn").style.display = "inline-block";
+    document.getElementById("qNextBtn").onclick = resetQuiz;
+    return;
+  }
+
+  const item = list[activeQIndex];
+  document.getElementById("qText").textContent = item.q;
+  document.getElementById("qFeedback").textContent = "Tap an answer to earn ⭐ stars!";
+  const box = document.getElementById("qOptions");
+  box.innerHTML = "";
+
+  item.opts.forEach((txt, idx) => {
+    const b = document.createElement("button");
+    b.className = "ans-btn";
+    b.textContent = txt;
+    b.onclick = () => {
+      if(qLocked) return;
+      qLocked = true;
+      box.querySelectorAll("button").forEach(x => x.disabled = true);
+      if(idx === item.ans){
+        b.classList.add("good");
+        awardStars(10);
+        document.getElementById("qFeedback").innerHTML = `<span style="color:var(--green-dark)">Correct! +10 ⭐</span>`;
+      } else {
+        b.classList.add("bad");
+        box.querySelectorAll("button")[item.ans].classList.add("good");
+        document.getElementById("qFeedback").innerHTML = `Good try! Answer: <strong>${item.opts[item.ans]}</strong>.`;
+      }
+      document.getElementById("qNextBtn").textContent = "Next ➡";
+      document.getElementById("qNextBtn").style.display = "inline-block";
+      document.getElementById("qNextBtn").onclick = advanceQuiz;
+    };
+    box.appendChild(b);
+  });
+}
+
+function advanceQuiz(){
+  activeQIndex++;
+  drawQuiz();
+}
+
+// FACTS FILTER & READER
+const factCards = Array.from(document.querySelectorAll(".fact-tile"));
+
+function filterFacts(cat){
+  let count = 0;
+  factCards.forEach(card => {
+    const show = cat === "all" || card.dataset.cat === cat;
+    card.style.display = show ? "block" : "none";
+    if(show) count++;
+  });
+  document.getElementById("factsLabel").textContent =
+    cat === "all" ? `Showing all ${count
