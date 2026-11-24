@@ -1,388 +1,311 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<style>
-.language-selector {
-  padding: 9px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background: white;
-  color: #222;
-  font-size: 14px;
-  cursor: pointer;
-}
-</style>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DAILYKIT - Everyday tools, learning and fun for everyone.">
-<title>DAILYKIT - Everything Every Day</title>
+<meta name="theme-color" content="#080d1c">
+<title>DAILYKIT — Everything, Every Day</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
-header{background:#172554;color:white;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.logo{font-size:27px;font-weight:800}
-.logo span{color:#38bdf8}
-nav{display:flex;gap:17px;flex-wrap:wrap}
-nav a{color:white;text-decoration:none;font-size:14px}
-.hero{text-align:center;padding:55px 15px;background:linear-gradient(135deg,#172554,#2563eb);color:white}
-.hero h1{font-size:36px;margin-bottom:12px}
-.hero p{font-size:16px;line-height:1.6}
-.search{margin:23px auto 0;max-width:440px;display:flex}
-.search input{width:100%;padding:14px;border:0;border-radius:9px;font-size:15px}
-.container{max-width:1100px;margin:auto;padding:30px 16px}
-.section-title{font-size:24px;margin:25px 0 17px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:15px}
-.card{background:white;padding:23px 12px;border-radius:15px;text-align:center;box-shadow:0 3px 15px #0000000c;cursor:pointer;transition:.2s;border:1px solid #e8edf5}
-.card:hover{transform:translateY(-4px);box-shadow:0 7px 20px #00000015}
-.card .emoji{font-size:37px;margin-bottom:12px}
-.card h3{font-size:15px;margin-bottom:7px}
-.card p{font-size:12px;color:#64748b;line-height:1.5}
-.kids{background:linear-gradient(135deg,#fce7f3,#ede9fe);padding:23px;border-radius:18px}
-.kids .card{border:0}
-footer{text-align:center;padding:30px;background:#172554;color:#cbd5e1;margin-top:35px;font-size:13px}
-button{cursor:pointer;border:0}
-#toolbox{display:none;background:white;padding:22px;border-radius:15px;margin-top:22px}
-#toolbox input,#toolbox textarea{width:100%;padding:12px;margin:10px 0;border:1px solid #cbd5e1;border-radius:8px}
-.action{background:#2563eb;color:white;padding:11px 18px;border-radius:8px;margin:5px}
-#result{margin-top:12px;overflow-wrap:anywhere}
+:root {
+  --bg:#080d1c;
+  --panel:#111a30;
+  --text:#f4f7ff;
+  --muted:#9ba9c5;
+  --accent:#36d9ff;
+  --border:#263451;
+}
+body.light {
+  --bg:#f3f6fc;
+  --panel:#ffffff;
+  --text:#101a30;
+  --muted:#61708b;
+  --border:#dce3ef;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  transition:.25s;
+}
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 6%;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  background:var(--bg);
+  z-index:10;
+}
+.logo {
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+.logo span {color:var(--accent)}
+.controls {display:flex;gap:9px;align-items:center}
+button,select {
+  background:var(--panel);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:10px;
+  cursor:pointer;
+}
+.hero {
+  text-align:center;
+  padding:75px 20px 55px;
+  background:radial-gradient(ellipse at top,#173b65 0%,transparent 65%);
+}
+.hero h1 {
+  font-size:clamp(34px,7vw,65px);
+  margin:0 0 15px;
+  line-height:1.1;
+}
+.hero h1 span {
+  background:linear-gradient(90deg,#36d9ff,#9b78ff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.hero p {
+  color:var(--muted);
+  font-size:17px;
+}
+.search {
+  max-width:600px;
+  margin:30px auto 0;
+}
+.search input {
+  width:100%;
+  padding:17px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:var(--text);
+  font-size:16px;
+  outline:none;
+}
+main {padding:20px 6% 80px}
+.section-title {
+  font-size:25px;
+  margin:35px 0 18px;
+}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:16px;
+}
+.card {
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:23px;
+  border-radius:18px;
+  transition:.2s;
+  cursor:pointer;
+}
+.card:hover {
+  transform:translateY(-5px);
+  border-color:var(--accent);
+}
+.card .emoji {font-size:35px}
+.card h3 {margin:13px 0 8px}
+.card p {color:var(--muted);line-height:1.5}
+.tag {
+  display:inline-block;
+  color:var(--accent);
+  font-size:12px;
+  margin-top:8px;
+}
+footer {
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+}
+nav {
+  display:flex;
+  gap:20px;
+}
+nav a {
+  color:var(--muted);
+  text-decoration:none;
+  font-size:14px;
+}
+nav a:hover {color:var(--accent)}
+@media(max-width:650px) {
+  header {padding:14px 4%}
+  nav {display:none}
+  main {padding:15px 4% 70px}
+  .hero {padding-top:60px}
+  .grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+  .card {padding:15px}
+  .card .emoji {font-size:29px}
+  .card h3 {font-size:16px}
+  .card p {font-size:13px}
+}
 </style>
 </head>
-<script>
-const translations = {
-  en: {
-    tools: "Tools",
-    kids: "Kids Zone",
-    knowledge: "Knowledge",
-    games: "Games"
-  },
-  es: {
-    tools: "Herramientas",
-    kids: "Zona Infantil",
-    knowledge: "Conocimiento",
-    games: "Juegos"
-  },
-  fr: {
-    tools: "Outils",
-    kids: "Espace Enfants",
-    knowledge: "Connaissances",
-    games: "Jeux"
-  },
-  de: {
-    tools: "Werkzeuge",
-    kids: "Kinderbereich",
-    knowledge: "Wissen",
-    games: "Spiele"
-  },
-  pt: {
-    tools: "Ferramentas",
-    kids: "Zona Infantil",
-    knowledge: "Conhecimento",
-    games: "Jogos"
-  },
-  ja: {
-    tools: "ツール",
-    kids: "キッズゾーン",
-    knowledge: "知識",
-    games: "ゲーム"
-  },
-  zh: {
-    tools: "工具",
-    kids: "儿童专区",
-    knowledge: "知识",
-    games: "游戏"
-  },
-  hi: {
-    tools: "उपकरण",
-    kids: "बच्चों का क्षेत्र",
-    knowledge: "ज्ञान",
-    games: "खेल"
-  }
-};
-
-function changeLanguage(lang) {
-  const t = translations[lang] || translations.en;
-  const links = document.querySelectorAll("nav a");
-
-  links[0].textContent = t.tools;
-  links[1].textContent = t.kids;
-  links[2].textContent = t.knowledge;
-  links[3].textContent = t.games;
-}
-</script>
-<script>
-const translations = {
-en: {
-hero: "Everything You Need, Every Day.",
-desc: "Learn, Create, Explore and Discover with DAILYKIT.",
-search: "Search tools and activities..."
-},
-es: {
-hero: "Todo lo que necesitas, cada día.",
-desc: "Aprende, crea, explora y descubre con DAILYKIT.",
-search: "Buscar herramientas y actividades..."
-},
-fr: {
-hero: "Tout ce dont vous avez besoin, chaque jour.",
-desc: "Apprenez, créez, explorez et découvrez avec DAILYKIT.",
-search: "Rechercher des outils et des activités..."
-},
-de: {
-hero: "Alles, was du jeden Tag brauchst.",
-desc: "Lernen, gestalten, erkunden und entdecken mit DAILYKIT.",
-search: "Tools und Aktivitäten suchen..."
-},
-pt: {
-hero: "Tudo o que você precisa, todos os dias.",
-desc: "Aprenda, crie, explore e descubra com DAILYKIT.",
-search: "Pesquisar ferramentas e atividades..."
-},
-ja: {
-hero: "毎日必要なもの、すべて。",
-desc: "DAILYKITで学び、創造し、探検し、発見しましょう。",
-search: "ツールやアクティビティを検索..."
-},
-zh: {
-hero: "每天所需的一切。",
-desc: "使用 DAILYKIT 学习、创造、探索和发现。",
-search: "搜索工具和活动..."
-},
-hi: {
-hero: "हर दिन आपकी ज़रूरत की हर चीज़।",
-desc: "DAILYKIT के साथ सीखें, बनाएं, खोजें और जानें।",
-search: "टूल और गतिविधियाँ खोजें..."
-}
-};
-
-const oldChangeLanguage = changeLanguage;
-
-function changeLanguage(lang) {
-const t = translations[lang];
-if (!t) return;
-
-document.getElementById("heroTitle").textContent = t.hero;
-document.getElementById("heroDescription").textContent = t.desc;
-document.getElementById("search").placeholder = t.search;
-
-oldChangeLanguage(lang);
-}
-</script>
 <body>
+
 <header>
-<div class="logo">DAILY<span>KIT</span></div>
-<nav>
-<a href="#tools">Tools</a>
-<a href="#kids">Kids Zone</a>
-<a href="#knowledge">Knowledge</a>
-<a href="#games">Games</a>
-</nav>
-<select id="languageSelector"
-onchange="changeLanguage(this.value)"
-style="padding:10px;border-radius:8px;">
-  <option value="en">🇬🇧 English</option>
-  <option value="es">🇪🇸 Español</option>
-  <option value="fr">🇫🇷 Français</option>
-  <option value="de">🇩🇪 Deutsch</option>
-  <option value="pt">🇵🇹 Português</option>
-  <option value="ja">🇯🇵 日本語</option>
-  <option value="zh">🇨🇳 中文</option>
-  <option value="hi">🇮🇳 हिन्दी</option>
-</select>
+  <div class="logo">DAILY<span>KIT</span></div>
+  <nav>
+    <a href="#tools">Tools</a>
+    <a href="#games">Games</a>
+    <a href="#discover">Discover</a>
+    <a href="#create">Create</a>
+  </nav>
+  <div class="controls">
+    <select id="language" aria-label="Language">
+      <option value="en">EN</option>
+      <option value="es">ES</option>
+      <option value="fr">FR</option>
+      <option value="de">DE</option>
+      <option value="pt">PT</option>
+      <option value="ja">JA</option>
+      <option value="zh">中文</option>
+      <option value="hi">HI</option>
+    </select>
+    <button onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
+  </div>
 </header>
 
 <section class="hero">
-<h1>Everything You Need, Every Day.</h1>
-<p>Learn, Create, Explore and Discover with DAILYKIT.</p>
-<div class="search">
-<input id="search" placeholder="Search tools and activities..." oninput="searchCards()">
-</div>
+  <h1>Everything.<br><span>Every Day.</span></h1>
+  <p>Your digital world to learn, create, play and discover.</p>
+  <div class="search">
+    <input id="search" type="search"
+      placeholder="Search tools, games and discoveries..."
+      oninput="searchCards()">
+  </div>
 </section>
 
-<main class="container">
+<main>
 
-<section id="tools">
-<h2 class="section-title">🛠️ Daily Tools</h2>
+<h2 class="section-title">✨ Daily Discovery</h2>
 <div class="grid">
-<div class="card" onclick="openTool('word')"><div class="emoji">📝</div><h3>Word Counter</h3><p>Count words and characters</p></div>
-<div class="card" onclick="openTool('qr')"><div class="emoji">🔳</div><h3>QR Generator</h3><p>Create QR codes</p></div>
-<div class="card" onclick="openTool('calculator')"><div class="emoji">🧮</div><h3>Calculator</h3><p>Quick calculations</p></div>
-<div class="card" onclick="openTool('date')"><div class="emoji">📅</div><h3>Date Calculator</h3><p>Calculate days between dates</p></div>
-<div class="card" onclick="openTool('image')"><div class="emoji">🖼️</div><h3>Image Resizer</h3><p>Resize images</p></div>
+  <div class="card" data-search="daily discovery explore">
+    <div class="emoji">🌍</div>
+    <h3>Explore Something New</h3>
+    <p>Discover interesting ideas and knowledge every day.</p>
+    <span class="tag">DISCOVER</span>
+  </div>
+  <div class="card" data-search="daily challenge">
+    <div class="emoji">⚡</div>
+    <h3>Daily Challenge</h3>
+    <p>Challenge your thinking with something new.</p>
+    <span class="tag">CHALLENGE</span>
+  </div>
 </div>
-<div id="toolbox">
-<h3 id="tooltitle">Tool</h3>
-<div id="toolcontent"></div>
-<div id="result"></div>
-</div>
-</section>
 
-<section id="kids">
-<h2 class="section-title">🎨 Kids Zone</h2>
-<div class="kids">
-<p style="margin-bottom:16px">A fun place to learn, play and discover!</p>
+<h2 class="section-title" id="tools">🛠️ Smart Tools</h2>
 <div class="grid">
-<div class="card" onclick="openGame('alphabet')"><div class="emoji">🔤</div><h3>Alphabet</h3><p>Learn your ABCs</p></div>
-<div class="card" onclick="openGame('numbers')"><div class="emoji">🔢</div><h3>Numbers</h3><p>Explore numbers</p></div>
-<div class="card" onclick="openGame('colors')"><div class="emoji">🌈</div><h3>Colors</h3><p>Discover colors</p></div>
-<div class="card" onclick="openGame('animals')"><div class="emoji">🐘</div><h3>Animals</h3><p>Learn about animals</p></div>
+  <div class="card" data-search="calculator math numbers">
+    <div class="emoji">🧮</div>
+    <h3>Calculator</h3>
+    <p>Quick and easy calculations.</p>
+    <span class="tag">TOOL</span>
+  </div>
+  <div class="card" data-search="qr code generator">
+    <div class="emoji">🔳</div>
+    <h3>QR Generator</h3>
+    <p>Create QR codes from your text or links.</p>
+    <span class="tag">TOOL</span>
+  </div>
+  <div class="card" data-search="word counter text">
+    <div class="emoji">📝</div>
+    <h3>Word Counter</h3>
+    <p>Count words and characters in text.</p>
+    <span class="tag">TOOL</span>
+  </div>
+  <div class="card" data-search="image resizer photo">
+    <div class="emoji">🖼️</div>
+    <h3>Image Resizer</h3>
+    <p>Resize images for different uses.</p>
+    <span class="tag">TOOL</span>
+  </div>
 </div>
-<div id="kidresult"></div>
-</div>
-</section>
 
-<section id="knowledge">
-<h2 class="section-title">🌍 Knowledge World</h2>
+<h2 class="section-title" id="games">🧠 Brain Arena</h2>
 <div class="grid">
-<div class="card" onclick="knowledge('space')"><div class="emoji">🚀</div><h3>Space</h3><p>Discover the universe</p></div>
-<div class="card" onclick="knowledge('science')"><div class="emoji">🔬</div><h3>Science</h3><p>Explore science</p></div>
-<div class="card" onclick="knowledge('nature')"><div class="emoji">🌳</div><h3>Nature</h3><p>Discover our planet</p></div>
-<div class="card" onclick="knowledge('body')"><div class="emoji">🫀</div><h3>Human Body</h3><p>Explore how we work</p></div>
+  <div class="card" data-search="memory game brain">
+    <div class="emoji">🧩</div>
+    <h3>Memory Games</h3>
+    <p>Train your memory and thinking skills.</p>
+    <span class="tag">PLAY</span>
+  </div>
+  <div class="card" data-search="quiz questions knowledge">
+    <div class="emoji">🎯</div>
+    <h3>Daily Quiz</h3>
+    <p>Test your general knowledge.</p>
+    <span class="tag">PLAY</span>
+  </div>
 </div>
-<div id="knowledge-result"></div>
-</section>
 
-<section id="games">
-<h2 class="section-title">🧠 Brain Games</h2>
+<h2 class="section-title" id="discover">🚀 Discovery World</h2>
 <div class="grid">
-<div class="card" onclick="memoryGame()"><div class="emoji">🧩</div><h3>Memory Game</h3><p>Test your memory</p></div>
-<div class="card" onclick="quizGame()"><div class="emoji">❓</div><h3>Daily Quiz</h3><p>Test your knowledge</p></div>
+  <div class="card" data-search="space planets universe">
+    <div class="emoji">🪐</div>
+    <h3>Space & Universe</h3>
+    <p>Explore planets, stars and galaxies.</p>
+    <span class="tag">EXPLORE</span>
+  </div>
+  <div class="card" data-search="science technology">
+    <div class="emoji">🔬</div>
+    <h3>Science & Technology</h3>
+    <p>Understand the world through science.</p>
+    <span class="tag">EXPLORE</span>
+  </div>
+  <div class="card" data-search="nature animals environment">
+    <div class="emoji">🌿</div>
+    <h3>Nature & Life</h3>
+    <p>Discover animals and our planet.</p>
+    <span class="tag">EXPLORE</span>
+  </div>
 </div>
-<div id="game-result"></div>
-</section>
+
+<h2 class="section-title" id="create">🎨 Create Studio</h2>
+<div class="grid">
+  <div class="card" data-search="poster design creative">
+    <div class="emoji">🎨</div>
+    <h3>Design Studio</h3>
+    <p>Bring your creative ideas to life.</p>
+    <span class="tag">CREATE</span>
+  </div>
+  <div class="card" data-search="ai writing ideas">
+    <div class="emoji">🤖</div>
+    <h3>AI World</h3>
+    <p>Explore intelligent digital assistance.</p>
+    <span class="tag">AI</span>
+  </div>
+</div>
 
 </main>
 
 <footer>
-<div class="logo">DAILY<span>KIT</span></div>
-<p style="margin-top:10px">Everything You Need, Every Day.</p>
-<p style="margin-top:12px">© 2026 DAILYKIT. All rights reserved.</p>
+  <strong>DAILYKIT</strong>
+  <p>One digital world. Endless possibilities.</p>
+  <small>© 2026 DAILYKIT</small>
 </footer>
 
 <script>
-function searchCards(){
-let q=document.getElementById('search').value.toLowerCase();
-document.querySelectorAll('.card').forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';
-});
+function toggleTheme() {
+  document.body.classList.toggle('light');
 }
-function openTool(type){
-let box=document.getElementById('toolbox');
-let content=document.getElementById('toolcontent');
-let title=document.getElementById('tooltitle');
-let result=document.getElementById('result');
-box.style.display='block';result.innerHTML='';
-let tools={
-word:['Word Counter',`<textarea id="words" placeholder="Type your text..." oninput="countWords()"></textarea><p id="count">Words: 0 | Characters: 0</p>`],
-qr:['QR Generator',`<input id="qrtext" placeholder="Enter text or URL"><button class="action" onclick="makeQR()">Generate QR</button>`],
-calculator:['Calculator',`<input id="calc" placeholder="Example: 25*4+10"><button class="action" onclick="calculate()">Calculate</button>`],
-date:['Date Calculator',`<label>Start date</label><input type="date" id="date1"><label>End date</label><input type="date" id="date2"><button class="action" onclick="dateDiff()">Calculate</button>`],
-image:['Image Resizer',`<input type="file" id="imagefile" accept="image/*"><input type="number" id="imagewidth" placeholder="New width in pixels"><button class="action" onclick="resizeImage()">Resize</button>`]
-};
-title.innerText=tools[type][0];content.innerHTML=tools[type][1];
-box.scrollIntoView({behavior:'smooth'});
-}
-function countWords(){
-let t=document.getElementById('words').value;
-document.getElementById('count').innerText='Words: '+(t.trim()?t.trim().split(/\s+/).length:0)+' | Characters: '+t.length;
-}
-function makeQR(){let t = document.getElementById('qrtext').value.trim();
-
-if (!t) return alert('Enter text first');
-
-let result = document.getElementById('result');
-
-result.innerHTML = `
-  <div style="text-align:center">
-    <img
-      id="qrimage"
-      src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(t)}"
-      alt="QR Code"
-      style="width:250px;max-width:100%;"
-    >
-    <br><br>
-    <a id="downloadQR"
-       href="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(t)}"
-       download="dailykit-qr.png"
-       target="_blank">
-       Download QR Code
-    </a>
-  </div>}
-function calculate(){
-try{
-let x=document.getElementById('calc').value;
-if(!/^[0-9+\-*/(). %]+$/.test(x))throw Error();
-document.getElementById('result').innerText='Result: '+Function('"use strict";return ('+x+')')();
-}catch(e){document.getElementById('result').innerText='Please enter a valid calculation.'}
-}
-function dateDiff(){
-let a=new Date(document.getElementById('date1').value);
-let b=new Date(document.getElementById('date2').value);
-if(isNaN(a)||isNaN(b))return alert('Choose both dates');
-document.getElementById('result').innerText='Days: '+Math.abs(Math.round((b-a)/86400000));
-}
-function resizeImage(){
-let f=document.getElementById('imagefile').files[0];
-let w=Number(document.getElementById('imagewidth').value);
-if(!f||w<1)return alert('Choose an image and width');
-let img=new Image(),url=URL.createObjectURL(f);
-img.onload=()=>{
-let c=document.createElement('canvas');
-c.width=w;c.height=Math.round(img.height*w/img.width);
-c.getContext('2d').drawImage(img,0,0,c.width,c.height);
-c.toBlob(blob=>{
-let a=document.createElement('a');
-a.href=URL.createObjectURL(blob);a.download='dailykit-image.jpg';a.click();
-URL.revokeObjectURL(url);
-});
-};
-img.src=url;
-}
-function openGame(type){
-let data={
-alphabet:['Alphabet Learning','A is for Apple 🍎<br>B is for Ball ⚽<br>C is for Cat 🐱'],
-numbers:['Numbers','1, 2, 3, 4, 5, 6, 7, 8, 9, 10'],
-colors:['Colors','🔴 Red &nbsp; 🟡 Yellow &nbsp; 🔵 Blue &nbsp; 🟢 Green'],
-animals:['Animals','🐘 Elephant &nbsp; 🦁 Lion &nbsp; 🐼 Panda &nbsp; 🦋 Butterfly']
-};
-document.getElementById('kidresult').innerHTML='<div class="card" style="margin-top:15px"><h3>'+data[type][0]+'</h3><p style="margin-top:12px">'+data[type][1]+'</p></div>';
-}
-function knowledge(type){
-let data={
-space:'The Sun is a star at the center of our Solar System. 🌞',
-science:'Water is made of hydrogen and oxygen: H₂O. 💧',
-nature:'Plants use sunlight to make their own food through photosynthesis. 🌱',
-body:'The human heart pumps blood throughout the body. ❤️'
-};
-document.getElementById('knowledge-result').innerHTML='<div class="card" style="margin-top:15px">'+data[type]+'</div>';
-}
-function memoryGame(){
-let symbols=['🐶','🐱','🐸','🐼','🐶','🐱','🐸','🐼'];
-symbols.sort(()=>Math.random()-.5);
-let selected=[],matched=[];
-let html='<div class="grid" style="margin-top:15px">';
-symbols.forEach((s,i)=>html+=`<button class="card" style="font-size:28px" id="m${i}" onclick="flip(${i},'${s}')">❔</button>`);
-html+='</div><p id="memoryscore">Find matching pairs!</p>';
-document.getElementById('game-result').innerHTML=html;
-window.flip=function(i,s){
-if(matched.includes(i)||selected.some(x=>x.i===i)||selected.length===2)return;
-document.getElementById('m'+i).innerText=s;
-selected.push({i,s});
-if(selected.length===2){
-if(selected[0].s===selected[1].s){
-matched.push(selected[0].i,selected[1].i);
-selected=[];document.getElementById('memoryscore').innerText='Great! Matches: '+matched.length/2;
-if(matched.length===8)document.getElementById('memoryscore').innerText='You won! 🎉';
-}else{
-let pair=selected;setTimeout(()=>{pair.forEach(x=>document.getElementById('m'+x.i).innerText='❔');selected=[]},800);
-}
-}
-};
-}
-function quizGame(){
-let q=[['Which planet do we live on?',['Mars','Earth','Jupiter'],1],['How many legs does a spider have?',['6','8','10'],1],['What do bees make?',['Honey','Milk','Bread'],0]];
-let i=Math.floor(Math.random()*q.length),v=q[i];
-document.getElementById('game-result').innerHTML='<div class="card"><h3>'+v[0]+'</h3>'+v[1].map((x,n)=>`<button class="action" onclick="document.getElementById('quizanswer').innerText=${n}===${v[2]}?'Correct! 🎉':'Try again!'">${x}</button>`).join('')+'<p id="quizanswer"></p></div>';
+function searchCards() {
+  const q = document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(card => {
+    card.style.display =
+      card.innerText.toLowerCase().includes(q) ||
+      (card.dataset.search || '').includes(q)
+      ? '' : 'none';
+  });
 }
 </script>
+
 </body>
 </html>
