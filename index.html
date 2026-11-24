@@ -144,10 +144,29 @@ function countWords(){
 let t=document.getElementById('words').value;
 document.getElementById('count').innerText='Words: '+(t.trim()?t.trim().split(/\s+/).length:0)+' | Characters: '+t.length;
 }
-function makeQR(){
-let t=document.getElementById('qrtext').value.trim();
-if(!t)return alert('Enter text first');
-document.getElementById('result').innerHTML='<p>QR generation requires an online QR service. Connect one in the next version.</p>';
+function makeQR(){let t = document.getElementById('qrtext').value.trim();
+
+if (!t) return alert('Enter text first');
+
+let result = document.getElementById('result');
+
+result.innerHTML = `
+  <div style="text-align:center">
+    <img
+      id="qrimage"
+      src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(t)}"
+      alt="QR Code"
+      style="width:250px;max-width:100%;"
+    >
+    <br><br>
+    <a id="downloadQR"
+       href="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(t)}"
+       download="dailykit-qr.png"
+       target="_blank">
+       Download QR Code
+    </a>
+  </div>
+`;
 }
 function calculate(){
 try{
